@@ -24,10 +24,11 @@ public class MainActivity extends AbstractNavDrawerActivity {
     @Override
     protected NavDrawerActivityConfiguration getNavDrawerConfiguration() {
 
-        NavDrawerItem[] menu = new NavDrawerItem[] { NavMenuSection.create(100, "Main"),
-                NavMenuItem.create(101, "Home", "navdrawer_home", false, this),
+        NavDrawerItem[] menu = new NavDrawerItem[] { 
+                NavMenuSection.create(100, "Main"),
+                NavMenuItem.create(101, "Home", "navdrawer_home", true, this),
                 NavMenuSection.create(200, "Settings"),
-                NavMenuItem.create(201, "Settings", "navdrawer_settings", false, this) };
+                NavMenuItem.create(201, "Settings", "navdrawer_settings", true, this) };
 
         NavDrawerActivityConfiguration navDrawerActivityConfiguration = new NavDrawerActivityConfiguration();
         navDrawerActivityConfiguration.setMainLayout(R.layout.main);
@@ -38,6 +39,7 @@ public class MainActivity extends AbstractNavDrawerActivity {
         navDrawerActivityConfiguration.setDrawerOpenDesc(R.string.drawer_open);
         navDrawerActivityConfiguration.setDrawerCloseDesc(R.string.drawer_close);
         navDrawerActivityConfiguration.setBaseAdapter(new NavDrawerAdapter(this, R.layout.navdrawer_item, menu));
+        
         return navDrawerActivityConfiguration;
     }
 
@@ -47,7 +49,7 @@ public class MainActivity extends AbstractNavDrawerActivity {
         case 101:
             getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new MainFragment()).commit();
             break;
-        case 102:
+        case 201:
             getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new SettingsFragment()).commit();
             break;
         }

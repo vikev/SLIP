@@ -12,5 +12,9 @@
     <string name="section">Section</string>
     <string name="drawer_open">Open navigation drawer</string>
 	<string name="drawer_close">Close navigation drawer</string>
+	<string name="server_url">Server URL</string>
+	<string name="username">Username</string>
+	<string name="password">Password</string>
+	<string name="save">Save</string>
 
 </resources>
