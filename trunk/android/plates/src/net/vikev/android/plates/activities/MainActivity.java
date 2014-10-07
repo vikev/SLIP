@@ -9,6 +9,7 @@ import net.vikev.android.plates.drawer.NavMenuItem;
 import net.vikev.android.plates.drawer.NavMenuSection;
 import net.vikev.android.plates.fragments.MainFragment;
 import net.vikev.android.plates.fragments.SettingsFragment;
+import net.vikev.android.plates.fragments.TestFragment;
 import android.os.Bundle;
 
 public class MainActivity extends AbstractNavDrawerActivity {
@@ -28,7 +29,9 @@ public class MainActivity extends AbstractNavDrawerActivity {
                 NavMenuSection.create(100, "Main"),
                 NavMenuItem.create(101, "Home", "navdrawer_home", true, this),
                 NavMenuSection.create(200, "Settings"),
-                NavMenuItem.create(201, "Server settings", "navdrawer_settings", true, this) };
+                NavMenuItem.create(201, "Server settings", "navdrawer_settings", true, this),
+                NavMenuSection.create(300, "QuickTest(to be removed)"),
+                NavMenuItem.create(301, "Test", "navdrawer_settings", true, this) };
 
         NavDrawerActivityConfiguration navDrawerActivityConfiguration = new NavDrawerActivityConfiguration();
         navDrawerActivityConfiguration.setMainLayout(R.layout.main);
@@ -51,6 +54,9 @@ public class MainActivity extends AbstractNavDrawerActivity {
             break;
         case 201:
             getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new SettingsFragment()).commit();
+            break;
+        case 301:
+            getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new TestFragment()).commit();
             break;
         }
     }
