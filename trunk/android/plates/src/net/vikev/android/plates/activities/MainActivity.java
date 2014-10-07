@@ -28,7 +28,7 @@ public class MainActivity extends AbstractNavDrawerActivity {
                 NavMenuSection.create(100, "Main"),
                 NavMenuItem.create(101, "Home", "navdrawer_home", true, this),
                 NavMenuSection.create(200, "Settings"),
-                NavMenuItem.create(201, "Settings", "navdrawer_settings", true, this) };
+                NavMenuItem.create(201, "Server settings", "navdrawer_settings", true, this) };
 
         NavDrawerActivityConfiguration navDrawerActivityConfiguration = new NavDrawerActivityConfiguration();
         navDrawerActivityConfiguration.setMainLayout(R.layout.main);
