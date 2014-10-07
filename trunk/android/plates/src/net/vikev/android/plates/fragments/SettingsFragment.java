@@ -1,5 +1,7 @@
 package net.vikev.android.plates.fragments;
 
+import static net.vikev.android.plates.MyApplication.*;
+import net.vikev.android.plates.MyApplication;
 import net.vikev.android.plates.R;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,18 +14,14 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class SettingsFragment extends Fragment {
-    private Context context;
     private View mainView;
-    private SharedPreferences pref;
+    
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mainView = inflater.inflate(R.layout.server_settings_fragment, container, false);
-        context = container.getContext();
-        pref = mainView.getContext().getSharedPreferences("net.vikev.android.plates", Context.MODE_PRIVATE);
 
         setFieldValues();
         setSaveButtonClickListener();
@@ -32,32 +30,24 @@ public class SettingsFragment extends Fragment {
     }
 
     private void setFieldValues() {
-        ((EditText) mainView.findViewById(R.id.editText_server_url)).setText(pref.getString("server_url", ""));
-        ((EditText) mainView.findViewById(R.id.editText_username)).setText(pref.getString("username", ""));
-        ((EditText) mainView.findViewById(R.id.editText_password)).setText(pref.getString("password", ""));
+        setEditTextValue(mainView,R.id.editText_server_url,getServerUrl());
+        setEditTextValue(mainView,R.id.editText_username,getUsername());
+        setEditTextValue(mainView,R.id.editText_password,getPassword());
     }
 
     private void setSaveButtonClickListener() {
         Button updateBtn = (Button) mainView.findViewById(R.id.btn_save);
         updateBtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                openConfirmationDialog();
+                saveSettings();
+                toastShort("Settings saved");
             }
         });
     }
 
-    private void openConfirmationDialog() {
-        saveSettings();
-        Toast toast = Toast.makeText(context, "Settings saved", Toast.LENGTH_SHORT);
-        toast.show();
-    }
-
     private void saveSettings() {
-        Editor editor = pref.edit();
-        editor.putString("server_url", ((EditText) mainView.findViewById(R.id.editText_server_url)).getText().toString());
-        editor.putString("username", ((EditText) mainView.findViewById(R.id.editText_username)).getText().toString());
-        editor.putString("password",((EditText) mainView.findViewById(R.id.editText_password)).getText().toString());
-        editor.commit();
+        setServerUrl(getEditTextValue(mainView,R.id.editText_server_url));
+        setUsername(getEditTextValue(mainView,R.id.editText_username));
+        setPassword(getEditTextValue(mainView,R.id.editText_password));
     }
-
 }
