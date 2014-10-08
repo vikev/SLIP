@@ -1,0 +1,9 @@
+{% if plates %}
+    <ul>
+    {% for plate in plates %}
+        <li>{{ plate.plate_id }} with item {{ plate.item }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No plates are available.</p>
+{% endif %}
