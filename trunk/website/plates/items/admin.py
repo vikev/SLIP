@@ -1,5 +1,4 @@
 from django.contrib import admin
-from items.models import Item, Plate
+from items.models import Item
 
-admin.site.register( Plate )
 admin.site.register( Item )

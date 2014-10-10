@@ -1,0 +1,9 @@
+{% if scales %}
+    <ul>
+    {% for scale in scales %}
+        <li>{{ scale.scale_id }} with item <a href="/items/{{ scale.item }}/">{{ scale.item }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No scales are available.</p>
+{% endif %}
