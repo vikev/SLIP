@@ -23,8 +23,9 @@ def item( request, the_item_id ):
 def all( request ):
   try:
     items = Item.objects.all()
+    scales = Scale.objects.all()
   except Item.DoesNotExist:
     raise Http404
 
-  response = [ item.json() for item in items ]
+  response = { "scales" : [ scale.json() for scale in scales ] }
   return JsonResponse( response, safe=False )

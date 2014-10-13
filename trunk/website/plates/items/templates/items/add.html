@@ -23,8 +23,8 @@
 				</div>
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li class="active" ><a href="/scales">Scales</a></li>
-						<li><a href="/items">Items</a></li>
+						<li><a href="/scales">Scales</a></li>
+						<li class="active" ><a href="/items">Items</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>
@@ -35,30 +35,6 @@
 			<div class="starter-template">
 				<h1>Scales</h1>
         <hr />
-
-				{% if scales %}
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>Scale Id</th>
-							<th>Item</th>
-							<th>Quantity</th>
-						</tr>
-					</thead>
-					<tbody>
-					{% for scale in scales %}
-					<tr>
-					<td>{{ scale.scale_id }}</td>
-					<td><a href="/items/{{ scale.item.item_id }}" >{{ scale.item }}</a></td>
-					<td>{{ scale.quantity}}</td>
-					</tr>
-					{% endfor %}
-					</tbody>
-				</table>
-				{% else %}
-				<p>No scales are available.</p>
-				{% endif %}
-				</div>
 
 			</div>
 

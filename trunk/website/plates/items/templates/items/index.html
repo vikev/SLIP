@@ -23,9 +23,8 @@
 				</div>
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#about">About</a></li>
-						<li><a href="#contact">Contact</a></li>
+						<li><a href="/scales">Scales</a></li>
+						<li class="active"><a href="/items">Items</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>
@@ -34,8 +33,11 @@
 		<div class="container">
 
 			<div class="starter-template">
-				<h1>Items</h1>
-				<p>Here is a list of all items.</p>
+				<h1>Items
+        <a href="add"><button type="button" class="btn btn-primary pull-right" >Add item</button></a>
+        </h1>
+
+        <hr />
 
 				{% if items %}
 				<table class="table table-striped">
