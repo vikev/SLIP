@@ -1,5 +1,9 @@
 package net.vikev.android.plates;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.vikev.android.plates.entities.Scale;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -11,6 +15,7 @@ import android.widget.Toast;
 public class MyApplication extends Application {
     private static Context context;
     private static SharedPreferences pref;
+    public static List<Scale> scales = new ArrayList<>();
     
 
     public void onCreate() {
