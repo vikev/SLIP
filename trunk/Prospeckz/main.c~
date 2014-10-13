@@ -21,7 +21,6 @@
 
 #include <stdint.h>
 #include <string.h>
-#include <math.h>
 #include "nordic_common.h"
 #include "nrf.h"
 #include "app_error.h"
@@ -46,8 +45,6 @@
 #include "ble_debug_assert_handler.h"
 #include "pstorage.h"
 #include "app_trace.h"
-#include "simple_uart.h"
-
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT     0                                           /**< Include or not the service_changed characteristic. if not enabled, the server's database cannot be changed for the lifetime of the device*/
 
@@ -58,9 +55,8 @@
 #define CONNECTED_LED_PIN_NO                 0                                      /**< Is on when device has connected. */
 #define ASSERT_LED_PIN_NO                    0                                      /**< Is on when application has asserted. */
 
-#define PI									 3.14159
 #define DEVICE_NAME                          "Nordic_HRM"                               /**< Name of device. Will be included in the advertising data. */
-#define DEVICE_NAMED                         "Prospeck_B"                                /**< Name of device. Will be included in the advertising data. */
+#define DEVICE_NAMED                         "Prospeck_B                                /**< Name of device. Will be included in the advertising data. */
 #define MANUFACTURER_NAME                    "NordicSemiconductor"                      /**< Manufacturer. Will be passed to Device Information Service. */
 #define APP_ADV_INTERVAL                     40                                         /**< The advertising interval (in units of 0.625 ms. This value corresponds to 25 ms). */
 #define APP_ADV_TIMEOUT_IN_SECONDS           180                                        /**< The advertising timeout in units of seconds. */
@@ -76,12 +72,12 @@
 
 #define HEART_RATE_MEAS_INTERVAL             APP_TIMER_TICKS(1000, APP_TIMER_PRESCALER) /**< Heart rate measurement interval (ticks). */
 #define MIN_HEART_RATE                       140                                        /**< Minimum heart rate as returned by the simulated measurement function. */
-#define MAX_HEART_RATE                       1500                                        /**< Maximum heart rate as returned by the simulated measurement function. */
+#define MAX_HEART_RATE                       300                                        /**< Maximum heart rate as returned by the simulated measurement function. */
 #define HEART_RATE_INCREMENT                 10                                         /**< Value by which the heart rate is incremented/decremented for each call to the simulated measurement function. */
 
 #define RR_INTERVAL_INTERVAL                 APP_TIMER_TICKS(300, APP_TIMER_PRESCALER)  /**< RR interval interval (ticks). */
 #define MIN_RR_INTERVAL                      100                                        /**< Minimum RR interval as returned by the simulated measurement function. */
-#define MAX_RR_INTERVAL                      1500                                        /**< Maximum RR interval as returned by the simulated measurement function. */
+#define MAX_RR_INTERVAL                      500                                        /**< Maximum RR interval as returned by the simulated measurement function. */
 #define RR_INTERVAL_INCREMENT                1                                          /**< Value by which the RR interval is incremented/decremented for each call to the simulated measurement function. */
 
 #define SENSOR_CONTACT_DETECTED_INTERVAL     APP_TIMER_TICKS(5000, APP_TIMER_PRESCALER) /**< Sensor Contact Detected toggle interval (ticks). */
@@ -106,7 +102,6 @@
 #define DEAD_BEEF                            0xDEADBEEF                                 /**< Value used as error code on stack dump, can be used to identify stack location on stack unwind. */
 
 
-static uint16_t								 test_number;
 static uint16_t                              m_conn_handle = BLE_CONN_HANDLE_INVALID;   /**< Handle of the current connection. */
 static ble_gap_adv_params_t                  m_adv_params;                              /**< Parameters to be passed to the stack when starting advertising. */
 static ble_bas_t                             m_bas;                                     /**< Structure used to identify the battery service. */
@@ -167,7 +162,6 @@ void app_error_handler(uint32_t error_code, uint32_t line_num, const uint8_t * p
 
 void app_error_handler(uint32_t error_code, uint32_t line_num, const uint8_t * p_file_name)
 {
-	simple_uart_putstring("App_error_handler \n");
     // disable INTs
     CRITICAL_REGION_ENTER();
     /* Light a LED on error or warning. */
@@ -199,7 +193,6 @@ void app_error_handler(uint32_t error_code, uint32_t line_num, const uint8_t * p
  */
 void assert_nrf_callback(uint16_t line_num, const uint8_t * p_file_name)
 {
-	simple_uart_putstring("assert_nrf_callback \n");
     app_error_handler(DEAD_BEEF, line_num, p_file_name);
 }
 
@@ -209,7 +202,6 @@ void assert_nrf_callback(uint16_t line_num, const uint8_t * p_file_name)
  */
 static void battery_level_update(void)
 {
-	//simple_uart_putstring("Battery update");
     uint32_t err_code;
     uint8_t  battery_level;
 
@@ -236,22 +228,10 @@ static void battery_level_update(void)
  */
 static void battery_level_meas_timeout_handler(void * p_context)
 {
-	//simple_uart_putstring("battery timeout handler");
     UNUSED_PARAMETER(p_context);
     battery_level_update();
 }
 
-static uint16_t number_altering_test(uint16_t *input)
-{
-	double x = 60.0;
-	double val = PI / 180;
-	double ret = cos( x*val);
-	unsigned char to_print[32];
-	sprintf((char*)to_print, "X: %u\n", ret);
-	(*input)++;
-	//simple_uart_putstring(to_print);
-	return *input;
-}
 
 /**@brief Function for handling the Heart rate measurement timer timeout.
  *
@@ -263,16 +243,16 @@ static uint16_t number_altering_test(uint16_t *input)
  */
 static void heart_rate_meas_timeout_handler(void * p_context)
 {
-	//simple_uart_putstring("heart rate timeout handler");
     static uint32_t cnt = 0;
     uint32_t        err_code;
     uint16_t        heart_rate;
 
     UNUSED_PARAMETER(p_context);
+
     heart_rate = (uint16_t)ble_sensorsim_measure(&m_heart_rate_sim_state, &m_heart_rate_sim_cfg);
-    uint16_t test = number_altering_test(&test_number);
+
     cnt++;
-    err_code = ble_hrs_heart_rate_measurement_send(&m_hrs, test);
+    err_code = ble_hrs_heart_rate_measurement_send(&m_hrs, heart_rate);
     if ((err_code != NRF_SUCCESS) &&
         (err_code != NRF_ERROR_INVALID_STATE) &&
         (err_code != BLE_ERROR_NO_TX_BUFFERS) &&
@@ -298,7 +278,6 @@ static void heart_rate_meas_timeout_handler(void * p_context)
  */
 static void rr_interval_timeout_handler(void * p_context)
 {
-	//simple_uart_putstring("rr interval timeout handler");
     UNUSED_PARAMETER(p_context);
 
     if (m_rr_interval_enabled)
@@ -321,7 +300,6 @@ static void rr_interval_timeout_handler(void * p_context)
  */
 static void sensor_contact_detected_timeout_handler(void * p_context)
 {
-	//simple_uart_putstring("sensor contact timeout handler");
     static bool sensor_contact_detected = false;
 
     UNUSED_PARAMETER(p_context);
@@ -391,8 +369,8 @@ static void gap_params_init(void)
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&sec_mode);
 
     err_code = sd_ble_gap_device_name_set(&sec_mode,
-                                          (const uint8_t *)"TEAM B BITCH",
-                                          strlen("TEAM B BITCH"));
+                                          (const uint8_t *)DEVICE_NAMED,
+                                          strlen(DEVICE_NAMED));
     APP_ERROR_CHECK(err_code);
 
     err_code = sd_ble_gap_appearance_set(BLE_APPEARANCE_HEART_RATE_SENSOR_HEART_RATE_BELT);
@@ -417,7 +395,6 @@ static void gap_params_init(void)
  */
 static void advertising_init(void)
 {
-	simple_uart_putstring("advertising initialised \n");
     uint32_t      err_code;
     ble_advdata_t advdata;
     uint8_t       flags = BLE_GAP_ADV_FLAGS_LE_ONLY_GENERAL_DISC_MODE;
@@ -498,7 +475,6 @@ static void reset_prepare(void)
  */
 static void services_init(void)
 {
-	simple_uart_putstring("services initialised \n");
     uint32_t       err_code;
     ble_hrs_init_t hrs_init;
     ble_bas_init_t bas_init;
@@ -654,7 +630,7 @@ static void advertising_start(void)
  *                setting the disconnect_on_fail config parameter, but instead we use the event
  *                handler mechanism to demonstrate its use.
  *
- * @param[in]   p_evt   Event received from the Connect ion Parameters Module.
+ * @param[in]   p_evt   Event received from the Connection Parameters Module.
  */
 static void on_conn_params_evt(ble_conn_params_evt_t * p_evt)
 {
@@ -712,7 +688,6 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
     switch (p_ble_evt->header.evt_id)
     {
         case BLE_GAP_EVT_CONNECTED:
-        	simple_uart_putstring("BLE Connected \n");
             nrf_gpio_pin_set(CONNECTED_LED_PIN_NO);
             nrf_gpio_pin_clear(ADVERTISING_LED_PIN_NO);
 
@@ -720,7 +695,6 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
             break;
 
         case BLE_GAP_EVT_DISCONNECTED:
-        	simple_uart_putstring("BLE Disconnected \n");
             nrf_gpio_pin_clear(CONNECTED_LED_PIN_NO);
 
 
@@ -728,7 +702,6 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
             break;
 
         case BLE_GAP_EVT_TIMEOUT:
-        	simple_uart_putstring("BLE Timeout \n");
             if (p_ble_evt->evt.gap_evt.params.timeout.src == BLE_GAP_TIMEOUT_SRC_ADVERTISEMENT)
             {
                 nrf_gpio_pin_clear(ADVERTISING_LED_PIN_NO);
@@ -740,7 +713,6 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
             break;
 
         default:
-        	simple_uart_putstring("BLE default \n");
             // No implementation needed.
             break;
     }
@@ -831,7 +803,6 @@ static void ble_stack_init(void)
     // Register with the SoftDevice handler module for BLE events.
     err_code = softdevice_sys_evt_handler_set(sys_evt_dispatch);
     APP_ERROR_CHECK(err_code);
-    simple_uart_putstring("BLE stack initialised \n");
 }
 
 
@@ -913,8 +884,6 @@ int main(void)
 {
 
     // Initialize.
-	test_number = 180;
-	simple_uart_config(0, 23, 0, 22, 0);
     leds_init();
     buttons_init();
     timers_init();
@@ -930,7 +899,7 @@ int main(void)
     application_timers_start();
     advertising_start();
 
-    // Enter mghm main loop.
+    // Enter main loop.
     for (;;)
     {
         power_manage();

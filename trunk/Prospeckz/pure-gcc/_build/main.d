@@ -1,64 +1,98 @@
 _build/main.o: ../main.c \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/lib/gcc/arm-none-eabi/4.8.4/include/stdint.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/stdint.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/machine/_default_types.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/sys/features.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/stdlib.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/machine/ieeefp.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/_ansi.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/newlib.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/sys/config.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/lib/gcc/arm-none-eabi/4.8.4/include/stddef.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/sys/reent.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/_ansi.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/sys/_types.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/machine/_types.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/sys/lock.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/machine/stdlib.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/alloca.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/math.h \
- ../nrf51-sdk/nrf51822//Include/nrf.h \
- ../nrf51-sdk/nrf51822//Include/nrf51.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/lib/gcc/arm-none-eabi/4.8.4/include/stdint.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/stdint.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/machine/_default_types.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/sys/features.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/string.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/_ansi.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/newlib.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/sys/config.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/machine/ieeefp.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/sys/reent.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/_ansi.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/lib/gcc/arm-none-eabi/4.8.4/include/stddef.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/sys/_types.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/machine/_types.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/sys/lock.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/lib/gcc/arm-none-eabi/4.8.4/include-fixed/sys/cdefs.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/sys/string.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/math.h \
+ ../nrf51-sdk/nrf51822/Include/nordic_common.h \
+ ../nrf51-sdk/nrf51822/Include/nrf.h \
+ ../nrf51-sdk/nrf51822/Include/nrf51.h \
  ../nrf51-sdk/nrf51822/Include/gcc/core_cm0.h \
  ../nrf51-sdk/nrf51822/Include/gcc/core_cmInstr.h \
  ../nrf51-sdk/nrf51822/Include/gcc/core_cmFunc.h \
- ../nrf51-sdk/nrf51822//Include/system_nrf51.h \
- ../nrf51-sdk/nrf51822//Include/nrf51_bitfields.h \
- ../nrf51-sdk/nrf51822//Include/nrf51_deprecated.h \
- ../nrf51-sdk/nrf51822//Include/compiler_abstraction.h \
- ../nrf51-sdk/nrf51822//Include/nrf_gpio.h ../Include/nrf_delay.h \
- ../Include/nrf.h ../Include/twi_master.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/lib/gcc/arm-none-eabi/4.8.4/include/stdbool.h \
- ../Include/s110/nrf_error.h \
- ../nrf51-sdk/nrf51822//Include/app_common/app_timer.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/stdio.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/lib/gcc/arm-none-eabi/4.8.4/include/stdarg.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/sys/types.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/machine/types.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/sys/stdio.h \
- ../nrf51-sdk/nrf51822//Include/app_common/app_error.h \
- ../nrf51-sdk/nrf51822//Include/s110/nrf_error.h \
- ../nrf51-sdk/nrf51822//Include/app_common/app_util.h \
- ../nrf51-sdk/nrf51822//Include/compiler_abstraction.h \
- ../nrf51-sdk/nrf51822//Include/app_common/app_scheduler.h ../libjanek.h \
- ../../gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/math.h \
- ../nrf51-sdk/nrf51822/Include/simple_uart.h ../Include/s110/ble.h \
- ../Include/s110/ble_ranges.h ../Include/s110/ble_types.h \
- ../Include/s110/ble_gap.h ../Include/s110/nrf_svc.h \
- ../Include/s110/ble_l2cap.h ../Include/s110/ble_err.h \
- ../Include/s110/nrf_error.h ../Include/s110/ble_gatt.h \
- ../Include/s110/ble_gattc.h ../Include/s110/ble_gatts.h \
- ../Include/ble//ble_services/ble_bas.h \
- ../Include/ble//ble_services/ble.h \
- ../Include/ble//ble_services/ble_srv_common.h \
- ../Include/ble//ble_services/ble_types.h \
- ../Include/ble//ble_services/app_util.h \
- ../Include/ble//ble_services/ble_gap.h \
- ../Include/ble//ble_services/ble_gatt.h \
- ../Include/ble/ble_services/ble_hrs.h ../Include/ble/ble_services/ble.h \
- ../Include/ble/ble_services/ble_srv_common.h \
- ../Include/ble/ble_advdata.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/string.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/lib/gcc/arm-none-eabi/4.8.4/include-fixed/sys/cdefs.h \
- /afs/inf.ed.ac.uk/user/s11/s1119414/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/sys/string.h \
- ../Include/ble/ble.h ../Include/ble/app_util.h
+ ../nrf51-sdk/nrf51822/Include/system_nrf51.h \
+ ../nrf51-sdk/nrf51822/Include/nrf51_bitfields.h \
+ ../nrf51-sdk/nrf51822/Include/nrf51_deprecated.h \
+ ../nrf51-sdk/nrf51822/Include/compiler_abstraction.h \
+ ../nrf51-sdk/nrf51822/Include/app_common/app_error.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/lib/gcc/arm-none-eabi/4.8.4/include/stdbool.h \
+ ../nrf51-sdk/nrf51822/Include/s110/nrf_error.h \
+ ../nrf51-sdk/nrf51822/Include/nrf_gpio.h \
+ ../nrf51-sdk/nrf51822/Include/nrf51_bitfields.h \
+ ../nrf51-sdk/nrf51822/Include/s110/ble.h \
+ ../nrf51-sdk/nrf51822/Include/s110/ble_ranges.h \
+ ../nrf51-sdk/nrf51822/Include/s110/ble_types.h \
+ ../nrf51-sdk/nrf51822/Include/s110/ble_gap.h \
+ ../nrf51-sdk/nrf51822/Include/s110/nrf_svc.h \
+ ../nrf51-sdk/nrf51822/Include/s110/ble_l2cap.h \
+ ../nrf51-sdk/nrf51822/Include/s110/ble_err.h \
+ ../nrf51-sdk/nrf51822/Include/s110/nrf_error.h \
+ ../nrf51-sdk/nrf51822/Include/s110/ble_gatt.h \
+ ../nrf51-sdk/nrf51822/Include/s110/ble_gattc.h \
+ ../nrf51-sdk/nrf51822/Include/s110/ble_gatts.h \
+ ../nrf51-sdk/nrf51822/Include/s110/ble_hci.h \
+ ../nrf51-sdk/nrf51822/Include/ble/ble_services/ble_srv_common.h \
+ ../nrf51-sdk/nrf51822/Include/s110/ble_types.h \
+ ../nrf51-sdk/nrf51822/Include/app_common/app_util.h \
+ ../nrf51-sdk/nrf51822/Include/compiler_abstraction.h \
+ ../nrf51-sdk/nrf51822/Include/s110/ble_gap.h \
+ ../nrf51-sdk/nrf51822/Include/s110/ble_gatt.h \
+ ../nrf51-sdk/nrf51822/Include/ble/ble_advdata.h \
+ ../nrf51-sdk/nrf51822/Include/ble/ble_services/ble_bas.h \
+ ../nrf51-sdk/nrf51822/Include/ble/ble_services/ble_srv_common.h \
+ ../nrf51-sdk/nrf51822/Include/ble/ble_services/ble_hrs.h \
+ ../nrf51-sdk/nrf51822/Include/ble/ble_services/ble_dis.h \
+ ../nrf51-sdk/nrf51822/Include/ble/ble_services/ble_dfu.h \
+ ../nrf51-sdk/nrf51822/Include/s110/ble_gatts.h \
+ ../nrf51-sdk/nrf51822/Include/bootloader_dfu/dfu_app_handler.h \
+ ../nrf51-sdk/nrf51822/Include/bootloader_dfu/dfu_app_handler.h \
+ ../nrf51-sdk/nrf51822/Include/ble/ble_conn_params.h \
+ ../nrf51-sdk/nrf51822/Include/boards.h \
+ ../nrf51-sdk/nrf51822/Include/boards/nrf6310.h \
+ ../nrf51-sdk/nrf51822/Include/ble/ble_sensorsim.h \
+ ../nrf51-sdk/nrf51822/Include/sd_common/softdevice_handler.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/stdlib.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/machine/stdlib.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/alloca.h \
+ ../nrf51-sdk/nrf51822/Include/s110/nrf_sdm.h \
+ ../nrf51-sdk/nrf51822/Include/nrf51.h \
+ ../nrf51-sdk/nrf51822/Include/s110/nrf_soc.h \
+ ../nrf51-sdk/nrf51822/Include/s110/nrf_error_soc.h \
+ ../nrf51-sdk/nrf51822/Include/s110/nrf_error_sdm.h \
+ ../nrf51-sdk/nrf51822/Include/app_common/app_scheduler.h \
+ ../nrf51-sdk/nrf51822/Include/app_common/app_error.h \
+ ../nrf51-sdk/nrf51822/Include/sd_common/ble_stack_handler_types.h \
+ ../nrf51-sdk/nrf51822/Include/sd_common/ant_stack_handler_types.h \
+ ../nrf51-sdk/nrf51822/Include/app_common/app_timer.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/stdio.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/lib/gcc/arm-none-eabi/4.8.4/include/stdarg.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/sys/types.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/machine/types.h \
+ /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/arm-none-eabi/include/sys/stdio.h \
+ ../nrf51-sdk/nrf51822/Include/app_common/app_util.h \
+ ../nrf51-sdk/nrf51822/Include/app_common/app_scheduler.h \
+ ../nrf51-sdk/nrf51822/Include/ble/ble_error_log.h \
+ ../nrf51-sdk/nrf51822/Include/ble/ble_flash.h \
+ ../nrf51-sdk/nrf51822/Include/ble/device_manager/device_manager.h \
+ ../nrf51-sdk/nrf51822/Include/sdk/sdk_common.h \
+ ../nrf51-sdk/nrf51822/Include/sdk/sdk_os.h \
+ ../nrf51-sdk/nrf51822/Include/sdk/sdk_errors.h ../device_manager_cnfg.h \
+ ../nrf51-sdk/nrf51822/Include/ble/ble_debug_assert_handler.h \
+ ../nrf51-sdk/nrf51822/Include/app_common/pstorage.h \
+ ../pstorage_platform.h \
+ ../nrf51-sdk/nrf51822/Include/app_common/app_trace.h \
+ ../nrf51-sdk/nrf51822/Include/simple_uart.h \
+ ../nrf51-sdk/nrf51822/Include/sd_common/app_util_platform.h
