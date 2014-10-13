@@ -21,19 +21,25 @@ public class ScalesServiceImpl implements ScalesService {
     public List<Scale> getAllScales() {
         try {
             List<Scale> scales = new ArrayList<>();
-            String url = getServerUrl() + "scale/";
-            String jsonItem = httpService.httpGET(url);
+            String url = getServerUrl() + "api/all/";
+            String jsonResponse = httpService.httpGET(url);
 
-            JSONObject jsonObject = new JSONObject(jsonItem);
+            JSONObject jsonObject = new JSONObject(jsonResponse);
 
             JSONArray jsonScales = jsonObject.getJSONArray("scales");
 
             for (int i = 0; i < jsonScales.length(); i++) {
                 JSONObject jsonScale = (JSONObject) jsonScales.get(i);
                 Scale scale = new Scale();
-                scale.setId(jsonScale.getString("scaleId"));
-                Item item = itemsService.getItem(jsonScale.getString("itemId"));
-                item.setQuantity(jsonScale.getInt("quantity"));
+                scale.setId(jsonScale.getString("scale_id"));
+
+                JSONObject jsonItem = (JSONObject) jsonScale.get("item");
+
+                Item item = new Item();
+                // itemsService.getItem(jsonScale.getString("itemId"));
+                item.setId(jsonItem.getString("item_id"));
+                item.setQuantity(jsonItem.getInt("mass"));
+                // item.setImage_location(jsonItem.getString("img"));
                 scale.setItem(item);
                 scales.add(scale);
             }

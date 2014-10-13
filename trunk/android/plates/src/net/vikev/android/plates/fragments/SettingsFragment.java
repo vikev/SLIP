@@ -30,7 +30,7 @@ public class SettingsFragment extends Fragment {
     }
 
     private void setFieldValues() {
-        setEditTextValue(mainView,R.id.editText_server_url,getServerUrl());
+    
         setEditTextValue(mainView,R.id.editText_username,getUsername());
         setEditTextValue(mainView,R.id.editText_password,getPassword());
     }

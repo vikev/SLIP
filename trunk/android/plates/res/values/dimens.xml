@@ -1,4 +1,10 @@
 <resources>
+         
+    <dimen name="ID">17dp</dimen>
+    <dimen name="Quantity">15dip</dimen>
+    <dimen name="Name">13dip</dimen>
+    <dimen name="PicLoc">12dip</dimen>
+ 
 
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>

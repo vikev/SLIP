@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C76C7143-1D0E-40DF-A671-7257C3246EF6</string>
+	<key>IDESourceControlProjectName</key>
+	<string>HeartRateMonitor</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>6335EDAFFC2B3BC6447FF279ACD0FBF19F5EBFB9</key>
+		<string>https://github.com/vikev/SLIP.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>trunk/website/plates/HeartRateMonitor/HeartRateMonitor.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>6335EDAFFC2B3BC6447FF279ACD0FBF19F5EBFB9</key>
+		<string>../../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/vikev/SLIP.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>6335EDAFFC2B3BC6447FF279ACD0FBF19F5EBFB9</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>6335EDAFFC2B3BC6447FF279ACD0FBF19F5EBFB9</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SLIP</string>
+		</dict>
+	</array>
+</dict>
+</plist>
