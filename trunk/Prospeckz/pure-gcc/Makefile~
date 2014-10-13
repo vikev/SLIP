@@ -15,7 +15,6 @@ APPLICATION_SRCS += ble_hrs.c
 APPLICATION_SRCS += ble_srv_common.c
 APPLICATION_SRCS += crc16.c
 APPLICATION_SRCS += softdevice_handler.c
-APPLICATION_SRCS += simple_uart.c
 
 PROJECT_NAME = $(shell basename "$(realpath ../)")
 

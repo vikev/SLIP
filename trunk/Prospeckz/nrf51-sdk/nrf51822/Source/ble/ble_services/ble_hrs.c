@@ -11,7 +11,7 @@
  */
 
 /* Attention! 
-*  To maintain compliance with Nordic Semiconductor ASA’s Bluetooth profile 
+*  To maintain compliance with Nordic Semiconductor ASAï¿½s Bluetooth profile 
 *  qualification listings, this section of source code must not be modified.
 */
 
@@ -200,6 +200,7 @@ static uint8_t hrm_encode(ble_hrs_t * p_hrs, uint16_t heart_rate, uint8_t * p_en
 static uint32_t heart_rate_measurement_char_add(ble_hrs_t            * p_hrs,
                                                 const ble_hrs_init_t * p_hrs_init)
 {
+	simple_uart_putstring("add heart rate measurement");
     ble_gatts_char_md_t char_md;
     ble_gatts_attr_md_t cccd_md;
     ble_gatts_attr_t    attr_char_value;
@@ -301,6 +302,7 @@ static uint32_t body_sensor_location_char_add(ble_hrs_t * p_hrs, const ble_hrs_i
 
 uint32_t ble_hrs_init(ble_hrs_t * p_hrs, const ble_hrs_init_t * p_hrs_init)
 {
+	simple_uart_putstring("Heart rate service initialised");
     uint32_t   err_code;
     ble_uuid_t ble_uuid;
 

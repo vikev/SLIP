@@ -1,0 +1,29 @@
+--- nrf51-sdk/nrf51822/Board/nrf6310/s110/ble_app_hrs/main.c	2014-10-08 16:23:16.151973314 +0100
++++ main.c	2014-10-09 14:48:12.061551503 +0100
+@@ -48,12 +48,12 @@
+ 
+ #define IS_SRVC_CHANGED_CHARACT_PRESENT     0                                           /**< Include or not the service_changed characteristic. if not enabled, the server's database cannot be changed for the lifetime of the device*/
+ 
+-#define WAKEUP_BUTTON_PIN                    BUTTON_0                                   /**< Button used to wake up the application. */
+-#define BOND_DELETE_ALL_BUTTON_ID            BUTTON_1                                   /**< Button used for deleting all bonded centrals during startup. */
++#define WAKEUP_BUTTON_PIN                    1                                   /**< Button used to wake up the application. */
++#define BOND_DELETE_ALL_BUTTON_ID            14                                   /**< Button used for deleting all bonded centrals during startup. */
+ 
+-#define ADVERTISING_LED_PIN_NO               LED_0                                      /**< Is on when device is advertising. */
+-#define CONNECTED_LED_PIN_NO                 LED_1                                      /**< Is on when device has connected. */
+-#define ASSERT_LED_PIN_NO                    LED_7                                      /**< Is on when application has asserted. */
++#define ADVERTISING_LED_PIN_NO               0                                      /**< Is on when device is advertising. */
++#define CONNECTED_LED_PIN_NO                 0                                      /**< Is on when device has connected. */
++#define ASSERT_LED_PIN_NO                    0                                      /**< Is on when application has asserted. */
+ 
+ #define DEVICE_NAME                          "Nordic_HRM"                               /**< Name of device. Will be included in the advertising data. */
+ #define MANUFACTURER_NAME                    "NordicSemiconductor"                      /**< Manufacturer. Will be passed to Device Information Service. */
+@@ -784,7 +784,7 @@
+     uint32_t err_code;
+ 
+     // Initialize the SoftDevice handler module.
+-    SOFTDEVICE_HANDLER_INIT(NRF_CLOCK_LFCLKSRC_XTAL_20_PPM, false);
++    SOFTDEVICE_HANDLER_INIT(NRF_CLOCK_LFCLKSRC_SYNTH_250_PPM, false);
+ 
+ #ifdef S110
+     // Enable BLE stack 
