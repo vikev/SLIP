@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		400482959381E6EB1F73E31C /* libPods-HeartRateMonitor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8630924C5BB59C379E523F0 /* libPods-HeartRateMonitor.a */; };
+		44523BD219ED868400243380 /* db.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 44523BD119ED868400243380 /* db.sqlite3 */; };
 		449EC7C713F9A3110074C363 /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 449EC7C613F9A3110074C363 /* IOBluetooth.framework */; };
 		44B0264B13F5D44000541EA5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44B0264A13F5D44000541EA5 /* Cocoa.framework */; };
 		44B0265513F5D44000541EA5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 44B0265313F5D44000541EA5 /* InfoPlist.strings */; };
@@ -17,12 +18,12 @@
 		44B0268013F5DABB00541EA5 /* Heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 44B0267F13F5DABB00541EA5 /* Heart.png */; };
 		44B0268213F5DD2A00541EA5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44B0268113F5DD2A00541EA5 /* QuartzCore.framework */; };
 		4AB5ED9119EAE3A0003947E3 /* DataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB5ED9019EAE3A0003947E3 /* DataBase.m */; };
-		4AF435A419EC362C00D85F8F /* db.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 4AF435A319EC362C00D85F8F /* db.sqlite3 */; };
 		9A090D9013FDBF7E00CCE962 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9A090D8F13FDBF7E00CCE962 /* AppIcon.icns */; };
 		9A8EF42513FC835E00CDFA4B /* Human.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A8EF42413FC835E00CDFA4B /* Human.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		44523BD119ED868400243380 /* db.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = db.sqlite3; path = ../db.sqlite3; sourceTree = "<group>"; };
 		449EC7C613F9A3110074C363 /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetooth.framework; path = /System/Library/Frameworks/IOBluetooth.framework; sourceTree = "<absolute>"; };
 		44B0264613F5D44000541EA5 /* HeartRateMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeartRateMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B0264A13F5D44000541EA5 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -40,7 +41,6 @@
 		44B0268113F5DD2A00541EA5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4570CE6964B8D4B0945452B7 /* Pods-HeartRateMonitor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeartRateMonitor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HeartRateMonitor/Pods-HeartRateMonitor.debug.xcconfig"; sourceTree = "<group>"; };
 		4AB5ED9019EAE3A0003947E3 /* DataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBase.m; sourceTree = "<group>"; };
-		4AF435A319EC362C00D85F8F /* db.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite3; sourceTree = "<group>"; };
 		6B80887983A768DF559A8476 /* Pods-HeartRateMonitor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeartRateMonitor.release.xcconfig"; path = "Pods/Target Support Files/Pods-HeartRateMonitor/Pods-HeartRateMonitor.release.xcconfig"; sourceTree = "<group>"; };
 		9A090D8F13FDBF7E00CCE962 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
 		9A8EF42413FC835E00CDFA4B /* Human.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Human.png; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 		44B0263B13F5D44000541EA5 = {
 			isa = PBXGroup;
 			children = (
-				4AF435A319EC362C00D85F8F /* db.sqlite3 */,
+				44523BD119ED868400243380 /* db.sqlite3 */,
 				44B0265013F5D44000541EA5 /* HeartRateMonitor */,
 				44B0264913F5D44000541EA5 /* Frameworks */,
 				44B0264713F5D44000541EA5 /* Products */,
@@ -191,7 +191,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AF435A419EC362C00D85F8F /* db.sqlite3 in Resources */,
+				44523BD219ED868400243380 /* db.sqlite3 in Resources */,
 				44B0265513F5D44000541EA5 /* InfoPlist.strings in Resources */,
 				44B0266113F5D44000541EA5 /* MainMenu.xib in Resources */,
 				44B0268013F5DABB00541EA5 /* Heart.png in Resources */,
