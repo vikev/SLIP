@@ -1,13 +1,13 @@
 package net.vikev.android.plates.exceptions;
 
-public class CouldNotGetItemException extends PlatesException {
+public class CouldNotParseJSONException extends PlatesException {
     private static final long serialVersionUID = 3818989987577541686L;
 
-    public CouldNotGetItemException() {
+    public CouldNotParseJSONException() {
         super();
     }
 
-    public CouldNotGetItemException(String detailMessage) {
+    public CouldNotParseJSONException(String detailMessage) {
         super(detailMessage);
     }
 }
