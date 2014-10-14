@@ -71,7 +71,7 @@ public class CustomListAdapter extends BaseAdapter {
         ID.setText(thisScale.getId());
          
      
-        Quantity.setText(Integer.toString(thisScale.getItem().getQuantity()));
+        Quantity.setText(Integer.toString(thisScale.getQuantity()));
          
     
         Name.setText(thisScale.getItem().getName());
