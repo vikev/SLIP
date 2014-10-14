@@ -16,14 +16,13 @@ public class MyApplication extends Application {
     private static Context context;
     private static SharedPreferences pref;
     public static List<Scale> scales = new ArrayList<>();
-    
 
     public void onCreate() {
         super.onCreate();
         MyApplication.context = getApplicationContext();
         MyApplication.pref = MyApplication.context.getSharedPreferences("net.vikev.android.plates", Context.MODE_PRIVATE);
     }
-    
+
     public static Context getAppContext() {
         return MyApplication.context;
     }
@@ -32,13 +31,28 @@ public class MyApplication extends Application {
         return MyApplication.pref;
     }
 
-    public static void setSharedPrefPair(String key, String value){
+    public static void setSharedPrefPair(String key, String value) {
         Editor editor = MyApplication.pref.edit();
         editor.putString(key, value);
-        editor.commit();
+        editor.apply();
     }
+    
+    public static void setSharedPrefPair(String key, int value) {
+        Editor editor = MyApplication.pref.edit();
+        editor.putInt(key, value);
+        editor.apply();
+    }
+
+    public static int getUpdateInterval() {
+        return MyApplication.pref.getInt("update_interval", 5);
+    }
+
+    public static void setUpdateInterval(int updateInterval) {
+        MyApplication.setSharedPrefPair("update_interval", updateInterval);
+    }
+
     public static String getServerUrl() {
-        return MyApplication.pref.getString("server_url", "");
+        return MyApplication.pref.getString("server_url", "http://www.vikev.net/slip/");
     }
 
     public static void setServerUrl(String serverUrl) {
@@ -60,7 +74,15 @@ public class MyApplication extends Application {
     public static void setPassword(String password) {
         MyApplication.setSharedPrefPair("password", password);
     }
-    
+
+    public static void setEditTextValue(View view, int editTextId, String text) {
+        ((EditText) view.findViewById(editTextId)).setText(text);
+    }
+
+    public static String getEditTextValue(View view, int editTextId) {
+        return ((EditText) view.findViewById(editTextId)).getText().toString();
+    }
+
     public static void toastShort(String msg) {
         Toast toast = Toast.makeText(MyApplication.getAppContext(), msg, Toast.LENGTH_SHORT);
         toast.show();
@@ -69,13 +91,5 @@ public class MyApplication extends Application {
     public void toastLong(String msg) {
         Toast toast = Toast.makeText(MyApplication.getAppContext(), msg, Toast.LENGTH_LONG);
         toast.show();
-    }
-    
-    public static void setEditTextValue(View view, int editTextId, String text) {
-        ((EditText) view.findViewById(editTextId)).setText(text);
-    }
-    
-    public static String getEditTextValue(View view, int editTextId) {
-        return ((EditText) view.findViewById(editTextId)).getText().toString();
     }
 }
