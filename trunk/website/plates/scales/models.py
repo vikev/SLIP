@@ -12,4 +12,4 @@ class Scale(models.Model):
     return str( self.scale_id ) + " containing " + str ( self.item )
 
   def json( self ):
-    return { 'scaleId' : self.scale_id, 'item' : self.item.json(), 'quantity' : self.quantity }
+    return { 'scale_id' : self.scale_id, 'item' : self.item.json(), 'quantity' : self.quantity }
