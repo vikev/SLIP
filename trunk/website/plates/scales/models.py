@@ -13,3 +13,8 @@ class Scale(models.Model):
 
   def json( self ):
     return { 'scale_id' : self.scale_id, 'item' : self.item.json(), 'quantity' : self.quantity }
+
+  def mass( self ):
+    return ( self.quantity / 100.0 ) * self.item.mass
+
+  mass = property( mass )
