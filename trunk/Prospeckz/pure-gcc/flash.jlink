@@ -1,5 +1,5 @@
 r
-loadbin _build/ble_app_hrs_s110.bin 00016000
+loadbin _build/Prospeckz_s110.bin 00016000
 r
 g
 exit
