@@ -57,6 +57,7 @@
 #define ADVERTISING_LED_PIN_NO               0                                      /**< Is on when device is advertising. */
 #define CONNECTED_LED_PIN_NO                 0                                      /**< Is on when device has connected. */
 #define ASSERT_LED_PIN_NO                    0                                      /**< Is on when application has asserted. */
+#define ADC_INPUT_PIN_NO					 6
 
 #define PI									 3.14159
 #define DEVICE_NAME                          "Nordic_HRM"                               /**< Name of device. Will be included in the advertising data. */
@@ -68,6 +69,8 @@
 #define APP_TIMER_PRESCALER                  0                                          /**< Value of the RTC1 PRESCALER register. */
 #define APP_TIMER_MAX_TIMERS                 6                                          /**< Maximum number of simultaneously created timers. */
 #define APP_TIMER_OP_QUEUE_SIZE              4                                          /**< Size of timer operation queues. */
+
+#define ADC_SAMPLING_INTERVAL APP_TIMER_TICKS(1000, APP_TIMER_PRESCALER) /**< Sampling rate for the ADC */
 
 #define BATTERY_LEVEL_MEAS_INTERVAL          APP_TIMER_TICKS(2000, APP_TIMER_PRESCALER) /**< Battery level measurement interval (ticks). */
 #define MIN_BATTERY_LEVEL                    81                                         /**< Minimum simulated battery level. */
@@ -124,6 +127,7 @@ static app_timer_id_t                        m_battery_timer_id;                
 static app_timer_id_t                        m_heart_rate_timer_id;                     /**< Heart rate measurement timer. */
 static app_timer_id_t                        m_rr_interval_timer_id;                    /**< RR interval timer. */
 static app_timer_id_t                        m_sensor_contact_timer_id;                 /**< Sensor contact detected timer. */
+static app_timer_id_t 						 m_adc_sampling_timer_id;
 
 static dm_application_instance_t             m_app_handle;                              /**< Application identifier allocated by device manager */
 
@@ -241,6 +245,59 @@ static void battery_level_meas_timeout_handler(void * p_context)
     battery_level_update();
 }
 
+// ADC timer handler to start ADC sampling
+static void adc_sampling_timeout_handler(void * p_context)
+{
+uint32_t p_is_running = 0;
+sd_clock_hfclk_request();
+while(! p_is_running) { //wait for the hfclk to be available
+sd_clock_hfclk_is_running((&p_is_running));
+}
+nrf_gpio_pin_toggle(LED_2);	//Toggle LED2 to indicate start of sampling
+NRF_ADC->TASKS_START = 1;	//Start ADC sampling
+}
+
+static void adc_init(void)
+{
+/* Enable interrupt on ADC sample ready event*/
+NRF_ADC->INTENSET = ADC_INTENSET_END_Msk;
+sd_nvic_SetPriority(ADC_IRQn, NRF_APP_PRIORITY_LOW);
+sd_nvic_EnableIRQ(ADC_IRQn);
+NRF_ADC->CONFIG	= (ADC_CONFIG_EXTREFSEL_None << ADC_CONFIG_EXTREFSEL_Pos) /* Bits 17..16 : ADC external reference pin selection. */
+| (ADC_CONFIG_PSEL_AnalogInput7 << ADC_CONFIG_PSEL_Pos)	/*!< Use analog input 0 as analog input. */
+| (ADC_CONFIG_REFSEL_VBG << ADC_CONFIG_REFSEL_Pos)	/*!< Use internal 1.2V bandgap voltage as reference for conversion. */
+| (ADC_CONFIG_INPSEL_AnalogInputOneThirdPrescaling << ADC_CONFIG_INPSEL_Pos) /*!< Analog input specified by PSEL with no prescaling used as input for the conversion. */
+| (ADC_CONFIG_RES_8bit << ADC_CONFIG_RES_Pos);	/*!< 8bit ADC resolution. */
+/* Enable ADC*/
+NRF_ADC->ENABLE = ADC_ENABLE_ENABLE_Enabled;
+}
+
+void ADC_IRQHandler(void)
+{
+uint32_t        err_code;
+uint16_t		reading;
+/* Clear dataready event */
+NRF_ADC->EVENTS_END = 0;
+/* Write ADC result to print */
+unsigned char buf[31];
+sprintf((char*)buf, "Meter Reading: %u", NRF_ADC->RESULT);
+simple_uart_putstring(buf);
+reading = (uint16_t) (NRF_ADC->RESULT);
+//Use the STOP task to save current. Workaround for PAN_028 rev1.5 anomaly 1.
+err_code = ble_hrs_heart_rate_measurement_send(&m_hrs, reading);
+   if ((err_code != NRF_SUCCESS) &&
+       (err_code != NRF_ERROR_INVALID_STATE) &&
+       (err_code != BLE_ERROR_NO_TX_BUFFERS) &&
+       (err_code != BLE_ERROR_GATTS_SYS_ATTR_MISSING)
+   )
+   {
+       APP_ERROR_HANDLER(err_code);
+   }
+NRF_ADC->TASKS_STOP = 1;
+//Release the external crystal
+sd_clock_hfclk_release();
+}
+
 static uint16_t number_altering_test(uint16_t *input)
 {
 	double x = 60.0;
@@ -267,12 +324,13 @@ static void heart_rate_meas_timeout_handler(void * p_context)
     static uint32_t cnt = 0;
     uint32_t        err_code;
     uint16_t        heart_rate;
-
+    uint16_t reading;
     UNUSED_PARAMETER(p_context);
     heart_rate = (uint16_t)ble_sensorsim_measure(&m_heart_rate_sim_state, &m_heart_rate_sim_cfg);
     uint16_t test = number_altering_test(&test_number);
     cnt++;
-    err_code = ble_hrs_heart_rate_measurement_send(&m_hrs, test);
+    reading = (uint16_t) NRF_ADC->RESULT;
+    err_code = ble_hrs_heart_rate_measurement_send(&m_hrs, reading);
     if ((err_code != NRF_SUCCESS) &&
         (err_code != NRF_ERROR_INVALID_STATE) &&
         (err_code != BLE_ERROR_NO_TX_BUFFERS) &&
@@ -373,6 +431,11 @@ static void timers_init(void)
     err_code = app_timer_create(&m_sensor_contact_timer_id,
                                 APP_TIMER_MODE_REPEATED,
                                 sensor_contact_detected_timeout_handler);
+    APP_ERROR_CHECK(err_code);
+
+    err_code = app_timer_create(&m_adc_sampling_timer_id,
+    							APP_TIMER_MODE_REPEATED,
+    							adc_sampling_timeout_handler);
     APP_ERROR_CHECK(err_code);
 }
 
@@ -617,6 +680,10 @@ static void application_timers_start(void)
     APP_ERROR_CHECK(err_code);
 
     err_code = app_timer_start(m_sensor_contact_timer_id, SENSOR_CONTACT_DETECTED_INTERVAL, NULL);
+    APP_ERROR_CHECK(err_code);
+
+    //ADC timer start
+    err_code = app_timer_start(m_adc_sampling_timer_id, ADC_SAMPLING_INTERVAL, NULL);
     APP_ERROR_CHECK(err_code);
 }
 
@@ -929,6 +996,7 @@ int main(void)
     // Start execution.
     application_timers_start();
     advertising_start();
+    adc_init();
 
     // Enter mghm main loop.
     for (;;)
