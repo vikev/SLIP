@@ -32,11 +32,30 @@
 
 		<div class="container">
 
+			<h1>Add Item</h1>
+			<hr />
+
 			<div class="starter-template">
-				<h1>Scales</h1>
-        <hr />
+				<form role="add-item" action="">
+
+					<div class="form-group">
+				    <label for="item-name">Item Name</label>
+				    <input type="" name="name" class="form-control" id="item-name" placeholder="Enter Name">
+				  </div>
+
+					<div class="form-group">
+				    <label for="item-mass">Item Mass</label>
+				    <input type="" name="mass" class="form-control" id="item-mass" placeholder="Enter Mass">
+				  </div>
+
+
+					<button type="submit" class="btn btn-default" >Add Item</button>
+
+				</form>
 
 			</div>
+
+		<p>{{ thing }}</p>
 
 		</div><!-- /.container -->
 

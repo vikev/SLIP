@@ -45,13 +45,15 @@
 						<tr>
 							<th>Item name</th>
 							<th>Mass</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
 					{% for item in items %}
 					<tr>
-					<td>{{ item.item_id }}</td>
+					<td>{{ item.name }}</td>
 					<td>{{ item.mass }}</td>
+					<td><a href="?delete={{ item.item_id }}"><img width="10px" height="10px" src="{% static "res/cross.svg" %}"></a></td>
 					</tr>
 					{% endfor %}
 					</tbody>
