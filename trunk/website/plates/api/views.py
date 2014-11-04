@@ -32,6 +32,33 @@ def all( request ):
   response = { "scales" : [ scale.json() for scale in scales ] }
   return JsonResponse( response, safe=False )
 
+def allmac( request ):
+  scales = Scale.objects.all()
+  result = { 'addresses': [] }
+
+  for scale in scales:
+    result['addresses'].append( scale.mac_address )
+
+  return JsonResponse( result )
+
+
+def mac( request, the_mac_address ):
+  reading = request.GET.get( 'reading', '' )
+
+  if the_mac_address:
+    try:
+      scale = Scale.objects.get( mac_address = the_mac_address )
+    except Scale.DoesNotExist:
+      scale = Scale( scale_id = the_mac_address, item = None, quantity = reading, mac_address = the_mac_address )
+      scale.save()
+    else:
+      scale.quantity = reading
+      scale.save()
+
+    return HttpResponseRedirect( '/scales/')
+  else:
+    return Http404()
+
 def put( request ):
   barcode = request.GET.get( 'barcode', '' )
 
