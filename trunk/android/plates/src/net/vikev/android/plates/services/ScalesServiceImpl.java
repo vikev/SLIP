@@ -78,6 +78,32 @@ public class ScalesServiceImpl implements ScalesService {
             throw new CouldNotReachWebServiceException("Error while trying to get all scales from web service. " + e.getMessage());
         }
     }
+    public void sendScaleData(Scale scale)
+    {
+    	  try {
+              String url = getServerUrl() + "api/put/?barcode="+scale.getId();
+              httpService.httpGET(url);
+              
+          } catch (IOException e) {
+              // TODO Add log.
+              e.printStackTrace();
+
+              throw new CouldNotReachWebServiceException("Error while trying to get all scales from web service. " + e.getMessage());
+          }
+    }
+    public void sendToWebService(String barcode)
+    {
+    	  try {
+              String url = getServerUrl() + "api/put/?barcode="+barcode;
+              httpService.httpGET(url);
+              
+          } catch (IOException e) {
+              // TODO Add log.
+              e.printStackTrace();
+
+              throw new CouldNotReachWebServiceException("Error while trying to get all scales from web service. " + e.getMessage());
+          }
+    }
 
     public Scale getScale(String id) {
         throw new PlatesException("");

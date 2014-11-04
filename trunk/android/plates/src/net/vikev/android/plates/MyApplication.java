@@ -52,7 +52,7 @@ public class MyApplication extends Application {
     }
 
     public static String getServerUrl() {
-        return MyApplication.pref.getString("server_url", "172.20.186.244:80/");
+        return MyApplication.pref.getString("server_url", "172.20.155.216:8000/");
     }
 
     public static void setServerUrl(String serverUrl) {
