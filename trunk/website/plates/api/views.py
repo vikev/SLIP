@@ -37,7 +37,7 @@ def allmac( request ):
   result = { 'addresses': [] }
 
   for scale in scales:
-    result['addresses'].append( scale.mac_address )
+    result['addresses'].append( scale.scale_id )
 
   return JsonResponse( result )
 
@@ -47,9 +47,9 @@ def mac( request, the_mac_address ):
 
   if the_mac_address:
     try:
-      scale = Scale.objects.get( mac_address = the_mac_address )
+      scale = Scale.objects.get( scale_id = the_mac_address )
     except Scale.DoesNotExist:
-      scale = Scale( scale_id = the_mac_address, item = None, quantity = reading, mac_address = the_mac_address )
+      scale = Scale( scale_id = the_mac_address, item = None, quantity = reading )
       scale.save()
     else:
       scale.quantity = reading
