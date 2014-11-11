@@ -285,7 +285,9 @@ sprintf((char*)buf, "Meter Reading: %u", NRF_ADC->RESULT);
 simple_uart_putstring(buf);
 reading = (uint16_t) (NRF_ADC->RESULT);
 //Use the STOP task to save current. Workaround for PAN_028 rev1.5 anomaly 1.
-err_code = ble_hrs_heart_rate_measurement_send(&m_hrs, reading);
+if (reading != 0) {
+	err_code = ble_hrs_heart_rate_measurement_send(&m_hrs, reading);
+}
    if ((err_code != NRF_SUCCESS) &&
        (err_code != NRF_ERROR_INVALID_STATE) &&
        (err_code != BLE_ERROR_NO_TX_BUFFERS) &&
@@ -939,7 +941,7 @@ static void device_manager_init(void)
     dm_init_param_t         init_data;
     dm_application_param_t  register_param;
     
-    // Initialize persistent storage module.
+    // Initialize persistent storage module.  
     err_code = pstorage_init();
     APP_ERROR_CHECK(err_code);
 

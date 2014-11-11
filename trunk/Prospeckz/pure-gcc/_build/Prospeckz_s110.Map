@@ -170,7 +170,7 @@ LOAD /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/
 LOAD /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libnosys.a
 END GROUP
 
-.text           0x00016000    0x13984
+.text           0x00016000    0x1398c
  *(.isr_vector)
  .isr_vector    0x00016000       0xc0 _build/startup_nrf51.os
                 0x00016000                __Vectors
@@ -212,394 +212,394 @@ END GROUP
                 0x00016214                SystemCoreClockUpdate
                 0x0001622c                SystemInit
  *fill*         0x0001633c        0x4 
- .text          0x00016340     0x15f8 _build/main.o
+ .text          0x00016340     0x1600 _build/main.o
                 0x00016868                app_error_handler
                 0x0001691c                assert_nrf_callback
                 0x00016a54                ADC_IRQHandler
-                0x000178d8                main
- .text          0x00017938      0x750 _build/app_gpiote.o
-                0x00017b40                GPIOTE_IRQHandler
-                0x00017ce8                app_gpiote_init
-                0x00017d8c                app_gpiote_user_register
-                0x00017e54                app_gpiote_user_enable
-                0x00017fac                app_gpiote_user_disable
-                0x00018024                app_gpiote_pins_state_get
- .text          0x00018088      0x3f8 _build/app_button.o
-                0x00018278                app_button_init
-                0x00018350                app_button_enable
-                0x0001837c                app_button_disable
-                0x000183c8                app_button_is_pushed
- .text          0x00018480     0x13ec _build/app_timer.o
-                0x0001945c                RTC1_IRQHandler
-                0x000194a8                SWI0_IRQHandler
-                0x000194b4                app_timer_init
-                0x00019624                app_timer_create
-                0x00019714                app_timer_start
-                0x000197a0                app_timer_stop
-                0x00019800                app_timer_stop_all
-                0x00019828                app_timer_cnt_get
-                0x00019844                app_timer_cnt_diff_compute
- .text          0x0001986c        0x0 _build/app_trace.o
- .text          0x0001986c      0xc50 _build/ble_advdata.o
-                0x0001a3f0                ble_advdata_set
- .text          0x0001a4bc      0x6b0 _build/ble_conn_params.o
-                0x0001a7bc                ble_conn_params_init
-                0x0001a868                ble_conn_params_stop
-                0x0001aa78                ble_conn_params_on_ble_evt
-                0x0001aac8                ble_conn_params_change_conn_params
- .text          0x0001ab6c       0xb8 _build/ble_sensorsim.o
-                0x0001ab6c                ble_sensorsim_init
-                0x0001aba4                ble_sensorsim_measure
- .text          0x0001ac24     0x145c _build/pstorage.o
-                0x0001b0a8                pstorage_sys_event_handler
-                0x0001b760                pstorage_init
-                0x0001b888                pstorage_register
-                0x0001ba88                pstorage_block_identifier_get
-                0x0001bb68                pstorage_store
-                0x0001bca8                pstorage_update
-                0x0001bde8                pstorage_load
-                0x0001bf4c                pstorage_clear
-                0x0001c040                pstorage_access_status_get
- .text          0x0001c080     0x22b0 _build/device_manager_peripheral.o
-                0x0001cd1c                dm_init
-                0x0001ce88                dm_register
-                0x0001cf20                dm_security_setup_req
-                0x0001cff8                dm_security_status_req
-                0x0001d0e4                dm_whitelist_create
-                0x0001d238                dm_device_add
-                0x0001d250                dm_device_delete
-                0x0001d2ec                dm_device_delete_all
-                0x0001d388                dm_service_context_set
-                0x0001d4d4                dm_service_context_get
-                0x0001d620                dm_service_context_delete
-                0x0001d6b4                dm_application_context_set
-                0x0001d6cc                dm_application_context_get
-                0x0001d6e4                dm_application_context_delete
-                0x0001d6fc                dm_application_instance_set
-                0x0001d770                dm_handle_initialize
-                0x0001d904                dm_peer_addr_set
-                0x0001d9f8                dm_peer_addr_get
-                0x0001db60                bond_data_load
-                0x0001dbe0                dm_ble_evt_handler
- .text          0x0001e330      0x6f0 _build/ble_bas.o
-                0x0001e5d4                ble_bas_on_ble_evt
-                0x0001e8e0                ble_bas_init
-                0x0001e954                ble_bas_battery_level_update
- .text          0x0001ea20      0x7b0 _build/ble_dis.o
-                0x0001ef88                ble_dis_init
- .text          0x0001f1d0      0x9d8 _build/ble_hrs.o
-                0x0001f4c0                ble_hrs_on_ble_evt
-                0x0001f924                ble_hrs_init
-                0x0001f9dc                ble_hrs_heart_rate_measurement_send
-                0x0001faa0                ble_hrs_rr_interval_add
-                0x0001fb00                ble_hrs_rr_interval_buffer_is_full
-                0x0001fb20                ble_hrs_sensor_contact_supported_set
-                0x0001fb54                ble_hrs_sensor_contact_detected_update
-                0x0001fb74                ble_hrs_body_sensor_location_set
- .text          0x0001fba8      0x154 _build/ble_srv_common.o
-                0x0001fc50                ble_srv_report_ref_encode
-                0x0001fcd4                ble_srv_ascii_to_utf8
- .text          0x0001fcfc       0xd4 _build/crc16.o
-                0x0001fcfc                crc16_compute
- .text          0x0001fdd0      0x610 _build/softdevice_handler.o
-                0x00020154                softdevice_assertion_handler
-                0x0002017c                intern_softdevice_events_execute
-                0x00020290                softdevice_handler_init
-                0x0002031c                softdevice_handler_sd_disable
-                0x00020344                softdevice_ble_evt_handler_set
-                0x0002036c                softdevice_sys_evt_handler_set
-                0x00020394                SWI2_IRQHandler
- .text          0x000203e0      0x27c _build/simple_uart.o
-                0x00020460                simple_uart_get
-                0x00020490                simple_uart_get_with_timeout
-                0x00020500                simple_uart_put
-                0x0002053c                simple_uart_putstring
-                0x0002058c                simple_uart_config
- .text          0x0002065c       0x9c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_udivsi3.o)
-                0x0002065c                __udivsi3
-                0x0002065c                __aeabi_uidiv
-                0x000206e4                __aeabi_uidivmod
- .text          0x000206f8        0x4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_dvmd_tls.o)
-                0x000206f8                __aeabi_ldiv0
-                0x000206f8                __aeabi_idiv0
- .text          0x000206fc      0x520 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(muldf3.o)
-                0x000206fc                __aeabi_dmul
- .text          0x00020c1c       0x3c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_clzsi2.o)
-                0x00020c1c                __clzsi2
- .text          0x00020c58        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-exit.o)
- .text.exit     0x00020c58       0x20 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-exit.o)
-                0x00020c58                exit
- .text          0x00020c78        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-impure.o)
- .text          0x00020c78        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-init.o)
+                0x000178e0                main
+ .text          0x00017940      0x750 _build/app_gpiote.o
+                0x00017b48                GPIOTE_IRQHandler
+                0x00017cf0                app_gpiote_init
+                0x00017d94                app_gpiote_user_register
+                0x00017e5c                app_gpiote_user_enable
+                0x00017fb4                app_gpiote_user_disable
+                0x0001802c                app_gpiote_pins_state_get
+ .text          0x00018090      0x3f8 _build/app_button.o
+                0x00018280                app_button_init
+                0x00018358                app_button_enable
+                0x00018384                app_button_disable
+                0x000183d0                app_button_is_pushed
+ .text          0x00018488     0x13ec _build/app_timer.o
+                0x00019464                RTC1_IRQHandler
+                0x000194b0                SWI0_IRQHandler
+                0x000194bc                app_timer_init
+                0x0001962c                app_timer_create
+                0x0001971c                app_timer_start
+                0x000197a8                app_timer_stop
+                0x00019808                app_timer_stop_all
+                0x00019830                app_timer_cnt_get
+                0x0001984c                app_timer_cnt_diff_compute
+ .text          0x00019874        0x0 _build/app_trace.o
+ .text          0x00019874      0xc50 _build/ble_advdata.o
+                0x0001a3f8                ble_advdata_set
+ .text          0x0001a4c4      0x6b0 _build/ble_conn_params.o
+                0x0001a7c4                ble_conn_params_init
+                0x0001a870                ble_conn_params_stop
+                0x0001aa80                ble_conn_params_on_ble_evt
+                0x0001aad0                ble_conn_params_change_conn_params
+ .text          0x0001ab74       0xb8 _build/ble_sensorsim.o
+                0x0001ab74                ble_sensorsim_init
+                0x0001abac                ble_sensorsim_measure
+ .text          0x0001ac2c     0x145c _build/pstorage.o
+                0x0001b0b0                pstorage_sys_event_handler
+                0x0001b768                pstorage_init
+                0x0001b890                pstorage_register
+                0x0001ba90                pstorage_block_identifier_get
+                0x0001bb70                pstorage_store
+                0x0001bcb0                pstorage_update
+                0x0001bdf0                pstorage_load
+                0x0001bf54                pstorage_clear
+                0x0001c048                pstorage_access_status_get
+ .text          0x0001c088     0x22b0 _build/device_manager_peripheral.o
+                0x0001cd24                dm_init
+                0x0001ce90                dm_register
+                0x0001cf28                dm_security_setup_req
+                0x0001d000                dm_security_status_req
+                0x0001d0ec                dm_whitelist_create
+                0x0001d240                dm_device_add
+                0x0001d258                dm_device_delete
+                0x0001d2f4                dm_device_delete_all
+                0x0001d390                dm_service_context_set
+                0x0001d4dc                dm_service_context_get
+                0x0001d628                dm_service_context_delete
+                0x0001d6bc                dm_application_context_set
+                0x0001d6d4                dm_application_context_get
+                0x0001d6ec                dm_application_context_delete
+                0x0001d704                dm_application_instance_set
+                0x0001d778                dm_handle_initialize
+                0x0001d90c                dm_peer_addr_set
+                0x0001da00                dm_peer_addr_get
+                0x0001db68                bond_data_load
+                0x0001dbe8                dm_ble_evt_handler
+ .text          0x0001e338      0x6f0 _build/ble_bas.o
+                0x0001e5dc                ble_bas_on_ble_evt
+                0x0001e8e8                ble_bas_init
+                0x0001e95c                ble_bas_battery_level_update
+ .text          0x0001ea28      0x7b0 _build/ble_dis.o
+                0x0001ef90                ble_dis_init
+ .text          0x0001f1d8      0x9d8 _build/ble_hrs.o
+                0x0001f4c8                ble_hrs_on_ble_evt
+                0x0001f92c                ble_hrs_init
+                0x0001f9e4                ble_hrs_heart_rate_measurement_send
+                0x0001faa8                ble_hrs_rr_interval_add
+                0x0001fb08                ble_hrs_rr_interval_buffer_is_full
+                0x0001fb28                ble_hrs_sensor_contact_supported_set
+                0x0001fb5c                ble_hrs_sensor_contact_detected_update
+                0x0001fb7c                ble_hrs_body_sensor_location_set
+ .text          0x0001fbb0      0x154 _build/ble_srv_common.o
+                0x0001fc58                ble_srv_report_ref_encode
+                0x0001fcdc                ble_srv_ascii_to_utf8
+ .text          0x0001fd04       0xd4 _build/crc16.o
+                0x0001fd04                crc16_compute
+ .text          0x0001fdd8      0x610 _build/softdevice_handler.o
+                0x0002015c                softdevice_assertion_handler
+                0x00020184                intern_softdevice_events_execute
+                0x00020298                softdevice_handler_init
+                0x00020324                softdevice_handler_sd_disable
+                0x0002034c                softdevice_ble_evt_handler_set
+                0x00020374                softdevice_sys_evt_handler_set
+                0x0002039c                SWI2_IRQHandler
+ .text          0x000203e8      0x27c _build/simple_uart.o
+                0x00020468                simple_uart_get
+                0x00020498                simple_uart_get_with_timeout
+                0x00020508                simple_uart_put
+                0x00020544                simple_uart_putstring
+                0x00020594                simple_uart_config
+ .text          0x00020664       0x9c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_udivsi3.o)
+                0x00020664                __udivsi3
+                0x00020664                __aeabi_uidiv
+                0x000206ec                __aeabi_uidivmod
+ .text          0x00020700        0x4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_dvmd_tls.o)
+                0x00020700                __aeabi_ldiv0
+                0x00020700                __aeabi_idiv0
+ .text          0x00020704      0x520 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(muldf3.o)
+                0x00020704                __aeabi_dmul
+ .text          0x00020c24       0x3c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_clzsi2.o)
+                0x00020c24                __clzsi2
+ .text          0x00020c60        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-exit.o)
+ .text.exit     0x00020c60       0x20 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-exit.o)
+                0x00020c60                exit
+ .text          0x00020c80        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-impure.o)
+ .text          0x00020c80        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-init.o)
  .text.__libc_init_array
-                0x00020c78       0x48 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-init.o)
-                0x00020c78                __libc_init_array
- .text          0x00020cc0        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-memcmp.o)
- .text.memcmp   0x00020cc0       0x4c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-memcmp.o)
-                0x00020cc0                memcmp
- .text          0x00020d0c        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-memcpy-stub.o)
- .text.memcpy   0x00020d0c       0x84 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-memcpy-stub.o)
-                0x00020d0c                memcpy
- .text          0x00020d90        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-memmove.o)
- .text.memmove  0x00020d90       0xa4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-memmove.o)
-                0x00020d90                memmove
- .text          0x00020e34        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-memset.o)
- .text.memset   0x00020e34       0x9c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-memset.o)
-                0x00020e34                memset
- .text          0x00020ed0        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-sprintf.o)
+                0x00020c80       0x48 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-init.o)
+                0x00020c80                __libc_init_array
+ .text          0x00020cc8        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-memcmp.o)
+ .text.memcmp   0x00020cc8       0x4c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-memcmp.o)
+                0x00020cc8                memcmp
+ .text          0x00020d14        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-memcpy-stub.o)
+ .text.memcpy   0x00020d14       0x84 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-memcpy-stub.o)
+                0x00020d14                memcpy
+ .text          0x00020d98        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-memmove.o)
+ .text.memmove  0x00020d98       0xa4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-memmove.o)
+                0x00020d98                memmove
+ .text          0x00020e3c        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-memset.o)
+ .text.memset   0x00020e3c       0x9c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-memset.o)
+                0x00020e3c                memset
+ .text          0x00020ed8        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-sprintf.o)
  .text._sprintf_r
-                0x00020ed0       0x40 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-sprintf.o)
-                0x00020ed0                _sprintf_r
- .text.sprintf  0x00020f10       0x44 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-sprintf.o)
-                0x00020f10                sprintf
- .text          0x00020f54        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-strlen.o)
- .text.strlen   0x00020f54       0x10 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-strlen.o)
-                0x00020f54                strlen
- .text          0x00020f64        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfprintf.o)
- *fill*         0x00020f64        0x4 
+                0x00020ed8       0x40 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-sprintf.o)
+                0x00020ed8                _sprintf_r
+ .text.sprintf  0x00020f18       0x44 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-sprintf.o)
+                0x00020f18                sprintf
+ .text          0x00020f5c        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-strlen.o)
+ .text.strlen   0x00020f5c       0x10 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-strlen.o)
+                0x00020f5c                strlen
+ .text          0x00020f6c        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfprintf.o)
+ *fill*         0x00020f6c        0x4 
  .text._svfprintf_r
-                0x00020f68     0x15c8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfprintf.o)
-                0x00020f68                _svfprintf_r
- .text          0x00022530        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-__call_atexit.o)
+                0x00020f70     0x15c8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfprintf.o)
+                0x00020f70                _svfprintf_r
+ .text          0x00022538        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-__call_atexit.o)
  .text.startup.register_fini
-                0x00022530       0x18 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-__call_atexit.o)
+                0x00022538       0x18 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-__call_atexit.o)
  .text.__call_exitprocs
-                0x00022548      0x118 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-__call_atexit.o)
-                0x00022548                __call_exitprocs
- .text          0x00022660        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-atexit.o)
- .text.atexit   0x00022660       0x10 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-atexit.o)
-                0x00022660                atexit
- .text          0x00022670        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-dtoa.o)
- .text.quorem   0x00022670      0x150 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-dtoa.o)
- .text._dtoa_r  0x000227c0      0xf38 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-dtoa.o)
-                0x000227c0                _dtoa_r
- .text          0x000236f8        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-fini.o)
+                0x00022550      0x118 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-__call_atexit.o)
+                0x00022550                __call_exitprocs
+ .text          0x00022668        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-atexit.o)
+ .text.atexit   0x00022668       0x10 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-atexit.o)
+                0x00022668                atexit
+ .text          0x00022678        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-dtoa.o)
+ .text.quorem   0x00022678      0x150 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-dtoa.o)
+ .text._dtoa_r  0x000227c8      0xf38 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-dtoa.o)
+                0x000227c8                _dtoa_r
+ .text          0x00023700        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-fini.o)
  .text.__libc_fini_array
-                0x000236f8       0x30 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-fini.o)
-                0x000236f8                __libc_fini_array
- .text          0x00023728        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-locale.o)
+                0x00023700       0x30 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-fini.o)
+                0x00023700                __libc_fini_array
+ .text          0x00023730        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-locale.o)
  .text._setlocale_r
-                0x00023728       0x44 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-locale.o)
-                0x00023728                _setlocale_r
+                0x00023730       0x44 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-locale.o)
+                0x00023730                _setlocale_r
  .text.__locale_charset
-                0x0002376c        0x8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-locale.o)
-                0x0002376c                __locale_charset
+                0x00023774        0x8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-locale.o)
+                0x00023774                __locale_charset
  .text.__locale_mb_cur_max
-                0x00023774        0xc /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-locale.o)
-                0x00023774                __locale_mb_cur_max
+                0x0002377c        0xc /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-locale.o)
+                0x0002377c                __locale_mb_cur_max
  .text.__locale_msgcharset
-                0x00023780        0x8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-locale.o)
-                0x00023780                __locale_msgcharset
+                0x00023788        0x8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-locale.o)
+                0x00023788                __locale_msgcharset
  .text.__locale_cjk_lang
-                0x00023788        0x4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-locale.o)
-                0x00023788                __locale_cjk_lang
+                0x00023790        0x4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-locale.o)
+                0x00023790                __locale_cjk_lang
  .text._localeconv_r
-                0x0002378c        0x8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-locale.o)
-                0x0002378c                _localeconv_r
+                0x00023794        0x8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-locale.o)
+                0x00023794                _localeconv_r
  .text.setlocale
-                0x00023794       0x18 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-locale.o)
-                0x00023794                setlocale
+                0x0002379c       0x18 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-locale.o)
+                0x0002379c                setlocale
  .text.localeconv
-                0x000237ac        0x8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-locale.o)
-                0x000237ac                localeconv
- .text          0x000237b4        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mallocr.o)
+                0x000237b4        0x8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-locale.o)
+                0x000237b4                localeconv
+ .text          0x000237bc        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mallocr.o)
  .text._malloc_r
-                0x000237b4      0x50c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mallocr.o)
-                0x000237b4                _malloc_r
- .text          0x00023cc0        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-memchr-stub.o)
- .text.memchr   0x00023cc0       0x84 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-memchr-stub.o)
-                0x00023cc0                memchr
- .text          0x00023d44        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mlock.o)
+                0x000237bc      0x50c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mallocr.o)
+                0x000237bc                _malloc_r
+ .text          0x00023cc8        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-memchr-stub.o)
+ .text.memchr   0x00023cc8       0x84 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-memchr-stub.o)
+                0x00023cc8                memchr
+ .text          0x00023d4c        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mlock.o)
  .text.__malloc_lock
-                0x00023d44        0x4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mlock.o)
-                0x00023d44                __malloc_lock
+                0x00023d4c        0x4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mlock.o)
+                0x00023d4c                __malloc_lock
  .text.__malloc_unlock
-                0x00023d48        0x4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mlock.o)
-                0x00023d48                __malloc_unlock
- .text          0x00023d4c        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
- .text._Balloc  0x00023d4c       0x50 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x00023d4c                _Balloc
- .text._Bfree   0x00023d9c       0x14 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x00023d9c                _Bfree
+                0x00023d50        0x4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mlock.o)
+                0x00023d50                __malloc_unlock
+ .text          0x00023d54        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+ .text._Balloc  0x00023d54       0x50 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x00023d54                _Balloc
+ .text._Bfree   0x00023da4       0x14 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x00023da4                _Bfree
  .text.__multadd
-                0x00023db0       0xa8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x00023db0                __multadd
- .text.__s2b    0x00023e58       0x98 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x00023e58                __s2b
+                0x00023db8       0xa8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x00023db8                __multadd
+ .text.__s2b    0x00023e60       0x98 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x00023e60                __s2b
  .text.__hi0bits
-                0x00023ef0       0x3c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x00023ef0                __hi0bits
+                0x00023ef8       0x3c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x00023ef8                __hi0bits
  .text.__lo0bits
-                0x00023f2c       0x5c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x00023f2c                __lo0bits
- .text.__i2b    0x00023f88       0x14 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x00023f88                __i2b
+                0x00023f34       0x5c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x00023f34                __lo0bits
+ .text.__i2b    0x00023f90       0x14 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x00023f90                __i2b
  .text.__multiply
-                0x00023f9c      0x144 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x00023f9c                __multiply
+                0x00023fa4      0x144 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x00023fa4                __multiply
  .text.__pow5mult
-                0x000240e0       0xb8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x000240e0                __pow5mult
+                0x000240e8       0xb8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x000240e8                __pow5mult
  .text.__lshift
-                0x00024198       0xc0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x00024198                __lshift
- .text.__mcmp   0x00024258       0x38 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x00024258                __mcmp
- .text.__mdiff  0x00024290       0xe8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x00024290                __mdiff
- .text.__ulp    0x00024378       0x44 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x00024378                __ulp
- .text.__b2d    0x000243bc       0xac /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x000243bc                __b2d
- .text.__d2b    0x00024468       0xbc /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x00024468                __d2b
- .text.__ratio  0x00024524       0x70 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x00024524                __ratio
- *fill*         0x00024594        0x4 
+                0x000241a0       0xc0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x000241a0                __lshift
+ .text.__mcmp   0x00024260       0x38 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x00024260                __mcmp
+ .text.__mdiff  0x00024298       0xe8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x00024298                __mdiff
+ .text.__ulp    0x00024380       0x44 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x00024380                __ulp
+ .text.__b2d    0x000243c4       0xac /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x000243c4                __b2d
+ .text.__d2b    0x00024470       0xbc /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x00024470                __d2b
+ .text.__ratio  0x0002452c       0x70 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x0002452c                __ratio
+ *fill*         0x0002459c        0x4 
  .text._mprec_log10
-                0x00024598       0x40 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x00024598                _mprec_log10
+                0x000245a0       0x40 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x000245a0                _mprec_log10
  .text.__copybits
-                0x000245d8       0x40 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x000245d8                __copybits
+                0x000245e0       0x40 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x000245e0                __copybits
  .text.__any_on
-                0x00024618       0x60 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x00024618                __any_on
- .text          0x00024678        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-s_fpclassify.o)
+                0x00024620       0x60 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x00024620                __any_on
+ .text          0x00024680        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-s_fpclassify.o)
  .text.__fpclassifyd
-                0x00024678       0x60 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-s_fpclassify.o)
-                0x00024678                __fpclassifyd
- .text          0x000246d8        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-sbrkr.o)
- .text._sbrk_r  0x000246d8       0x24 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-sbrkr.o)
-                0x000246d8                _sbrk_r
- .text          0x000246fc       0x14 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-strcmp.o)
-                0x000246fc                strcmp
- .text          0x00024710        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfiprintf.o)
+                0x00024680       0x60 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-s_fpclassify.o)
+                0x00024680                __fpclassifyd
+ .text          0x000246e0        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-sbrkr.o)
+ .text._sbrk_r  0x000246e0       0x24 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-sbrkr.o)
+                0x000246e0                _sbrk_r
+ .text          0x00024704       0x14 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-strcmp.o)
+                0x00024704                strcmp
+ .text          0x00024718        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfiprintf.o)
  .text.__ssprint_r
-                0x00024710      0x12c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfiprintf.o)
-                0x00024710                __ssprint_r
+                0x00024718      0x12c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfiprintf.o)
+                0x00024718                __ssprint_r
  .text._svfiprintf_r
-                0x0002483c      0xac4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfiprintf.o)
-                0x0002483c                _svfiprintf_r
- .text          0x00025300        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-__atexit.o)
+                0x00024844      0xac4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfiprintf.o)
+                0x00024844                _svfiprintf_r
+ .text          0x00025308        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-__atexit.o)
  .text.__register_exitproc
-                0x00025300       0xc0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-__atexit.o)
-                0x00025300                __register_exitproc
- .text          0x000253c0        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-callocr.o)
+                0x00025308       0xc0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-__atexit.o)
+                0x00025308                __register_exitproc
+ .text          0x000253c8        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-callocr.o)
  .text._calloc_r
-                0x000253c0       0x60 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-callocr.o)
-                0x000253c0                _calloc_r
- .text          0x00025420        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-freer.o)
+                0x000253c8       0x60 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-callocr.o)
+                0x000253c8                _calloc_r
+ .text          0x00025428        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-freer.o)
  .text._malloc_trim_r
-                0x00025420       0xa0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-freer.o)
-                0x00025420                _malloc_trim_r
- .text._free_r  0x000254c0      0x190 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-freer.o)
-                0x000254c0                _free_r
- .text          0x00025650        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-reallocr.o)
+                0x00025428       0xa0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-freer.o)
+                0x00025428                _malloc_trim_r
+ .text._free_r  0x000254c8      0x190 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-freer.o)
+                0x000254c8                _free_r
+ .text          0x00025658        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-reallocr.o)
  .text._realloc_r
-                0x00025650      0x360 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-reallocr.o)
-                0x00025650                _realloc_r
- .text          0x000259b0        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-reent.o)
+                0x00025658      0x360 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-reallocr.o)
+                0x00025658                _realloc_r
+ .text          0x000259b8        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-reent.o)
  .text.cleanup_glue
-                0x000259b0       0x1c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-reent.o)
-                0x000259b0                cleanup_glue
+                0x000259b8       0x1c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-reent.o)
+                0x000259b8                cleanup_glue
  .text._reclaim_reent
-                0x000259cc       0xa0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-reent.o)
-                0x000259cc                _reclaim_reent
- .text          0x00025a6c       0xc0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_divsi3.o)
-                0x00025a6c                __aeabi_idiv
-                0x00025a6c                __divsi3
-                0x00025b18                __aeabi_idivmod
- .text          0x00025b2c       0x7c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_arm_cmpdf2.o)
-                0x00025b2c                __aeabi_cdrcmple
-                0x00025b3c                __aeabi_cdcmple
-                0x00025b3c                __aeabi_cdcmpeq
-                0x00025b4c                __aeabi_dcmpeq
-                0x00025b58                __aeabi_dcmplt
-                0x00025b6c                __aeabi_dcmple
-                0x00025b80                __aeabi_dcmpgt
-                0x00025b94                __aeabi_dcmpge
- .text          0x00025ba8       0x40 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_aeabi_uldivmod.o)
-                0x00025ba8                __aeabi_uldivmod
- .text          0x00025be8       0x6c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(bpabi.o)
-                0x00025be8                __gnu_ldivmod_helper
-                0x00025c20                __gnu_uldivmod_helper
- .text          0x00025c54      0x644 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(adddf3.o)
-                0x00025c54                __aeabi_dadd
- .text          0x00026298      0x648 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(divdf3.o)
-                0x00026298                __aeabi_ddiv
- .text          0x000268e0       0x94 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(eqdf2.o)
-                0x000268e0                __eqdf2
-                0x000268e0                __nedf2
- .text          0x00026974       0xfc /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(gedf2.o)
-                0x00026974                __gtdf2
-                0x00026974                __gedf2
- .text          0x00026a70       0xfc /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(ledf2.o)
-                0x00026a70                __ltdf2
-                0x00026a70                __ledf2
- .text          0x00026b6c      0x668 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(subdf3.o)
-                0x00026b6c                __aeabi_dsub
- .text          0x000271d4       0x68 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(fixdfsi.o)
-                0x000271d4                __aeabi_d2iz
- .text          0x0002723c       0x7c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(floatsidf.o)
-                0x0002723c                __aeabi_i2d
- .text          0x000272b8       0x68 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(floatunsidf.o)
-                0x000272b8                __aeabi_ui2d
- .text          0x00027320       0x44 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_muldi3.o)
-                0x00027320                __aeabi_lmul
-                0x00027320                __muldi3
- .text          0x00027364      0x3b8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_divdi3.o)
-                0x00027364                __divdi3
- .text          0x0002771c      0x384 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_udivdi3.o)
-                0x0002771c                __udivdi3
- .text          0x00027aa0        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtend.o
- .text          0x00027aa0        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtn.o
- .text          0x00027aa0        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-s_cos.o)
- .text.cos      0x00027aa0       0xa8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-s_cos.o)
-                0x00027aa0                cos
- .text          0x00027b48        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-e_rem_pio2.o)
+                0x000259d4       0xa0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-reent.o)
+                0x000259d4                _reclaim_reent
+ .text          0x00025a74       0xc0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_divsi3.o)
+                0x00025a74                __aeabi_idiv
+                0x00025a74                __divsi3
+                0x00025b20                __aeabi_idivmod
+ .text          0x00025b34       0x7c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_arm_cmpdf2.o)
+                0x00025b34                __aeabi_cdrcmple
+                0x00025b44                __aeabi_cdcmple
+                0x00025b44                __aeabi_cdcmpeq
+                0x00025b54                __aeabi_dcmpeq
+                0x00025b60                __aeabi_dcmplt
+                0x00025b74                __aeabi_dcmple
+                0x00025b88                __aeabi_dcmpgt
+                0x00025b9c                __aeabi_dcmpge
+ .text          0x00025bb0       0x40 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_aeabi_uldivmod.o)
+                0x00025bb0                __aeabi_uldivmod
+ .text          0x00025bf0       0x6c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(bpabi.o)
+                0x00025bf0                __gnu_ldivmod_helper
+                0x00025c28                __gnu_uldivmod_helper
+ .text          0x00025c5c      0x644 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(adddf3.o)
+                0x00025c5c                __aeabi_dadd
+ .text          0x000262a0      0x648 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(divdf3.o)
+                0x000262a0                __aeabi_ddiv
+ .text          0x000268e8       0x94 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(eqdf2.o)
+                0x000268e8                __eqdf2
+                0x000268e8                __nedf2
+ .text          0x0002697c       0xfc /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(gedf2.o)
+                0x0002697c                __gtdf2
+                0x0002697c                __gedf2
+ .text          0x00026a78       0xfc /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(ledf2.o)
+                0x00026a78                __ltdf2
+                0x00026a78                __ledf2
+ .text          0x00026b74      0x668 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(subdf3.o)
+                0x00026b74                __aeabi_dsub
+ .text          0x000271dc       0x68 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(fixdfsi.o)
+                0x000271dc                __aeabi_d2iz
+ .text          0x00027244       0x7c /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(floatsidf.o)
+                0x00027244                __aeabi_i2d
+ .text          0x000272c0       0x68 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(floatunsidf.o)
+                0x000272c0                __aeabi_ui2d
+ .text          0x00027328       0x44 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_muldi3.o)
+                0x00027328                __aeabi_lmul
+                0x00027328                __muldi3
+ .text          0x0002736c      0x3b8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_divdi3.o)
+                0x0002736c                __divdi3
+ .text          0x00027724      0x384 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_udivdi3.o)
+                0x00027724                __udivdi3
+ .text          0x00027aa8        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtend.o
+ .text          0x00027aa8        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtn.o
+ .text          0x00027aa8        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-s_cos.o)
+ .text.cos      0x00027aa8       0xa8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-s_cos.o)
+                0x00027aa8                cos
+ .text          0x00027b50        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-e_rem_pio2.o)
  .text.__ieee754_rem_pio2
-                0x00027b48      0x478 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-e_rem_pio2.o)
-                0x00027b48                __ieee754_rem_pio2
- .text          0x00027fc0        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-k_cos.o)
+                0x00027b50      0x478 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-e_rem_pio2.o)
+                0x00027b50                __ieee754_rem_pio2
+ .text          0x00027fc8        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-k_cos.o)
  .text.__kernel_cos
-                0x00027fc0      0x248 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-k_cos.o)
-                0x00027fc0                __kernel_cos
- .text          0x00028208        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-k_rem_pio2.o)
+                0x00027fc8      0x248 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-k_cos.o)
+                0x00027fc8                __kernel_cos
+ .text          0x00028210        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-k_rem_pio2.o)
  .text.__kernel_rem_pio2
-                0x00028208      0x830 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-k_rem_pio2.o)
-                0x00028208                __kernel_rem_pio2
- .text          0x00028a38        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-k_sin.o)
+                0x00028210      0x830 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-k_rem_pio2.o)
+                0x00028210                __kernel_rem_pio2
+ .text          0x00028a40        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-k_sin.o)
  .text.__kernel_sin
-                0x00028a38      0x158 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-k_sin.o)
-                0x00028a38                __kernel_sin
- .text          0x00028b90        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-s_fabs.o)
- .text.fabs     0x00028b90        0x8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-s_fabs.o)
-                0x00028b90                fabs
- .text          0x00028b98        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-s_floor.o)
- .text.floor    0x00028b98      0x170 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-s_floor.o)
-                0x00028b98                floor
- .text          0x00028d08        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-s_scalbn.o)
- .text.scalbn   0x00028d08      0x110 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-s_scalbn.o)
-                0x00028d08                scalbn
- .text          0x00028e18        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-s_copysign.o)
+                0x00028a40      0x158 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-k_sin.o)
+                0x00028a40                __kernel_sin
+ .text          0x00028b98        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-s_fabs.o)
+ .text.fabs     0x00028b98        0x8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-s_fabs.o)
+                0x00028b98                fabs
+ .text          0x00028ba0        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-s_floor.o)
+ .text.floor    0x00028ba0      0x170 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-s_floor.o)
+                0x00028ba0                floor
+ .text          0x00028d10        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-s_scalbn.o)
+ .text.scalbn   0x00028d10      0x110 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-s_scalbn.o)
+                0x00028d10                scalbn
+ .text          0x00028e20        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-s_copysign.o)
  .text.copysign
-                0x00028e18       0x10 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-s_copysign.o)
-                0x00028e18                copysign
- .text          0x00028e28        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libnosys.a(sbrk.o)
- .text._sbrk    0x00028e28       0x34 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libnosys.a(sbrk.o)
-                0x00028e28                _sbrk
- .text          0x00028e5c        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libnosys.a(_exit.o)
- .text._exit    0x00028e5c        0x4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libnosys.a(_exit.o)
-                0x00028e5c                _exit
+                0x00028e20       0x10 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-s_copysign.o)
+                0x00028e20                copysign
+ .text          0x00028e30        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libnosys.a(sbrk.o)
+ .text._sbrk    0x00028e30       0x34 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libnosys.a(sbrk.o)
+                0x00028e30                _sbrk
+ .text          0x00028e64        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libnosys.a(_exit.o)
+ .text._exit    0x00028e64        0x4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libnosys.a(_exit.o)
+                0x00028e64                _exit
  *(.init)
- .init          0x00028e60        0x4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crti.o
-                0x00028e60                _init
- .init          0x00028e64        0x8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtn.o
+ .init          0x00028e68        0x4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crti.o
+                0x00028e68                _init
+ .init          0x00028e6c        0x8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtn.o
  *(.fini)
- .fini          0x00028e6c        0x4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crti.o
-                0x00028e6c                _fini
- .fini          0x00028e70        0x8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtn.o
+ .fini          0x00028e74        0x4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crti.o
+                0x00028e74                _fini
+ .fini          0x00028e78        0x8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtn.o
  *crtbegin.o(.ctors)
  *crtbegin?.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o *crtend?.o) .ctors)
@@ -611,111 +611,111 @@ END GROUP
  *(SORT(.dtors.*))
  *(.dtors)
  *(.rodata*)
- .rodata        0x00028e78      0x114 _build/main.o
- .rodata        0x00028f8c       0x38 _build/app_button.o
- .rodata        0x00028fc4       0x34 _build/app_timer.o
- .rodata        0x00028ff8       0x1c _build/pstorage.o
- .rodata        0x00029014      0x18c _build/device_manager_peripheral.o
-                0x00029014                m_service_context_store
-                0x00029024                m_service_context_load
-                0x00029034                m_service_context_apply
-                0x00029044                m_context_init_len
- .rodata        0x000291a0       0x38 _build/ble_dis.o
- .rodata        0x000291d8       0x3c _build/ble_hrs.o
- .rodata        0x00029214       0x40 _build/ble_srv_common.o
- .rodata        0x00029254       0x3c _build/softdevice_handler.o
- .rodata        0x00029290       0x40 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(muldf3.o)
+ .rodata        0x00028e80      0x114 _build/main.o
+ .rodata        0x00028f94       0x38 _build/app_button.o
+ .rodata        0x00028fcc       0x34 _build/app_timer.o
+ .rodata        0x00029000       0x1c _build/pstorage.o
+ .rodata        0x0002901c      0x18c _build/device_manager_peripheral.o
+                0x0002901c                m_service_context_store
+                0x0002902c                m_service_context_load
+                0x0002903c                m_service_context_apply
+                0x0002904c                m_context_init_len
+ .rodata        0x000291a8       0x38 _build/ble_dis.o
+ .rodata        0x000291e0       0x3c _build/ble_hrs.o
+ .rodata        0x0002921c       0x40 _build/ble_srv_common.o
+ .rodata        0x0002925c       0x3c _build/softdevice_handler.o
+ .rodata        0x00029298       0x40 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(muldf3.o)
  .rodata.str1.4
-                0x000292d0        0x2 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-impure.o)
+                0x000292d8        0x2 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-impure.o)
                                   0x4 (size before relaxing)
- *fill*         0x000292d2        0x2 
+ *fill*         0x000292da        0x2 
  .rodata._global_impure_ptr
-                0x000292d4        0x4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-impure.o)
-                0x000292d4                _global_impure_ptr
+                0x000292dc        0x4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-impure.o)
+                0x000292dc                _global_impure_ptr
  .rodata._svfprintf_r
-                0x000292d8      0x164 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfprintf.o)
+                0x000292e0      0x164 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfprintf.o)
  .rodata.zeroes.6763
-                0x0002943c       0x10 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfprintf.o)
+                0x00029444       0x10 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfprintf.o)
  .rodata.str1.4
-                0x0002944c       0x42 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfprintf.o)
+                0x00029454       0x42 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfprintf.o)
                                  0x44 (size before relaxing)
- *fill*         0x0002948e        0x2 
+ *fill*         0x00029496        0x2 
  .rodata.blanks.6762
-                0x00029490       0x10 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfprintf.o)
+                0x00029498       0x10 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfprintf.o)
  .rodata.str1.4
-                0x000294a0       0x10 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-dtoa.o)
+                0x000294a8       0x10 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-dtoa.o)
                                  0x14 (size before relaxing)
  .rodata.str1.4
-                0x000294b0        0xc /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-locale.o)
+                0x000294b8        0xc /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-locale.o)
                                  0x14 (size before relaxing)
- *fill*         0x000294bc        0x4 
+ *fill*         0x000294c4        0x4 
  .rodata.__mprec_tens
-                0x000294c0       0xc8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x000294c0                __mprec_tens
+                0x000294c8       0xc8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x000294c8                __mprec_tens
  .rodata.__mprec_bigtens
-                0x00029588       0x28 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x00029588                __mprec_bigtens
+                0x00029590       0x28 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x00029590                __mprec_bigtens
  .rodata.__mprec_tinytens
-                0x000295b0       0x28 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
-                0x000295b0                __mprec_tinytens
+                0x000295b8       0x28 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x000295b8                __mprec_tinytens
  .rodata.p05.5269
-                0x000295d8        0xc /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
+                0x000295e0        0xc /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-mprec.o)
  .rodata._svfiprintf_r
-                0x000295e4      0x164 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfiprintf.o)
+                0x000295ec      0x164 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfiprintf.o)
  .rodata.zeroes.6707
-                0x00029748       0x10 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfiprintf.o)
+                0x00029750       0x10 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfiprintf.o)
  .rodata.str1.4
                 0x00000000       0x30 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfiprintf.o)
  .rodata.blanks.6706
-                0x00029758       0x10 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfiprintf.o)
- .rodata        0x00029768       0x40 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(divdf3.o)
+                0x00029760       0x10 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libc.a(lib_a-svfiprintf.o)
+ .rodata        0x00029770       0x40 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(divdf3.o)
  .rodata.npio2_hw
-                0x000297a8       0x80 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-e_rem_pio2.o)
+                0x000297b0       0x80 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-e_rem_pio2.o)
  .rodata.two_over_pi
-                0x00029828      0x108 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-e_rem_pio2.o)
+                0x00029830      0x108 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-e_rem_pio2.o)
  .rodata.init_jk
-                0x00029930       0x10 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-k_rem_pio2.o)
- .rodata.PIo2   0x00029940       0x40 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-k_rem_pio2.o)
+                0x00029938       0x10 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-k_rem_pio2.o)
+ .rodata.PIo2   0x00029948       0x40 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/libm.a(lib_a-k_rem_pio2.o)
  *(.eh_frame*)
- .eh_frame      0x00029980        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtbegin.o
- .eh_frame      0x00029980        0x4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtend.o
+ .eh_frame      0x00029988        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtbegin.o
+ .eh_frame      0x00029988        0x4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtend.o
 
-.glue_7         0x00029984        0x0
+.glue_7         0x0002998c        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x00029984        0x0
+.glue_7t        0x0002998c        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x00029984        0x0
+.vfp11_veneer   0x0002998c        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x00029984        0x0
+.v4_bx          0x0002998c        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x00029984        0x0
+.iplt           0x0002998c        0x0
  .iplt          0x00000000        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtbegin.o
 
-.ARM.extab      0x00029984        0x0
+.ARM.extab      0x0002998c        0x0
  *(.ARM.extab* .gnu.linkonce.armextab.*)
- .ARM.extab     0x00029984        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/crt0.o
- .ARM.extab     0x00029984        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_divdi3.o)
- .ARM.extab     0x00029984        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_udivdi3.o)
-                0x00029984                __exidx_start = .
+ .ARM.extab     0x0002998c        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+ .ARM.extab     0x0002998c        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_divdi3.o)
+ .ARM.extab     0x0002998c        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_udivdi3.o)
+                0x0002998c                __exidx_start = .
 
-.ARM.exidx      0x00029984        0x8
+.ARM.exidx      0x0002998c        0x8
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
- .ARM.exidx     0x00029984        0x8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/crt0.o
- .ARM.exidx     0x0002998c        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_divdi3.o)
+ .ARM.exidx     0x0002998c        0x8 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/../../../../arm-none-eabi/lib/armv6-m/crt0.o
+ .ARM.exidx     0x00029994        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_divdi3.o)
                                   0x8 (size before relaxing)
- .ARM.exidx     0x0002998c        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_udivdi3.o)
+ .ARM.exidx     0x00029994        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/libgcc.a(_udivdi3.o)
                                   0x8 (size before relaxing)
-                0x0002998c                __exidx_end = .
-                0x0002998c                __etext = .
+                0x00029994                __exidx_end = .
+                0x00029994                __etext = .
 
-.rel.dyn        0x0002998c        0x0
+.rel.dyn        0x00029994        0x0
  .rel.iplt      0x00000000        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtbegin.o
 
-.data           0x20002000      0x8d4 load address 0x0002998c
+.data           0x20002000      0x8d4 load address 0x00029994
                 0x20002000                __data_start__ = .
  *(vtable)
  *(.data*)
@@ -848,14 +848,14 @@ END GROUP
                 0x200028d4                . = ALIGN (0x4)
                 0x200028d4                __data_end__ = .
 
-.jcr            0x200028d4        0x4 load address 0x0002a260
+.jcr            0x200028d4        0x4 load address 0x0002a268
  .jcr           0x200028d4        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtbegin.o
  .jcr           0x200028d4        0x4 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtend.o
 
-.igot.plt       0x200028d8        0x0 load address 0x0002a264
+.igot.plt       0x200028d8        0x0 load address 0x0002a26c
  .igot.plt      0x00000000        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crtbegin.o
 
-.bss            0x200028d8      0x820 load address 0x0002a264
+.bss            0x200028d8      0x820 load address 0x0002a26c
                 0x200028d8                __bss_start__ = .
  *(.bss*)
  .bss           0x200028d8        0x0 /afs/inf.ed.ac.uk/user/s11/s1119414/INF4/SLIP/gcc-arm-none-eabi-4_8-2014q2/bin/../lib/gcc/arm-none-eabi/4.8.4/armv6-m/crti.o
@@ -1257,25 +1257,25 @@ OUTPUT(_build/Prospeckz_s110.elf elf32-littlearm)
  .debug_aranges
                 0x00000218       0x20 _build/simple_uart.o
 
-.debug_line     0x00000000     0x47c9
+.debug_line     0x00000000     0x47c8
  .debug_line    0x00000000      0x1bd _build/system_nrf51.o
- .debug_line    0x000001bd      0x872 _build/main.o
- .debug_line    0x00000a2f      0x2eb _build/app_gpiote.o
- .debug_line    0x00000d1a      0x271 _build/app_button.o
- .debug_line    0x00000f8b      0x5ca _build/app_timer.o
- .debug_line    0x00001555      0x1c1 _build/app_trace.o
- .debug_line    0x00001716      0x471 _build/ble_advdata.o
- .debug_line    0x00001b87      0x426 _build/ble_conn_params.o
- .debug_line    0x00001fad      0x191 _build/ble_sensorsim.o
- .debug_line    0x0000213e      0x6f5 _build/pstorage.o
- .debug_line    0x00002833      0x942 _build/device_manager_peripheral.o
- .debug_line    0x00003175      0x43e _build/ble_bas.o
- .debug_line    0x000035b3      0x37e _build/ble_dis.o
- .debug_line    0x00003931      0x42a _build/ble_hrs.o
- .debug_line    0x00003d5b      0x233 _build/ble_srv_common.o
- .debug_line    0x00003f8e      0x18c _build/crc16.o
- .debug_line    0x0000411a      0x4ad _build/softdevice_handler.o
- .debug_line    0x000045c7      0x202 _build/simple_uart.o
+ .debug_line    0x000001bd      0x871 _build/main.o
+ .debug_line    0x00000a2e      0x2eb _build/app_gpiote.o
+ .debug_line    0x00000d19      0x271 _build/app_button.o
+ .debug_line    0x00000f8a      0x5ca _build/app_timer.o
+ .debug_line    0x00001554      0x1c1 _build/app_trace.o
+ .debug_line    0x00001715      0x471 _build/ble_advdata.o
+ .debug_line    0x00001b86      0x426 _build/ble_conn_params.o
+ .debug_line    0x00001fac      0x191 _build/ble_sensorsim.o
+ .debug_line    0x0000213d      0x6f5 _build/pstorage.o
+ .debug_line    0x00002832      0x942 _build/device_manager_peripheral.o
+ .debug_line    0x00003174      0x43e _build/ble_bas.o
+ .debug_line    0x000035b2      0x37e _build/ble_dis.o
+ .debug_line    0x00003930      0x42a _build/ble_hrs.o
+ .debug_line    0x00003d5a      0x233 _build/ble_srv_common.o
+ .debug_line    0x00003f8d      0x18c _build/crc16.o
+ .debug_line    0x00004119      0x4ad _build/softdevice_handler.o
+ .debug_line    0x000045c6      0x202 _build/simple_uart.o
 
 .debug_str      0x00000000     0x6d74
  .debug_str     0x00000000      0x265 _build/system_nrf51.o
