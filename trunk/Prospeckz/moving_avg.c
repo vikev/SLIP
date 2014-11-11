@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+/*
 static int average = 3;
 
 int avg(int num){
@@ -46,3 +46,4 @@ int main(int argc, const char * argv[]) {
 
     return 0;
 }
+*/

@@ -131,7 +131,9 @@ static app_timer_id_t 						 m_adc_sampling_timer_id;
 
 static dm_application_instance_t             m_app_handle;                              /**< Application identifier allocated by device manager */
 
-static bool                                  m_memory_access_in_progress = false;       /**< Flag to keep track of ongoing operations on persistent memory. */
+static bool                                  m_memory_access_in_progress = false;       /**< Flag to keep track of ongoing operations on persistent memory. 
+*/
+static int average = 3;
 #ifdef BLE_DFU_APP_SUPPORT    
 static ble_dfu_t                             m_dfus;                                    /**< Structure used to identify the DFU service. */
 #endif // BLE_DFU_APP_SUPPORT    
@@ -244,7 +246,15 @@ static void battery_level_meas_timeout_handler(void * p_context)
     UNUSED_PARAMETER(p_context);
     battery_level_update();
 }
-
+int avg(int num){
+    int temp_avg;
+    int num_of_terms = 4;
+    if (num) {
+        temp_avg = average + num - average/num_of_terms;
+        average = temp_avg/num_of_terms;
+    }
+    return (uint16_t) average;
+}
 // ADC timer handler to start ADC sampling
 static void adc_sampling_timeout_handler(void * p_context)
 {
@@ -286,6 +296,7 @@ simple_uart_putstring(buf);
 reading = (uint16_t) (NRF_ADC->RESULT);
 //Use the STOP task to save current. Workaround for PAN_028 rev1.5 anomaly 1.
 if (reading != 0) {
+	reading = avg(reading);
 	err_code = ble_hrs_heart_rate_measurement_send(&m_hrs, reading);
 }
    if ((err_code != NRF_SUCCESS) &&
