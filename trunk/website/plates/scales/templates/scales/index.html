@@ -49,8 +49,8 @@
 					{% for scale in scales %}
 					<tr>
 					<td>{{ scale.scale_id }}</td>
-					<td><a href="/items/{{ scale.item.item_id }}" >{{ scale.item }}</a></td>
-					<td>{{ scale.quantity}}</td>
+					<td><a href="/items/{{ scale.item.item_id }}" >{{ scale.item.name }}</a></td>
+					<td>{{ scale.quantity }} / {{ scale.item.mass }}</td>
 					</tr>
 					{% endfor %}
 					</tbody>
