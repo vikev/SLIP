@@ -88,7 +88,7 @@ public class ScanningFragment extends Fragment {
 			Button updateBtn = (Button) mainView.findViewById(R.id.send_button);
 			updateBtn.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
-				 new SendItem().execute();   
+				 new SendItem().execute();  
 				}
 	});
 				

@@ -8,5 +8,5 @@ public interface ScalesService {
     List<Scale> getAllScales();
     void sendToWebService(String barcode);
     Scale getScale(String id);
-    void sendScaleData(Scale scale);
+    void sendScaleData(String ID, String name, String mass);
 }
