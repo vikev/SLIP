@@ -8,5 +8,7 @@ urlpatterns = patterns('',
     url(r'^allmac/$', views.allmac, name='all_mac_addresses'),
     url(r'^all/$', views.all, name='api_all'),
     url(r'^item/(?P<the_item_id>.+)/$', views.item, name='api_item'),
-    url(r'^put/', views.put, name='api_put')
+    url(r'^items/', views.items, name='all_items'),
+    url(r'^put/', views.put, name='api_put'),
+    url(r'^set_item/', views.set_item, name='set_item')
 )

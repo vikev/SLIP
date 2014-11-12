@@ -1,4 +1,5 @@
 from django.db import models
+from hashlib import md5
 
 import json
 
@@ -12,3 +13,6 @@ class Item(models.Model):
 
   def json( self ):
     return { 'item_id' : self.item_id, 'name' : self.name, 'mass' : self.mass }
+
+def generate_item_id( item_name ):
+  return md5( item_name ).hexdigest()
