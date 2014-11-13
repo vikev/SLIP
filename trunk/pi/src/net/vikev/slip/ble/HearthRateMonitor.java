@@ -40,10 +40,17 @@ public class HearthRateMonitor implements Runnable {
         }
     }
 
+    private void restartProccess() {
+        p.destroy();
+        startProccess();
+    }
+
     // TODO: A lot of error handling!
     @Override
     public void run() {
         String line;
+        short prev = -100;
+
         while (true) {
             if (!isRunning(p)) {
                 restart();
@@ -51,9 +58,14 @@ public class HearthRateMonitor implements Runnable {
 
             try {
                 if ((line = reader.readLine()) != null) {
+                    System.out.println(mac + " " + line);
                     if ("Characteristic value was written successfully".equalsIgnoreCase(line) || line.startsWith("Notification handle")) {
                         if (line.startsWith("Notification handle")) {
-                            webClient.put(mac, extractSensorValueFromNotificationHandleValue(line));
+                            short value = extractSensorValueFromNotificationHandleValue(line);
+                            if (Math.abs(prev - value) > 5) {
+                                webClient.put(mac, value);
+                            }
+                            prev = value;
                         }
                     } else {
                         restart();
@@ -70,7 +82,7 @@ public class HearthRateMonitor implements Runnable {
         System.out.println("Error in connection with " + mac);
         System.out.println("Killing gatttool proccess for " + mac);
         p.destroy();
-        
+
         trySleep(5000);
 
         System.out.println("Starting new gatttool proccess for " + mac);

@@ -16,46 +16,12 @@ public class Monitor {
 
     public void start() {
         for (String mac : webClient.getMACs()) {
+            System.out.println("Starting connection to " + mac);
             new HearthRateMonitor(mac);
         }
     }
 
     public static void main(String args[]) {
         new Monitor().start();
-
-        // try {
-        // ProcessBuilder builder = new ProcessBuilder(args);
-        // builder.redirectErrorStream(true);
-        // Process p = builder.start();
-        //
-        // InputStream is = p.getInputStream();
-        // InputStreamReader isr = new InputStreamReader(is);
-        //
-        // final BufferedReader reader = new BufferedReader(isr);
-        //
-        // Thread t = new Thread(new Runnable() {
-        //
-        // @Override
-        // public void run() {
-        // System.out.println("Printing...");
-        // String line;
-        // while (true) {
-        // System.out.flush();
-        // try {
-        // if ((line = reader.readLine()) != null)
-        // System.out.println("OUTPUT: " + line);
-        // } catch (IOException e) {
-        // // TODO Auto-generated catch block
-        // e.printStackTrace();
-        // }
-        // }
-        // }
-        // });
-        //
-        // t.start();
-        //
-        // } catch (Throwable t) {
-        // t.printStackTrace();
-        // }
     }
 }
