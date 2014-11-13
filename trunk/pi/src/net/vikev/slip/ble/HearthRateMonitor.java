@@ -4,6 +4,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import net.vikev.slip.utils.WebClient;
 import net.vikev.slip.utils.WebClientImpl;
@@ -40,15 +47,9 @@ public class HearthRateMonitor implements Runnable {
         }
     }
 
-    private void restartProccess() {
-        p.destroy();
-        startProccess();
-    }
-
     // TODO: A lot of error handling!
     @Override
     public void run() {
-        String line;
         short prev = -100;
 
         while (true) {
@@ -57,25 +58,52 @@ public class HearthRateMonitor implements Runnable {
             }
 
             try {
-                if ((line = reader.readLine()) != null) {
-                    System.out.println(mac + " " + line);
-                    if ("Characteristic value was written successfully".equalsIgnoreCase(line) || line.startsWith("Notification handle")) {
-                        if (line.startsWith("Notification handle")) {
-                            short value = extractSensorValueFromNotificationHandleValue(line);
-                            if (Math.abs(prev - value) > 5) {
-                                webClient.put(mac, value);
-                            }
-                            prev = value;
-                        }
-                    } else {
-                        restart();
-                    }
-                }
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
+                prev = waitForResultWithTimeout(prev);
+            } catch (InterruptedException | ExecutionException | TimeoutException e) {
                 e.printStackTrace();
+                restart();
             }
         }
+    }
+
+    private short waitForResultWithTimeout(short prev) throws InterruptedException, ExecutionException, TimeoutException {
+        final short p = prev;
+        ExecutorService executor = Executors.newCachedThreadPool();
+        Callable<Short> task = new Callable<Short>() {
+            public Short call() {
+                try {
+                    return readLine(p);
+                } catch (IOException e) {
+                    restart();
+
+                    return p;
+                }
+            }
+        };
+
+        Future<Short> future = executor.submit(task);
+        return future.get(5, TimeUnit.SECONDS);
+
+    }
+
+    private short readLine(short prev) throws IOException {
+        String line;
+        if ((line = reader.readLine()) != null) {
+            System.out.println(mac + " " + line);
+            if ("Characteristic value was written successfully".equalsIgnoreCase(line) || line.startsWith("Notification handle")) {
+                if (line.startsWith("Notification handle")) {
+                    short value = extractSensorValueFromNotificationHandleValue(line);
+                    if (Math.abs(prev - value) > 5) {
+                        webClient.put(mac, value);
+                    }
+                    prev = value;
+                }
+            } else {
+                restart();
+            }
+        }
+        
+        return prev;
     }
 
     private void restart() {
