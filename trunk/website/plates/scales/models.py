@@ -5,7 +5,7 @@ import json
 
 class Scale(models.Model):
   scale_id = models.CharField( max_length=32 )
-  item = models.ForeignKey( Item, blank=True, null=True )
+  item = models.ForeignKey( Item, blank=True, null=True, on_delete=models.SET_NULL )
   quantity = models.FloatField( blank=True, null=True )
 
   def __str__( self ):

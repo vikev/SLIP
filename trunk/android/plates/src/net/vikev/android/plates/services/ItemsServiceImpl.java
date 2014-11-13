@@ -48,6 +48,7 @@ public class ItemsServiceImpl implements ItemsService {
             Item item = new Item();
             item.setId(jsonItem.getString("item_id"));
             item.setQuantity(jsonItem.getInt("mass"));
+            item.setName(jsonItem.getString("name"));
             return item;
         } catch (JSONException e) {
             e.printStackTrace();

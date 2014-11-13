@@ -21,18 +21,21 @@ public class ScalesServiceImpl implements ScalesService {
     ItemsService itemsService = new ItemsServiceImpl();
 
     public List<Scale> getAllScales() {
+    	
         JSONArray jsonScales = getScalesFromWebService();
         List<Scale> scales = parseScalesString(jsonScales);
-
+        
         return scales;
     }
 
     private JSONArray getScalesFromWebService() {
         try {
             JSONObject jsonObject;
+        
             jsonObject = new JSONObject(getDataFromWebService());
+            
             JSONArray jsonScales = jsonObject.getJSONArray("scales");
-
+            
             return jsonScales;
         } catch (JSONException e) {
             // TODO Add log
@@ -52,6 +55,8 @@ public class ScalesServiceImpl implements ScalesService {
                 Scale scale = new Scale();
                 scale.setId(jsonScale.getString("scale_id"));
                 scale.setQuantity((int)jsonScale.getDouble("quantity"));
+      
+                
                 scale.setItem(itemsService.transformJsonToItem((JSONObject) jsonScale.get("item")));
                 scales.add(scale);
             }
@@ -77,6 +82,33 @@ public class ScalesServiceImpl implements ScalesService {
 
             throw new CouldNotReachWebServiceException("Error while trying to get all scales from web service. " + e.getMessage());
         }
+    }
+    public void sendScaleData(String ID, String name, String mass)
+    {
+    	  try {
+              String url = getServerUrl() + "api/set_item/?scale_id="+ID+"&item_name=" +name + "&item_mass="+mass;
+              
+              httpService.httpGET(url);
+              
+          } catch (IOException e) {
+              // TODO Add log.
+              e.printStackTrace();
+
+              throw new CouldNotReachWebServiceException("Error while trying to get all scales from web service. " + e.getMessage());
+          }
+    }
+    public void sendToWebService(String barcode)
+    {
+    	  try {
+              String url = getServerUrl() + "api/put/?barcode="+barcode;
+              httpService.httpGET(url);
+              
+          } catch (IOException e) {
+              // TODO Add log.
+              e.printStackTrace();
+
+              throw new CouldNotReachWebServiceException("Error while trying to get all scales from web service. " + e.getMessage());
+          }
     }
 
     public Scale getScale(String id) {
