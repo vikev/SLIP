@@ -4,11 +4,23 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import net.vikev.slip.utils.WebClient;
 import net.vikev.slip.utils.WebClientImpl;
 
 public class HearthRateMonitor implements Runnable {
+    /**
+     * How long to wait for result before restarting the process. The time is in
+     * seconds.
+     */
+    private static final int WAIT_FOR_HANDLE_TIMEOUT = 5;
     private String mac;
     private ProcessBuilder builder;
     private Process p;
@@ -16,6 +28,7 @@ public class HearthRateMonitor implements Runnable {
     private InputStreamReader isr;
     private BufferedReader reader;
     private WebClient webClient = WebClientImpl.getInstance();
+    private boolean run = true;
 
     public HearthRateMonitor(String mac) {
 
@@ -27,65 +40,93 @@ public class HearthRateMonitor implements Runnable {
         new Thread(this).start();
     }
 
+    public void terminate() {
+        run = false;
+    }
+
     private void startProccess() {
         try {
             p = builder.start();
             is = p.getInputStream();
             isr = new InputStreamReader(is);
             reader = new BufferedReader(isr);
+            System.out.println(mac + " New gatttool proccess started.");
         } catch (IOException e) {
-            // TODO
             e.printStackTrace();
-            System.out.println("Couldn't start heart rate monitor for " + mac);
+            System.out.println(mac + " Couldn't start heart rate monitor.");
         }
-    }
-
-    private void restartProccess() {
-        p.destroy();
-        startProccess();
     }
 
     // TODO: A lot of error handling!
     @Override
     public void run() {
-        String line;
         short prev = -100;
 
-        while (true) {
-            if (!isRunning(p)) {
-                restart();
-            }
-
+        while (run) {
             try {
-                if ((line = reader.readLine()) != null) {
-                    System.out.println(mac + " " + line);
-                    if ("Characteristic value was written successfully".equalsIgnoreCase(line) || line.startsWith("Notification handle")) {
-                        if (line.startsWith("Notification handle")) {
-                            short value = extractSensorValueFromNotificationHandleValue(line);
-                            if (Math.abs(prev - value) > 5) {
-                                webClient.put(mac, value);
-                            }
-                            prev = value;
-                        }
-                    } else {
-                        restart();
-                    }
+                if (!isRunning(p)) {
+                    restart();
                 }
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
+
+                prev = waitForResultWithTimeout(prev);
+            } catch (InterruptedException | ExecutionException | TimeoutException e) {
                 e.printStackTrace();
+                restart();
             }
         }
     }
 
+    private short waitForResultWithTimeout(short prev) throws InterruptedException, ExecutionException, TimeoutException {
+        final short p = prev;
+        ExecutorService executor = Executors.newCachedThreadPool();
+        Callable<Short> task = new Callable<Short>() {
+            public Short call() {
+                try {
+                    return readLine(p);
+                } catch (IOException e) {
+                    System.out.println(mac + " Timed out.");
+                    restart();
+
+                    return p;
+                }
+            }
+        };
+
+        Future<Short> future = executor.submit(task);
+        return future.get(WAIT_FOR_HANDLE_TIMEOUT, TimeUnit.SECONDS);
+
+    }
+
+    private short readLine(short prev) throws IOException {
+        String line;
+        if ((line = reader.readLine()) != null) {
+            // System.out.println(mac + " " + line);
+            if ("Characteristic value was written successfully".equalsIgnoreCase(line) || line.startsWith("Notification handle")) {
+                if (line.startsWith("Notification handle")) {
+                    short value = extractSensorValueFromNotificationHandleValue(line);
+                    updateServerIfLastTwoReadingsDiffer(prev, value);
+                    prev = value;
+                }
+            } else {
+                System.out.println(mac + " Unexpected reading. " + line);
+                restart();
+            }
+        }
+
+        return prev;
+    }
+
+    private void updateServerIfLastTwoReadingsDiffer(short prev, short value) {
+        if (Math.abs(prev - value) > 5) {
+            webClient.put(mac, value);
+        }
+    }
+
     private void restart() {
-        System.out.println("Error in connection with " + mac);
-        System.out.println("Killing gatttool proccess for " + mac);
+        System.out.println(mac + " Connection error.");
+        System.out.println(mac + " Killing gatttool proccess.");
         p.destroy();
-
-        trySleep(5000);
-
-        System.out.println("Starting new gatttool proccess for " + mac);
+        trySleep(1000);
         startProccess();
     }
 
@@ -93,8 +134,7 @@ public class HearthRateMonitor implements Runnable {
         try {
             Thread.sleep(time);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            // at least tried...
         }
     }
 
