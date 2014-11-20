@@ -9,6 +9,7 @@ import static net.vikev.android.plates.MyApplication.setPassword;
 import static net.vikev.android.plates.MyApplication.setServerUrl;
 import static net.vikev.android.plates.MyApplication.setUsername;
 import static net.vikev.android.plates.MyApplication.toastShort;
+import static net.vikev.android.plates.MyApplication.setUpdateInterval;
 import net.vikev.android.plates.MyApplication;
 import net.vikev.android.plates.R;
 import android.os.Bundle;
@@ -55,50 +56,58 @@ public class SettingsFragment extends Fragment {
         }
 
     };
+    private int newInterval;
 
     private void updateIntervalValue(int progress) {
         TextView textView = (TextView) mainView.findViewById(R.id.textView_update_interval_value);
         switch (progress) {
             case 1:
-                MyApplication.setUpdateInterval(1);
+                newInterval=1;
                 textView.setText("1 second");
                 break;
             case 2:
-                MyApplication.setUpdateInterval(5);
+                newInterval=5;
                 textView.setText("5 seconds");
                 break;
             case 3:
-                MyApplication.setUpdateInterval(10);
+                newInterval=10;
                 textView.setText("10 seconds");
                 break;
             case 4:
-                MyApplication.setUpdateInterval(30);
+                newInterval=30;
                 textView.setText("30 seconds");
                 break;
             case 5:
-                MyApplication.setUpdateInterval(60);
+                newInterval=60;
                 textView.setText("1 minute");
                 break;
             case 6:
-                MyApplication.setUpdateInterval(300);
+                newInterval=300;
                 textView.setText("5 minutes");
                 break;
             case 7:
-                MyApplication.setUpdateInterval(600);
+                newInterval=600;
                 textView.setText("10 minutes");
                 break;
             case 8:
-                MyApplication.setUpdateInterval(1800);
+                newInterval=1800;
                 textView.setText("30 minutes");
                 break;
             case 9:
-                MyApplication.setUpdateInterval(3600);
+                newInterval=3600;
                 textView.setText("1 hour");
                 break;
             case 10:
-                MyApplication.setUpdateInterval(86400);
+                newInterval=86400;
                 textView.setText("1 day");
                 break;
+            case 11:
+                newInterval=0;
+                textView.setText("Off");
+                break; 
+            default:
+                newInterval=0;
+                textView.setText("Off");
         }
     }
 
@@ -111,6 +120,9 @@ public class SettingsFragment extends Fragment {
 
     private void setUpdateIntervalSeekBarPosition() {
         switch (MyApplication.getUpdateInterval()) {
+            case 0:
+                seekBar.setProgress(11);
+                break;
             case 1:
                 seekBar.setProgress(1);
                 break;
@@ -142,7 +154,7 @@ public class SettingsFragment extends Fragment {
                 seekBar.setProgress(10);
                 break;
             default:
-                seekBar.setProgress(1);
+                seekBar.setProgress(11);
                 break;
         }
 
@@ -153,6 +165,7 @@ public class SettingsFragment extends Fragment {
         updateBtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 saveSettings();
+                MyApplication.restartWebServerScaleRetrieverService();
                 toastShort("Settings saved");
             }
         });
@@ -162,5 +175,6 @@ public class SettingsFragment extends Fragment {
         setServerUrl(getEditTextValue(mainView, R.id.editText_server_url));
         setUsername(getEditTextValue(mainView, R.id.editText_username));
         setPassword(getEditTextValue(mainView, R.id.editText_password));
+        setUpdateInterval(newInterval);
     }
 }

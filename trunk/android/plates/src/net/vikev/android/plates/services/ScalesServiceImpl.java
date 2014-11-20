@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.vikev.android.plates.entities.Scale;
-import net.vikev.android.plates.exceptions.CouldNotGetItemException;
 import net.vikev.android.plates.exceptions.CouldNotParseJSONException;
 import net.vikev.android.plates.exceptions.CouldNotReachWebServiceException;
 import net.vikev.android.plates.exceptions.PlatesException;
@@ -20,7 +19,7 @@ public class ScalesServiceImpl implements ScalesService {
     HttpService httpService = new HttpServiceImpl();
     ItemsService itemsService = new ItemsServiceImpl();
 
-    public List<Scale> getAllScales() {
+    public List<Scale> getAllScales() throws CouldNotParseJSONException, CouldNotReachWebServiceException{
     	
         JSONArray jsonScales = getScalesFromWebService();
         List<Scale> scales = parseScalesString(jsonScales);
