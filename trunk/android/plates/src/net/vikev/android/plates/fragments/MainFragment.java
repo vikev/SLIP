@@ -8,6 +8,7 @@ import net.vikev.android.plates.R;
 import net.vikev.android.plates.entities.Scale;
 import net.vikev.android.plates.services.ScalesService;
 import net.vikev.android.plates.services.ScalesServiceImpl;
+import net.vikev.android.plates.services.WebServerScaleRetrieverService;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -24,7 +25,7 @@ import android.widget.ListView;
 public class MainFragment extends Fragment implements OnRefreshListener {
     private View mainView;
     private ListView scaleView;
-    private List<Scale> scales = MyApplication.scales;
+    private List<Scale> scales = WebServerScaleRetrieverService.scales;
     private CustomListAdapter adapter;
     ScalesService scalesService = new ScalesServiceImpl();
     private SwipeRefreshLayout swipeLayout;
@@ -49,7 +50,7 @@ public class MainFragment extends Fragment implements OnRefreshListener {
 
     @Override
     public void onResume() {
-        refreshData(MyApplication.scales);
+        refreshData(WebServerScaleRetrieverService.scales);
         super.onResume();
     }
 
@@ -74,7 +75,7 @@ public class MainFragment extends Fragment implements OnRefreshListener {
 
     @Override
     public void onRefresh() {
-        refreshData(MyApplication.scales);
+        refreshData(WebServerScaleRetrieverService.scales);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

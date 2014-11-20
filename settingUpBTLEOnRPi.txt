@@ -1,0 +1,103 @@
+# 1) Install glib
+
+#install dependencies:  
+apt-get install libffi-dev
+apt-get install gettext
+
+
+
+wget -c http://ftp.gnu.org/gnu/m4/m4-latest.tar.xz
+tar -xJvf m4-latest.tar.xz
+./configure
+make
+make install
+
+wget -c http://ftp.gnu.org/gnu/autoconf/autoconf-latest.tar.xz
+tar -xJvf autoconf-latest.tar.xz
+./configure
+make
+make install
+
+wget -c ftp://ftp.gnu.org/gnu/automake/automake-1.13.tar.xz -O ~/work/automake-1.13.tar.xz
+tar -xJvf automake-1.13.tar.xz
+./configure
+make
+make install
+
+
+# wget -c downloads.activestate.com/ActivePerl/releases/5.16.3.1603/ActivePerl-5.16.3.1603-i686-linux-glibc-2.3.6-296746.tar.gz
+# tar -xzvf ActivePerl-5.16.3.1603-i686-linux-glibc-2.3.6-296746.tar.gz
+# sh install.sh
+
+# wget http://downloads.activestate.com/ActivePerl/releases/5.18.2.1802/ActivePerl-5.18.2.1802-298023-source.tar.gz
+# tar -xzvf ActivePerl-5.18.2.1802-298023-source.tar.gz
+
+
+# Download and install glib itself:
+wget http://ftp.acc.umu.se/pub/GNOME/sources/glib/2.42/glib-2.42.0.tar.xz
+tar -xJvf glib-2.42.0.tar.xz
+./configure
+make
+make install
+
+# 2) Install EXPAT and DBus
+# wget http://sourceforge.net/projects/expat/files/expat/2.1.0/expat-2.1.0.tar.gz
+# tar -xzf expat-2.1.0.tar.gz 
+# cd expat-2.1.0/
+# ./configure --host=arm-linux-gnueabi --prefix=/usr/arm-linux-gnueabi
+# make
+# make install
+
+apt-get install expat
+sudo apt-get install libexpat1-dev
+
+wget http://dbus.freedesktop.org/releases/dbus/dbus-1.9.0.tar.gz
+tar -xzvf dbus-1.9.0.tar.gz
+./configure --host=arm-linux-gnueabi --prefix=/usr/arm-linux-gnueabi
+make
+make install
+
+
+apt-get install libudev-dev
+apt-get install libical-dev
+apt-get install libreadline-dev
+3) Install BlueZ
+dl
+extract
+./configure --prefix=/usr --mandir=/usr/share/man --sysconfdir=/etc --localstatedir=/var --enable-library --with-systemdsystemunitdir=/lib/systemd/system --disable-systemd
+make
+
+
+
+
+
+
+-------------------------------------
+  CC     tools/ciptool.o
+  CCLD   tools/ciptool
+  CC     tools/bccmd.o
+  CC     tools/csr_hci.o
+  CC     tools/csr_usb.o
+  CC     tools/csr_h4.o
+  CC     tools/csr_3wire.o
+  CC     tools/csr_bcsp.o
+  CC     tools/ubcsp.o
+  CCLD   tools/bccmd
+  CC     tools/bluemoon.o
+  CCLD   tools/bluemoon
+  CC     tools/mpris-proxy.o
+  CCLD   tools/mpris-proxy
+  CC     tools/mcaptest.o
+  CC     btio/btio.o
+  CC     src/log.o
+  CC     profiles/health/mcap.o
+  CCLD   tools/mcaptest
+/usr/bin/ld: profiles/health/mcap.o: undefined reference to symbol 'clock_getres@@GLIBC_2.4'
+//lib/arm-linux-gnueabihf/librt.so.1: error adding symbols: DSO missing from command line
+collect2: ld returned 1 exit status
+Makefile:4070: recipe for target 'tools/mcaptest' failed
+make[1]: *** [tools/mcaptest] Error 1
+Makefile:2572: recipe for target 'all' failed
+make: *** [all] Error 2
+root@pi:~/install/bluez-5.24#
+

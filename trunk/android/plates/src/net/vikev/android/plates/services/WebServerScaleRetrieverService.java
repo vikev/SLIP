@@ -1,6 +1,11 @@
 package net.vikev.android.plates.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.vikev.android.plates.MyApplication;
+import net.vikev.android.plates.activities.MainActivity;
+import net.vikev.android.plates.entities.Scale;
 import net.vikev.android.plates.exceptions.CouldNotParseJSONException;
 import net.vikev.android.plates.exceptions.CouldNotReachWebServiceException;
 import android.app.Service;
@@ -11,6 +16,7 @@ public class WebServerScaleRetrieverService extends Service {
     private static boolean running = false;
     private boolean stop = false;
     private ScalesService scalesService = new ScalesServiceImpl();
+    public static List<Scale> scales = new ArrayList<>();
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -40,9 +46,23 @@ public class WebServerScaleRetrieverService extends Service {
 
     private void fetchAndUpdateScales() {
         try {
-            MyApplication.updateScales(scalesService.getAllScales());
+            updateScales(scalesService.getAllScales());
         } catch (CouldNotParseJSONException | CouldNotReachWebServiceException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void updateScales(List<Scale> scales) {
+        WebServerScaleRetrieverService.scales = scales;
+        if (System.currentTimeMillis() - MyApplication.lastPopupTime > 60000) {
+            for (Scale scale : scales) {
+                if (scale.getItem() != null) {
+                    if (scale.isRunningEmpty()) {
+                        MyApplication.showNotification(MyApplication.getAppContext(), MainActivity.class, 0, "You are running on fumes.", "It's time to shop!");
+                        MyApplication.lastPopupTime = System.currentTimeMillis();
+                    }
+                }
+            }
         }
     }
 

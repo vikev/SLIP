@@ -28,4 +28,8 @@ public class Scale {
     public void setItem(Item item) {
         this.item = item;
     }
+
+    public boolean isRunningEmpty() {
+        return quantity<20;
+    }
 }

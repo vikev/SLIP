@@ -1,6 +1,5 @@
 package net.vikev.android.plates;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import net.vikev.android.plates.activities.MainActivity;
@@ -25,8 +24,7 @@ import android.widget.Toast;
 public class MyApplication extends Application {
     private static Context context;
     private static SharedPreferences pref;
-    public static List<Scale> scales = new ArrayList<>();
-    private static long lastPopupTime = 0;
+    public static long lastPopupTime = 0;
 
     public void onCreate() {
         super.onCreate();
@@ -145,18 +143,7 @@ public class MyApplication extends Application {
         mNotificationManager.notify(id, mBuilder.build());
     }
 
-    public static void updateScales(List<Scale> scales) {
-        MyApplication.scales = scales;
-        if(System.currentTimeMillis()-lastPopupTime>60000){
-        for (Scale scale : scales) {
-            if (scale.getItem() != null) {
-                if (scale.getQuantity() < 20) {
-                    showNotification(getAppContext(), MainActivity.class, 0, "You are running on fumes.", "It's time to shop!");
-                    lastPopupTime=System.currentTimeMillis();
-                }
-            }
-        }
-    }}
+    
 
     public static boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getAppContext().getSystemService(Context.CONNECTIVITY_SERVICE);
