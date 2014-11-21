@@ -30,7 +30,6 @@ public class MainFragment extends Fragment implements OnRefreshListener {
     private CustomListAdapter adapter;
     ScalesService scalesService = new ScalesServiceImpl();
     private SwipeRefreshLayout swipeLayout;
-    private MainFragment thisFragment = this;
     private Handler handler = new Handler();
 
     @Override
@@ -44,9 +43,6 @@ public class MainFragment extends Fragment implements OnRefreshListener {
 
         swipeLayout = (SwipeRefreshLayout) mainView.findViewById(R.id.swipe_container);
         swipeLayout.setOnRefreshListener(this);
-        // swipeLayout.setColorScheme(android.R.color.holo_blue_bright,
-        // android.R.color.holo_green_light, android.R.color.holo_orange_light,
-        // android.R.color.holo_red_light);
         onRefresh();
 
         return mainView;

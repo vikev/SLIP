@@ -54,7 +54,7 @@ public class MyApplication extends Application {
      * @return
      */
     public static int getUpdateInterval() {
-        return MyApplication.pref.getInt("update_interval", 300);
+        return MyApplication.pref.getInt("update_interval", 0);
     }
 
     /**
