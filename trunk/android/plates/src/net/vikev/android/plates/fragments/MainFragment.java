@@ -1,14 +1,15 @@
 package net.vikev.android.plates.fragments;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import net.vikev.android.plates.MyApplication;
 import net.vikev.android.plates.R;
 import net.vikev.android.plates.entities.Scale;
+import net.vikev.android.plates.exceptions.CouldNotGetScalesException;
 import net.vikev.android.plates.services.ScalesService;
 import net.vikev.android.plates.services.ScalesServiceImpl;
 import net.vikev.android.plates.services.WebServerScaleRetrieverService;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -29,6 +30,8 @@ public class MainFragment extends Fragment implements OnRefreshListener {
     private CustomListAdapter adapter;
     ScalesService scalesService = new ScalesServiceImpl();
     private SwipeRefreshLayout swipeLayout;
+    private MainFragment thisFragment = this;
+    private Handler handler = new Handler();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,13 +47,14 @@ public class MainFragment extends Fragment implements OnRefreshListener {
         // swipeLayout.setColorScheme(android.R.color.holo_blue_bright,
         // android.R.color.holo_green_light, android.R.color.holo_orange_light,
         // android.R.color.holo_red_light);
+        onRefresh();
 
         return mainView;
     }
 
     @Override
     public void onResume() {
-        refreshData(WebServerScaleRetrieverService.scales);
+        refreshData();
         super.onResume();
     }
 
@@ -66,8 +70,8 @@ public class MainFragment extends Fragment implements OnRefreshListener {
 
     }
 
-    public void refreshData(List<Scale> scaleData) {
-        scales = new ArrayList<Scale>(scaleData);
+    public void refreshData() {
+        scales = WebServerScaleRetrieverService.scales;
         adapter = new CustomListAdapter(this.getActivity(), scales);
         scaleView.invalidateViews();
         scaleView.setAdapter(adapter);
@@ -75,12 +79,39 @@ public class MainFragment extends Fragment implements OnRefreshListener {
 
     @Override
     public void onRefresh() {
-        refreshData(WebServerScaleRetrieverService.scales);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                swipeLayout.setRefreshing(false);
+        System.out.println("Refreshing");
+        swipeLayout.setRefreshing(true);
+        new Update().execute();
+    }
+
+    class Update extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                WebServerScaleRetrieverService.fetchAndUpdateScales();
+            } catch (CouldNotGetScalesException e) {
+                handler.post(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        MyApplication.toastShort("Couldn't update. Check your internet connection and settings.");
+                    }
+                });
             }
-        }, 1000);
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    refreshData();
+                    swipeLayout.setRefreshing(false);
+                }
+            }, 1000);
+        }
     }
 }

@@ -1,9 +1,5 @@
 package net.vikev.android.plates;
 
-import java.util.List;
-
-import net.vikev.android.plates.activities.MainActivity;
-import net.vikev.android.plates.entities.Scale;
 import net.vikev.android.plates.services.WebServerScaleRetrieverService;
 import android.app.Activity;
 import android.app.Application;
@@ -73,7 +69,7 @@ public class MyApplication extends Application {
     }
 
     public static String getServerUrl() {
-        return MyApplication.pref.getString("server_url", "http://172.20.188.227/");
+        return MyApplication.pref.getString("server_url", "");
     }
 
     public static void setServerUrl(String serverUrl) {

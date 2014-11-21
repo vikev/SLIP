@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    <Button android:id="@+id/scan_button"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/scan_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="scan" />
+        android:text="@string/scan" />
+
+    <Button
+        android:id="@+id/send_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/send" />
+
     <TextView
-    android:id="@+id/scan_format"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textIsSelectable="true"
-    android:layout_centerHorizontal="true"
-    android:layout_below="@id/scan_button" />
-	<TextView
-    android:id="@+id/scan_content"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:textIsSelectable="true"
-    android:layout_centerHorizontal="true"
-    android:layout_below="@id/scan_format" />
+        android:id="@+id/scan_format"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true" />
 
-	<Button
-	    android:id="@+id/send_button"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignTop="@+id/scan_format"
-	    android:layout_centerHorizontal="true"
-	    android:text="Send" />
+    <TextView
+        android:id="@+id/scan_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textIsSelectable="true" />
 
-</RelativeLayout>
+</LinearLayout>

@@ -2,6 +2,7 @@ package net.vikev.android.plates.entities;
 
 public class Scale {
     private String id;
+    private String name;
     private Integer quantity;
     private Item item;
 
@@ -17,6 +18,14 @@ public class Scale {
         this.quantity = quantity;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -30,6 +39,6 @@ public class Scale {
     }
 
     public boolean isRunningEmpty() {
-        return quantity<20;
+        return quantity < 20;
     }
 }
