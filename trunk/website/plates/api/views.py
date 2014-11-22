@@ -14,6 +14,15 @@ def scale( request, the_scale_id ):
 
   return JsonResponse( scale.json() )
 
+def add_scale( request ):
+    scale_name = request.GET.get('scale_name', '')
+    scale_mac = request.GET.get('scale_mac', '')
+    if len(Scale.objects.filter(name=scale_name)) == 0:
+        scale = Scale.objects.create(name=scale_name, scale_id=scale_mac)
+        scale.save()
+    return HttpResponseRedirect( '/scales/')
+
+
 def item( request, the_item_id ):
   try:
     item = Item.objects.get( item_id = the_item_id )
@@ -45,7 +54,6 @@ def allmac( request ):
 
   return JsonResponse( result )
 
-
 def mac( request, the_mac_address ):
   reading = request.GET.get( 'reading', '' )
 
@@ -53,8 +61,7 @@ def mac( request, the_mac_address ):
     try:
       scale = Scale.objects.get( scale_id = the_mac_address )
     except Scale.DoesNotExist:
-      scale = Scale( scale_id = the_mac_address, item = None, quantity = reading )
-      scale.save()
+      return Http404()
     else:
       scale.quantity = reading
       scale.save()
@@ -71,10 +78,15 @@ def set_item( request ):
 
   if scale_id and item_name and item_mass:
     scale = Scale.objects.get( scale_id = scale_id )
-    scale.quantity = 0.2
-    item = Item.objects.create( item_id = generate_item_id( item_name ), name = item_name, mass = item_mass )
-    scale.item = item
+
+    if len(Item.objects.filter(name=item_name)) == 0:
+        item = Item.objects.create( item_id = generate_item_id( item_name ), name = item_name, mass = item_mass )
+    else:
+        item = Item.objects.get(name=item_name)
+        item.mass = item_mass
     item.save()
+
+    scale.item = item
     scale.save()
     return HttpResponseRedirect( '/scales/' )
   else:

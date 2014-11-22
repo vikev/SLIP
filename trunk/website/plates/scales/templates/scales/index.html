@@ -40,7 +40,7 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>Scale Id</th>
+							<th>Scale Name</th>
 							<th>Item</th>
 							<th>Quantity</th>
 						</tr>
@@ -48,7 +48,7 @@
 					<tbody>
 					{% for scale in scales %}
 					<tr>
-					<td>{{ scale.scale_id }}</td>
+					<td>{{ scale.name }}</td>
 					<td><a href="/items/{{ scale.item.item_id }}" >{{ scale.item.name }}</a></td>
 					<td>{{ scale.quantity }} / {{ scale.item.mass }}</td>
 					</tr>

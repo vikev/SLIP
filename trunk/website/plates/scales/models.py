@@ -4,6 +4,7 @@ from items.models import Item
 import json
 
 class Scale(models.Model):
+  name = models.CharField( max_length=32 )
   scale_id = models.CharField( max_length=32 )
   item = models.ForeignKey( Item, blank=True, null=True, on_delete=models.SET_NULL )
   quantity = models.FloatField( blank=True, null=True )
