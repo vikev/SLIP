@@ -11,5 +11,6 @@ urlpatterns = patterns('',
     url(r'^items/', views.items, name='all_items'), # return all items in the database
     url(r'^put/', views.put, name='api_put'), # put a new item to a scale using the product barcode
     url(r'^set_item/', views.set_item, name='set_item'), # set the item on the scale. If the item doesn't exist, create it
+    url(r'^peek/', views.peek, name='peek'),
     url(r'^add_scale/', views.add_scale, name='add_scale')
 )

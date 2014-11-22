@@ -31,6 +31,19 @@ def item( request, the_item_id ):
 
   return JsonResponse( item.json() )
 
+def peek( request ):
+    the_barcode = request.GET.get( 'barcode', '' )
+
+    try:
+        item = Item.objects.get( barcode = the_barcode )
+        return JsonResponse( {"item_name": item.name, "mass": item.mass} )
+    except Item.DoesNotExist:
+        item = product_from_barcode(the_barcode)
+        if 'itemname' in item and item['itemname'] != "":
+            return JsonResponse( {"item_name": item['itemname'], "mass": "null"} )
+
+    raise Http404
+
 def all( request ):
   try:
     scales = Scale.objects.all()
@@ -61,14 +74,14 @@ def mac( request, the_mac_address ):
     try:
       scale = Scale.objects.get( scale_id = the_mac_address )
     except Scale.DoesNotExist:
-      return Http404()
+      raise Http404
     else:
       scale.quantity = reading
       scale.save()
 
     return HttpResponseRedirect( '/scales/')
   else:
-    return Http404()
+    raise Http404
 
 # for the android app to change the item on the plate (adds a new item)
 def set_item( request ):
