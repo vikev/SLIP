@@ -42,3 +42,9 @@ local.properties
 
 # compiled
 *.pyc
+
+trunk/pi/target/slipble-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+trunk/pi/target/slipble-0.0.1-SNAPSHOT.jar
+trunk/pi/target/slipble-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+trunk/pi/target/slipble-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+trunk/pi/target/slipble-0.0.1-SNAPSHOT.jar

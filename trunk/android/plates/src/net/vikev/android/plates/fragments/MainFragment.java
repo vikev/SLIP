@@ -1,22 +1,21 @@
 package net.vikev.android.plates.fragments;
 
-import static net.vikev.android.plates.MyApplication.setEditTextValue;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import net.vikev.android.plates.MyApplication;
 import net.vikev.android.plates.R;
-import net.vikev.android.plates.entities.Item;
 import net.vikev.android.plates.entities.Scale;
-import net.vikev.android.plates.fragments.TestFragment.GetItem;
+import net.vikev.android.plates.exceptions.CouldNotGetScalesException;
 import net.vikev.android.plates.services.ScalesService;
 import net.vikev.android.plates.services.ScalesServiceImpl;
+import net.vikev.android.plates.services.WebServerScaleRetrieverService;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,14 +23,15 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements OnRefreshListener {
     private View mainView;
     private ListView scaleView;
-    private List<Scale> scales = MyApplication.scales;
+    private List<Scale> scales = WebServerScaleRetrieverService.scales;
     private CustomListAdapter adapter;
-    private MainFragment curfrag=this;
     ScalesService scalesService = new ScalesServiceImpl();
-    private Handler mHandler = new Handler();
+    private SwipeRefreshLayout swipeLayout;
+    private Handler handler = new Handler();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mainView = inflater.inflate(R.layout.fragment_main, container, false);
@@ -40,37 +40,18 @@ public class MainFragment extends Fragment {
         adapter = new CustomListAdapter(this.getActivity(), scales);
         scaleView.setAdapter(adapter);
         setClickListener();
-   
-    	 new Thread(new Runnable() {
-             @Override
-             public void run() {
-                 // TODO Auto-generated method stub
-                 while (true) {
-                     try {
-                         Thread.sleep(1000);
-                         mHandler.post(new Runnable() {
 
-                             @Override
-                             public void run() {
-                             
-                             	
-                             	new GetItem().execute(mainView);
-                         
-                             	
-                             	
-                        
-                                 
-                             }
-                         });
-                     } catch (Exception e) {
-                         // TODO: handle exception
-                     }
-                 }
-             }
-         	}).start();
-        
-        
+        swipeLayout = (SwipeRefreshLayout) mainView.findViewById(R.id.swipe_container);
+        swipeLayout.setOnRefreshListener(this);
+        onRefresh();
+
         return mainView;
+    }
+
+    @Override
+    public void onResume() {
+        refreshData();
+        super.onResume();
     }
 
     private void setClickListener() {
@@ -84,24 +65,49 @@ public class MainFragment extends Fragment {
         });
 
     }
-    public void refreshData(List<Scale> scaleData) {
- 	   scales = new ArrayList<Scale>(scaleData);
- 	  adapter = new CustomListAdapter(this.getActivity(), scales);
- 	   scaleView.invalidateViews();
- 	   scaleView.setAdapter(adapter);
- 	
 
+    public void refreshData() {
+        scales = WebServerScaleRetrieverService.scales;
+        adapter = new CustomListAdapter(this.getActivity(), scales);
+        scaleView.invalidateViews();
+        scaleView.setAdapter(adapter);
     }
-    public class GetItem extends AsyncTask<View, Void, List<Scale>> {
+
+    @Override
+    public void onRefresh() {
+        System.out.println("Refreshing");
+        swipeLayout.setRefreshing(true);
+        new Update().execute();
+    }
+
+    class Update extends AsyncTask<Void, Void, Void> {
 
         @Override
-        protected List<Scale> doInBackground(View... params) {
-            return scalesService.getAllScales();
+        protected Void doInBackground(Void... params) {
+            try {
+                WebServerScaleRetrieverService.fetchAndUpdateScales();
+            } catch (CouldNotGetScalesException e) {
+                handler.post(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        MyApplication.toastShort("Couldn't update. Check your internet connection and settings.");
+                    }
+                });
+            }
+
+            return null;
         }
 
-        protected void onPostExecute(List<Scale> scales) {
-            
-            curfrag.refreshData(scales);
+        @Override
+        protected void onPostExecute(Void result) {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    refreshData();
+                    swipeLayout.setRefreshing(false);
+                }
+            }, 1000);
         }
     }
 }

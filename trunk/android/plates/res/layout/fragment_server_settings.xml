@@ -68,7 +68,7 @@
         android:id="@+id/seekBar_update_interval"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:max="10" />
+        android:max="11" />
 
     <Button
         android:id="@+id/btn_save"
