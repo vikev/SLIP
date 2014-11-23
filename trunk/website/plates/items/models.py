@@ -12,7 +12,6 @@ class Item(models.Model):
   def __str__( self ):
     return str( self.item_id )
 
-  @property
   def json( self ):
     return { 'item_id' : self.item_id, 'name' : self.name, 'mass' : self.mass }
 
