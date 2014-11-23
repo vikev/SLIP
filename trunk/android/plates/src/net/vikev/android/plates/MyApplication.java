@@ -139,12 +139,14 @@ public class MyApplication extends Application {
         mNotificationManager.notify(id, mBuilder.build());
     }
 
-    
-
     public static boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getAppContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    public static boolean isNullOrEmpty(String str) {
+        return str == null || "".equals(str);
     }
 }

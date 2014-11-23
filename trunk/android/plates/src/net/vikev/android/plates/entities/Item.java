@@ -4,7 +4,8 @@ public class Item {
     private String id;
     private String name;
     private String image_location;
-    private int quantity;
+    private Integer quantity;
+    private String barcode;
     
     public String getId() {
         return id;
@@ -30,11 +31,23 @@ public class Item {
         this.image_location = image_location;
     }
     
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
     
     public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 }

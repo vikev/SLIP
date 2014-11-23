@@ -5,33 +5,63 @@
     android:orientation="vertical" >
 
     <TextView
+        android:id="@+id/textViewBarcode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/barcode"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+    <Button
+        android:id="@+id/button_barcodeScan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/scan" />
+
+    <EditText
+        android:id="@+id/Barcode"
+        android:layout_width="279dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button1"
+        android:layout_alignBottom="@+id/button1"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/button1"
+        android:ems="10"
+        android:inputType="text" />
+
+    </RelativeLayout>
+    <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Item Name"
+        android:text="@string/item_name"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
         android:id="@+id/ItemName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
+        android:ems="10"
+        android:inputType="text" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quantity"
+        android:text="@string/mass"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
         android:id="@+id/QuantityEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" />
+        android:ems="10"
+        android:inputType="text" />
 
     <TextView
         android:id="@+id/textView3"
@@ -44,7 +74,8 @@
         android:id="@+id/PictureLocationEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" />
+        android:ems="10"
+        android:inputType="text" />
 
     <TextView
         android:id="@+id/textView4"

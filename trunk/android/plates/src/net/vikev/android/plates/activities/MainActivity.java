@@ -11,10 +11,10 @@ import net.vikev.android.plates.drawer.NavMenuSection;
 import net.vikev.android.plates.fragments.IntentIntegrator;
 import net.vikev.android.plates.fragments.IntentResult;
 import net.vikev.android.plates.fragments.MainFragment;
-import net.vikev.android.plates.fragments.ScanningFragment;
 import net.vikev.android.plates.fragments.SettingsFragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AbstractNavDrawerActivity {
@@ -31,18 +31,19 @@ public class MainActivity extends AbstractNavDrawerActivity {
         MyApplication.restartWebServerScaleRetrieverService();
     }
 
+
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if (scanningResult != null) {
-            code = scanningResult.getContents();
-            format = scanningResult.getFormatName();
-
+            MainActivity.code = scanningResult.getContents();
+            MainActivity.format = scanningResult.getFormatName();
+            ((EditText) findViewById(R.id.Barcode)).setText(MainActivity.code);
         } else {
             Toast toast = Toast.makeText(MyApplication.getAppContext(), "No scan data received!", Toast.LENGTH_SHORT);
             toast.show();
         }
     }
-
+    
     @Override
     protected NavDrawerActivityConfiguration getNavDrawerConfiguration() {
 
@@ -73,9 +74,9 @@ public class MainActivity extends AbstractNavDrawerActivity {
             case 201:
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new SettingsFragment()).commit();
                 break;
-            case 401:
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new ScanningFragment()).commit();
-                break;
+//            case 401:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new ScanningFragment()).commit();
+//                break;
         }
     }
 }

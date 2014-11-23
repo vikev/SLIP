@@ -30,4 +30,12 @@
         android:layout_height="wrap_content"
         android:textIsSelectable="true" />
 
+    <EditText
+        android:id="@+id/barcodeInput"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" >
+    </EditText>
+
 </LinearLayout>

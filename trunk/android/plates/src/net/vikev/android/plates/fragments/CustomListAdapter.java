@@ -2,6 +2,7 @@ package net.vikev.android.plates.fragments;
  
 
  
+import java.io.File;
 import java.util.List;
 
 import net.vikev.android.plates.R;
@@ -9,10 +10,17 @@ import net.vikev.android.plates.entities.Scale;
  
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
  
 import com.android.volley.toolbox.ImageLoader;
@@ -63,23 +71,56 @@ public class CustomListAdapter extends BaseAdapter {
         TextView PicLoc = (TextView) convertView.findViewById(R.id.PicLoc);
  
         Scale thisScale = scaleItems.get(position);
- 
-        // thumbnail image
-      //  thumbNail.setImageUrl(thisScale.getThumbnailUrl(), imageLoader);
-         
-   
-        ID.setText(thisScale.getId());
-         
+        if (thisScale.getItem() != null)
+        {
+        ImageView image = (ImageView) convertView.findViewById(R.id.thumbnail);
+        Bitmap d = BitmapFactory.decodeResource(activity.getResources(),R.drawable.bottle);
+        Paint temp = new Paint();
+        temp.setStrokeWidth(0);
+        temp.setColor(Color.WHITE);
+        Bitmap tempBitmap = Bitmap.createBitmap(d.getWidth(), d.getHeight(), Bitmap.Config.RGB_565);
+        Canvas c = new Canvas(tempBitmap);
+        double mass = ((double)thisScale.getQuantity()/(double)thisScale.getItem().getQuantity());
+  
      
+       c.drawRect(0, 0, d.getWidth(),(int) (d.getHeight()*(1-mass)),temp);
+         c.drawBitmap(d, 0, 0,temp);
+         ID.setText(thisScale.getId());
+         
+         
+        image.setImageBitmap(tempBitmap);
         Quantity.setText(Integer.toString(thisScale.getQuantity()));
          
     
         Name.setText(thisScale.getItem().getName());
          
-        // release year
-       // PicLoc.setText(thisScale.getItem().getImage_location());
- 
+     
         return convertView;
+        }
+        else 
+        {
+        	 ImageView image = (ImageView) convertView.findViewById(R.id.thumbnail);
+             Bitmap d = BitmapFactory.decodeResource(activity.getResources(),R.drawable.bottle);
+             Paint temp = new Paint();
+             temp.setStrokeWidth(0);
+             temp.setColor(Color.WHITE);
+             Bitmap tempBitmap = Bitmap.createBitmap(d.getWidth(), d.getHeight(), Bitmap.Config.RGB_565);
+             Canvas c = new Canvas(tempBitmap);
+             
+          
+            c.drawRect(0, 0, d.getWidth(),(d.getHeight()),temp);
+              c.drawBitmap(d, 0, 0,temp);
+              ID.setText(thisScale.getId());
+              
+              
+             image.setImageBitmap(tempBitmap);
+             Quantity.setText("0");
+              
+         
+             Name.setText("");
+             return convertView;
+          
+        }}
+        
     }
  
-}

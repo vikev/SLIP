@@ -5,15 +5,16 @@
     android:background="@drawable/list_row_selector"
     android:padding="8dp" >
  
-    <!-- Thumbnail Image
-    <com.android.volley.toolbox.NetworkImageView
+    
+    <ImageView
         android:id="@+id/thumbnail"
         android:layout_width="80dp"
         android:layout_height="100dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginRight="8dp" />
-  -->
-    <!-- Movie Title -->
+        android:layout_marginRight="8dp" />   
+ 
+    
+
     <TextView
         android:id="@+id/ID"
         android:layout_width="wrap_content"
@@ -23,7 +24,7 @@
         android:textSize="@dimen/ID"
         android:textStyle="bold" />
  
-    <!-- Rating -->
+
     <TextView
         android:id="@+id/Quantity"
         android:layout_width="fill_parent"
@@ -33,7 +34,7 @@
         android:layout_toRightOf="@+id/thumbnail"
         android:textSize="@dimen/Quantity" />
      
-    <!-- Genre -->
+ 
     <TextView
         android:id="@+id/Name"
         android:layout_width="fill_parent"
@@ -44,7 +45,7 @@
         android:textColor="@color/Name"
         android:textSize="@dimen/Name" />
  
-    <!-- Release Year -->
+
     <TextView
         android:id="@+id/PicLoc"
         android:layout_width="wrap_content"
