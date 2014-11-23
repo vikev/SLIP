@@ -56,6 +56,11 @@ public class ItemsServiceImpl implements ItemsService {
             } catch (JSONException e) {
                 // nothing
             }
+            try {
+                item.setBarcode(jsonItem.getString("barcode"));
+            } catch (JSONException e) {
+                // nothing
+            }
             item.setName(jsonItem.getString("name"));
 
             return item;

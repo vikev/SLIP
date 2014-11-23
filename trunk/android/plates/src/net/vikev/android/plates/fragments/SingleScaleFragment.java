@@ -47,6 +47,12 @@ public class SingleScaleFragment extends Fragment {
         setBarcodeChangeListener();
 
         try {
+            ((TextView) mainView.findViewById(R.id.Barcode)).setText(scale.getItem().getBarcode());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        try {
             ((TextView) mainView.findViewById(R.id.ScaleID)).setText(scale.getId());
         } catch (Exception e) {
             e.printStackTrace();
