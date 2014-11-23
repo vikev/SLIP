@@ -41,8 +41,7 @@ public class SingleScaleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mainView = inflater.inflate(R.layout.single_fragment, container, false);
         setScaleSettingsButton();
-        System.out.println("thisisname" + scale.getItem().getName());
-
+       
         setScanButtonClickListener();
         setBarcodeChangeListener();
 
