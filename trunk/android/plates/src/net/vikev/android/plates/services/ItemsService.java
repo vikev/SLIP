@@ -8,4 +8,5 @@ public interface ItemsService {
     Item getItem(String id);
     Item addItem();
     Item transformJsonToItem(JSONObject jsonItem);
+    Item fetchByBarcode(String barcode);
 }

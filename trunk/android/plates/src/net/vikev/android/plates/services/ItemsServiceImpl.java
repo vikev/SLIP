@@ -17,7 +17,7 @@ public class ItemsServiceImpl implements ItemsService {
 
     public Item getItem(String id) {
         throw new UnsuportedOperationException("Not implemented yet!");
-        
+
         // try {
         // String url = getServerUrl() + "item/" + id;
         // String jsonItem = httpService.httpGET(url);
@@ -46,13 +46,33 @@ public class ItemsServiceImpl implements ItemsService {
     public Item transformJsonToItem(JSONObject jsonItem) throws CouldNotTronsformJsonToItemException {
         try {
             Item item = new Item();
-            item.setId(jsonItem.getString("item_id"));
-            item.setQuantity(jsonItem.getInt("mass"));
+            try {
+                item.setId(jsonItem.getString("item_id"));
+            } catch (JSONException e) {
+                // nothing
+            }
+            try {
+                item.setQuantity(jsonItem.getInt("mass"));
+            } catch (JSONException e) {
+                // nothing
+            }
             item.setName(jsonItem.getString("name"));
+
             return item;
         } catch (JSONException e) {
             e.printStackTrace();
             throw new CouldNotTronsformJsonToItemException();
         }
+    }
+
+    @Override
+    public Item fetchByBarcode(String barcode) {
+        try {
+            String url = getServerUrl() + "api/peek/?barcode=" + barcode;
+            return transformJsonToItem(new JSONObject(httpService.httpGET(url)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

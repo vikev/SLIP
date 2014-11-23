@@ -19,5 +19,8 @@
 	<string name="update_interval">Update interval: </string>
 	<string name="scan">Scan</string>
 	<string name="send">Send</string>
+	<string name="item_name">Item Name</string>
+	<string name="mass">Mass</string>
+	<string name="barcode">Barcode</string>
 
 </resources>

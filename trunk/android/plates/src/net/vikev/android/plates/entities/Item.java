@@ -4,7 +4,7 @@ public class Item {
     private String id;
     private String name;
     private String image_location;
-    private int quantity;
+    private Integer quantity;
     
     public String getId() {
         return id;
@@ -30,7 +30,7 @@ public class Item {
         this.image_location = image_location;
     }
     
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
     
