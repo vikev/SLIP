@@ -76,13 +76,13 @@ public class CustomListAdapter extends BaseAdapter {
         Bitmap d = BitmapFactory.decodeResource(activity.getResources(),R.drawable.bottle);
         Paint temp = new Paint();
         temp.setStrokeWidth(0);
-        temp.setColor(Color.RED);
+        temp.setColor(Color.WHITE);
         Bitmap tempBitmap = Bitmap.createBitmap(d.getWidth(), d.getHeight(), Bitmap.Config.RGB_565);
         Canvas c = new Canvas(tempBitmap);
         double mass = ((double)thisScale.getQuantity()/(double)thisScale.getItem().getQuantity());
         System.out.println(mass); 
      
-       c.drawRect(0, (int) (d.getHeight()*(1-mass)), d.getWidth(),d.getHeight(),temp);
+       c.drawRect(0, 0, d.getWidth(),(int) (d.getHeight()*(1-mass)),temp);
          c.drawBitmap(d, 0, 0,temp);
          ID.setText(thisScale.getId());
          
