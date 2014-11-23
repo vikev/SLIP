@@ -2,6 +2,7 @@ package net.vikev.android.plates.fragments;
  
 
  
+import java.io.File;
 import java.util.List;
 
 import net.vikev.android.plates.R;
@@ -9,10 +10,17 @@ import net.vikev.android.plates.entities.Scale;
  
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
  
 import com.android.volley.toolbox.ImageLoader;
@@ -64,13 +72,22 @@ public class CustomListAdapter extends BaseAdapter {
  
         Scale thisScale = scaleItems.get(position);
  
-        // thumbnail image
-      //  thumbNail.setImageUrl(thisScale.getThumbnailUrl(), imageLoader);
-         
-   
-        ID.setText(thisScale.getId());
-         
+        ImageView image = (ImageView) convertView.findViewById(R.id.thumbnail);
+        Bitmap d = BitmapFactory.decodeResource(activity.getResources(),R.drawable.bottle);
+        Paint temp = new Paint();
+        temp.setStrokeWidth(0);
+        temp.setColor(Color.RED);
+        Bitmap tempBitmap = Bitmap.createBitmap(d.getWidth(), d.getHeight(), Bitmap.Config.RGB_565);
+        Canvas c = new Canvas(tempBitmap);
+        double mass = ((double)thisScale.getQuantity()/(double)thisScale.getItem().getQuantity());
+        System.out.println(mass); 
      
+       c.drawRect(0, (int) (d.getHeight()*(1-mass)), d.getWidth(),d.getHeight(),temp);
+         c.drawBitmap(d, 0, 0,temp);
+         ID.setText(thisScale.getId());
+         
+         
+        image.setImageBitmap(tempBitmap);
         Quantity.setText(Integer.toString(thisScale.getQuantity()));
          
     
