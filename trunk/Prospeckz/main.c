@@ -133,7 +133,9 @@ static dm_application_instance_t             m_app_handle;                      
 
 static bool                                  m_memory_access_in_progress = false;       /**< Flag to keep track of ongoing operations on persistent memory. 
 */
-static int average = 3;
+int bufferSize = 16;
+int values[16] = {3};
+int counter;
 #ifdef BLE_DFU_APP_SUPPORT    
 static ble_dfu_t                             m_dfus;                                    /**< Structure used to identify the DFU service. */
 #endif // BLE_DFU_APP_SUPPORT    
@@ -247,13 +249,14 @@ static void battery_level_meas_timeout_handler(void * p_context)
     battery_level_update();
 }
 int avg(int num){
-    int temp_avg;
-    int num_of_terms = 4;
-    if (num) {
-        temp_avg = average + num - average/num_of_terms;
-        average = temp_avg/num_of_terms;
+    counter++;
+    values[counter%bufferSize] = num;
+    int sum = 0;
+    for (int i=0; i<bufferSize; i++) {
+        sum += values[i];
     }
-    return (uint16_t) average;
+    int avg = sum>>4;
+    return (uint16_t) avg;
 }
 // ADC timer handler to start ADC sampling
 static void adc_sampling_timeout_handler(void * p_context)
