@@ -57,13 +57,13 @@ public class ScalesServiceImpl implements ScalesService {
                 
                 try {
                     scale.setQuantity((int) jsonScale.getDouble("quantity"));
-                } catch (JSONException e) {
+                } catch (Exception e) {
                     scale.setQuantity(0);
                 }
                 
                 try {
                     scale.setItem(itemsService.transformJsonToItem((JSONObject) jsonScale.get("item")));
-                } catch (JSONException e) {
+                } catch (Exception e) {
                     // no item
                 }
                 
