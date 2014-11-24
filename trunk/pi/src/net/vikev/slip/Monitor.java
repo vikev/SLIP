@@ -17,18 +17,31 @@ public class Monitor {
 
     public void start() {
         while (true) {
-            macs = webClient.getMACs();
-
-            for (String mac : macs) {
-                updateMonitor(mac);
-            }
-
-            removeObsolateMonitors();
-
             try {
-                Thread.sleep(MACS_REFRESH_INTERVAL);
-            } catch (InterruptedException e) {
-                // should not happen. Even if it happens it is not a problem.
+                macs = webClient.getMACs();
+
+                for (String mac : macs) {
+                    updateMonitor(mac);
+
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        // not a problem
+                        e.printStackTrace();
+                    }
+                }
+
+                removeObsolateMonitors();
+
+                try {
+                    Thread.sleep(MACS_REFRESH_INTERVAL);
+                } catch (InterruptedException e) {
+                    // should not happen. Even if it happens it is not a
+                    // problem.
+                }
+            } catch (Exception e) {
+                // start again
+                e.printStackTrace();
             }
         }
     }

@@ -55,7 +55,11 @@ public class ScalesServiceImpl implements ScalesService {
                 jsonScale = (JSONObject) jsonScales.get(i);
                 Scale scale = new Scale();
                 scale.setId(jsonScale.getString("scale_id"));
-                
+                try {
+                    scale.setName(jsonScale.getString("name"));
+                } catch (Exception e) {
+                    scale.setQuantity(0);
+                }
                 try {
                     scale.setQuantity((int) jsonScale.getDouble("quantity"));
                 } catch (Exception e) {

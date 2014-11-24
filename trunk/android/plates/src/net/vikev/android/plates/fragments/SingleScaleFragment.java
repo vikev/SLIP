@@ -53,7 +53,7 @@ public class SingleScaleFragment extends Fragment {
         }
 
         try {
-            ((TextView) mainView.findViewById(R.id.ScaleID)).setText(scale.getId());
+            ((TextView) mainView.findViewById(R.id.ScaleID)).setText(scale.getName());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -166,13 +166,13 @@ public class SingleScaleFragment extends Fragment {
 
         @Override
         protected Void doInBackground(Void... params) {
-            String ID = ((TextView) mainView.findViewById(R.id.ScaleID)).getText().toString();
+//            String ID = ((TextView) mainView.findViewById(R.id.ScaleID)).getText().toString();
             String name = ((EditText) mainView.findViewById(R.id.ItemName)).getText().toString();
             String mass = ((EditText) mainView.findViewById(R.id.ItemMass)).getText().toString();
             String barcode = ((EditText) mainView.findViewById(R.id.Barcode)).getText().toString();
 
             try {
-                scalesService.sendScaleData(ID, name, mass, barcode);
+                scalesService.sendScaleData(SingleScaleFragment.scale.getId(), name, mass, barcode);
                 curFragment.getActivity().runOnUiThread(new Runnable() {
 
                     @Override

@@ -115,7 +115,7 @@ public class ScaleMonitor implements Runnable {
     }
 
     private void updateServerIfLastTwoReadingsDiffer(short prev, short value) {
-        if (Math.abs(prev - value) > 5) {
+        if (prev != value) {
             webClient.put(mac, value);
         }
     }
@@ -137,7 +137,7 @@ public class ScaleMonitor implements Runnable {
     }
 
     private short extractSensorValueFromNotificationHandleValue(String line) {
-        return Short.valueOf(line.substring(39, 41), 16);
+        return (short) (Short.valueOf(line.substring(39, 41), 16) * 10);
     }
 
     private boolean isRunning(Process process) {
