@@ -20,7 +20,7 @@ class Scale(models.Model):
     else:
       selfItem = self.item.json()
 
-    return { 'scale_id' : self.scale_id, 'item' : selfItem, 'quantity' : self.quantity }
+    return { 'name': self.name, 'scale_id' : self.scale_id, 'item' : selfItem, 'quantity' : self.quantity }
 
   @property
   def image_name( self ):

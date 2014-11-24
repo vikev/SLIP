@@ -11,4 +11,5 @@ urlpatterns = patterns('',
     url(r'^$', include('scales.urls') ),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include('api.urls')),
+    #url(r'^(?P<url>.*/)$', include('django.contrib.flatpages.urls')),
 )
