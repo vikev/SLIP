@@ -16,7 +16,7 @@
     
 
     <TextView
-        android:id="@+id/ID"
+        android:id="@+id/Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/thumbnail"
@@ -29,19 +29,17 @@
         android:id="@+id/Quantity"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:layout_marginTop="20dp"
+        android:layout_below="@id/Name"
         android:layout_toRightOf="@+id/thumbnail"
         android:textSize="@dimen/Quantity" />
      
  
     <TextView
-        android:id="@+id/Name"
+        android:id="@+id/ID"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Name"
-        android:layout_marginTop="40dp"
         android:layout_toRightOf="@+id/thumbnail"
+        android:layout_below="@id/Quantity"
         android:textColor="@color/Name"
         android:textSize="@dimen/Name" />
  

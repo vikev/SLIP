@@ -6,13 +6,13 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textView_server_url"
+        android:id="@+id/textView_serverurl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/server_url" />
 
     <EditText
-        android:id="@+id/editText_server_url"
+        android:id="@+id/editText_serverurl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -71,7 +71,7 @@
         android:max="11" />
 
     <Button
-        android:id="@+id/btn_save"
+        android:id="@+id/btn_save_scale"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/save" />

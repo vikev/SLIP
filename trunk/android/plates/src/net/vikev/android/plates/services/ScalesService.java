@@ -11,4 +11,5 @@ public interface ScalesService {
     void sendToWebService(String barcode);
     Scale getScale(String id);
     void sendScaleData(String ID, String name, String mass);
+    void sendNewScale(String name,String mac);
 }

@@ -11,6 +11,7 @@ import net.vikev.android.plates.drawer.NavMenuSection;
 import net.vikev.android.plates.fragments.IntentIntegrator;
 import net.vikev.android.plates.fragments.IntentResult;
 import net.vikev.android.plates.fragments.MainFragment;
+import net.vikev.android.plates.fragments.NewScaleAddFragment;
 import net.vikev.android.plates.fragments.SettingsFragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -50,7 +51,7 @@ public class MainActivity extends AbstractNavDrawerActivity {
         NavDrawerItem[] menu = new NavDrawerItem[] { NavMenuSection.create(100, "Main"),
                 NavMenuItem.create(101, "Home", "navdrawer_home", true, this), NavMenuSection.create(200, "Settings"),
                 NavMenuItem.create(201, "Server settings", "navdrawer_settings", true, this), NavMenuSection.create(400, "Scanner"),
-                NavMenuItem.create(401, "Scanner", "reader_fragment", true, this) };
+                NavMenuItem.create(401, "New Scale", "fragment_scale_add", true, this) };
 
         NavDrawerActivityConfiguration navDrawerActivityConfiguration = new NavDrawerActivityConfiguration();
         navDrawerActivityConfiguration.setMainLayout(R.layout.main);
@@ -74,9 +75,9 @@ public class MainActivity extends AbstractNavDrawerActivity {
             case 201:
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new SettingsFragment()).commit();
                 break;
-//            case 401:
-//                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new ScanningFragment()).commit();
-//                break;
+            case 401:
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new NewScaleAddFragment()).commit();
+                break;
         }
     }
 }

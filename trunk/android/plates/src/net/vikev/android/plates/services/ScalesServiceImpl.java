@@ -93,6 +93,19 @@ public class ScalesServiceImpl implements ScalesService {
         }
     }
 
+    public void sendNewScale(String name, String mac) {
+        try {
+            String url = getServerUrl() + "api/add_scale/?scale_name=" + name + "&scale_mac=" + mac;
+
+            httpService.httpGET(url);
+
+        } catch (IOException e) {
+            // TODO Add log.
+            e.printStackTrace();
+
+            throw new CouldNotReachWebServiceException("Error while trying to get all scales from web service. " + e.getMessage());
+        }
+    }
     public void sendScaleData(String ID, String name, String mass) {
         try {
             String url = getServerUrl() + "api/set_item/?scale_id=" + ID + "&item_name=" + name + "&item_mass=" + mass;

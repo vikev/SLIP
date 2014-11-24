@@ -69,12 +69,24 @@ public class CustomListAdapter extends BaseAdapter {
         TextView Quantity = (TextView) convertView.findViewById(R.id.Quantity);
         TextView Name = (TextView) convertView.findViewById(R.id.Name);
         TextView PicLoc = (TextView) convertView.findViewById(R.id.PicLoc);
- 
+        Bitmap d;
         Scale thisScale = scaleItems.get(position);
         if (thisScale.getItem() != null)
         {
         ImageView image = (ImageView) convertView.findViewById(R.id.thumbnail);
-        Bitmap d = BitmapFactory.decodeResource(activity.getResources(),R.drawable.bottle);
+        if (position==1)
+        {
+        d = BitmapFactory.decodeResource(activity.getResources(),R.drawable.bottle);
+        }
+        else if (position ==2)
+        {
+        d= BitmapFactory.decodeResource(activity.getResources(),R.drawable.box);
+        }
+        else 
+        {
+        d= BitmapFactory.decodeResource(activity.getResources(),R.drawable.box);
+        }
+        
         Paint temp = new Paint();
         temp.setStrokeWidth(0);
         temp.setColor(Color.WHITE);
@@ -83,7 +95,7 @@ public class CustomListAdapter extends BaseAdapter {
         double mass = ((double)thisScale.getQuantity()/(double)thisScale.getItem().getQuantity());
   
      
-       c.drawRect(0, 0, d.getWidth(),(int) (d.getHeight()*(1-mass)),temp);
+         c.drawRect(0, 0, d.getWidth(),(int) (d.getHeight()*(1-mass)),temp);
          c.drawBitmap(d, 0, 0,temp);
          ID.setText(thisScale.getId());
          
@@ -100,7 +112,7 @@ public class CustomListAdapter extends BaseAdapter {
         else 
         {
         	 ImageView image = (ImageView) convertView.findViewById(R.id.thumbnail);
-             Bitmap d = BitmapFactory.decodeResource(activity.getResources(),R.drawable.bottle);
+             d = BitmapFactory.decodeResource(activity.getResources(),R.drawable.bottle);
              Paint temp = new Paint();
              temp.setStrokeWidth(0);
              temp.setColor(Color.WHITE);
