@@ -10,5 +10,8 @@ public interface ScalesService {
     List<Scale> getAllScales() throws CouldNotParseJSONException, CouldNotReachWebServiceException;
     void sendToWebService(String barcode);
     Scale getScale(String id);
+   void sendNewScale(String name,String mac);
+
     void sendScaleData(String ID, String name, String mass, String barcode);
+
 }

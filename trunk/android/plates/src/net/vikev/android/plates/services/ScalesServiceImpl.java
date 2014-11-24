@@ -98,7 +98,22 @@ public class ScalesServiceImpl implements ScalesService {
         }
     }
 
+
+    public void sendNewScale(String name, String mac) {
+       
+            String url = getServerUrl() + "api/add_scale/?scale_name=" + name + "&scale_mac=" + mac;
+            try {
+            httpService.httpGET(url);
+            } catch (IOException | IllegalStateException | URISyntaxException e) {
+                // TODO Add log.
+                e.printStackTrace();
+
+                throw new CouldNotReachWebServiceException("Error while trying to create a new scale. " + e.getMessage());
+            }
+    }
+
     public void sendScaleData(String ID, String name, String mass, String barcode) {
+
         try {
             String url = getServerUrl() + "api/set_item/?scale_id=" + URLEncoder.encode(ID,"UTF-8") + "&item_name=" + URLEncoder.encode(name,"UTF-8") + "&item_mass=" + URLEncoder.encode(mass,"UTF-8")+"&barcode="+URLEncoder.encode(barcode,"UTF-8");
 

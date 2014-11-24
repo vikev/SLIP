@@ -113,7 +113,7 @@ public class SettingsFragment extends Fragment {
 
     private void setFieldValues() {
         setUpdateIntervalSeekBarPosition();
-        setEditTextValue(mainView, R.id.editText_server_url, getServerUrl());
+        setEditTextValue(mainView, R.id.editText_serverurl, getServerUrl());
         setEditTextValue(mainView, R.id.editText_username, getUsername());
         setEditTextValue(mainView, R.id.editText_password, getPassword());
     }
@@ -161,7 +161,7 @@ public class SettingsFragment extends Fragment {
     }
 
     private void setSaveButtonClickListener() {
-        Button updateBtn = (Button) mainView.findViewById(R.id.btn_save);
+        Button updateBtn = (Button) mainView.findViewById(R.id.btn_save_scale);
         updateBtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 saveSettings();
@@ -172,7 +172,7 @@ public class SettingsFragment extends Fragment {
     }
 
     private void saveSettings() {
-        setServerUrl(getEditTextValue(mainView, R.id.editText_server_url));
+        setServerUrl(getEditTextValue(mainView, R.id.editText_serverurl));
         setUsername(getEditTextValue(mainView, R.id.editText_username));
         setPassword(getEditTextValue(mainView, R.id.editText_password));
         setUpdateInterval(newInterval);
