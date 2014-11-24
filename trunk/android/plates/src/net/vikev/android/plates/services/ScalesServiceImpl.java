@@ -1,9 +1,10 @@
 package net.vikev.android.plates.services;
 
 import static net.vikev.android.plates.MyApplication.getServerUrl;
-import static net.vikev.android.plates.MyApplication.isNetworkAvailable;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,7 +86,7 @@ public class ScalesServiceImpl implements ScalesService {
             String jsonResponse;
             jsonResponse = httpService.httpGET(url);
             return jsonResponse;
-        } catch (IOException e) {
+        } catch (IOException | IllegalStateException | URISyntaxException e) {
             // TODO Add log.
             e.printStackTrace();
 
@@ -93,13 +94,13 @@ public class ScalesServiceImpl implements ScalesService {
         }
     }
 
-    public void sendScaleData(String ID, String name, String mass) {
+    public void sendScaleData(String ID, String name, String mass, String barcode) {
         try {
-            String url = getServerUrl() + "api/set_item/?scale_id=" + ID + "&item_name=" + name + "&item_mass=" + mass;
+            String url = getServerUrl() + "api/set_item/?scale_id=" + URLEncoder.encode(ID,"UTF-8") + "&item_name=" + URLEncoder.encode(name,"UTF-8") + "&item_mass=" + URLEncoder.encode(mass,"UTF-8")+"&barcode="+URLEncoder.encode(barcode,"UTF-8");
 
             httpService.httpGET(url);
 
-        } catch (IOException e) {
+        } catch (IOException | IllegalStateException | URISyntaxException e) {
             // TODO Add log.
             e.printStackTrace();
 
@@ -109,10 +110,10 @@ public class ScalesServiceImpl implements ScalesService {
 
     public void sendToWebService(String barcode) {
         try {
-            String url = getServerUrl() + "api/put/?barcode=" + barcode;
+            String url = getServerUrl() + "api/put/?barcode=" + URLEncoder.encode(barcode,"UTF-8");
             httpService.httpGET(url);
 
-        } catch (IOException e) {
+        } catch (IOException | IllegalStateException | URISyntaxException e) {
             // TODO Add log.
             e.printStackTrace();
 

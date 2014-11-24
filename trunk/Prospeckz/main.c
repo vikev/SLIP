@@ -134,8 +134,11 @@ static dm_application_instance_t             m_app_handle;                      
 static bool                                  m_memory_access_in_progress = false;       /**< Flag to keep track of ongoing operations on persistent memory. 
 */
 int bufferSize = 16;
+int maxbufferSize = 6;
 int values[16] = {3};
 int counter;
+int maxValues[6] = {3};
+int maxCounter;
 #ifdef BLE_DFU_APP_SUPPORT    
 static ble_dfu_t                             m_dfus;                                    /**< Structure used to identify the DFU service. */
 #endif // BLE_DFU_APP_SUPPORT    
@@ -258,6 +261,52 @@ int avg(int num){
     int avg = sum>>4;
     return (uint16_t) avg;
 }
+int max(int num){
+    maxCounter++;
+    maxValues[maxCounter%maxbufferSize] = num;
+    int currentMaximum = 0;
+    for (int k = 0; k<maxbufferSize; k++) {
+	if (maxValues[k] > currentMaximum) {
+		currentMaximum = maxValues[k];
+	}
+    }
+    return (uint16_t) currentMaximum;
+}
+int getGrams(int num) {
+    int grams = 0;
+    if (num < 35) {
+	grams = 1;
+    } else if (num > 35 && num <= 60) {
+	grams = 50;
+    } else if (num > 60 && num <= 85) {
+	grams = 75;
+    } else if (num > 85 && num <= 100) {
+	grams = 100;
+    } else if (num > 100 && num <= 105) {
+	grams = 150;
+    } else if (num > 105 && num <= 130) {
+	grams = 200;
+    } else if (num > 130 && num <= 140) {
+	grams = 250;
+    } else if (num > 140 && num <= 150) {
+	grams = 300;
+    } else if (num > 150 && num <= 163) {
+	grams = 400;
+    } else if (num > 163 && num <= 172) {
+	grams = 500;
+    } else if (num > 172 && num <= 178) {
+	grams = 600;
+    } else if (num > 178  && num <= 180) {
+	grams = 750;
+    } else if (num > 180 && num <= 187) {
+	grams = 850;
+    } else if (num > 187 && num <= 188) {
+	grams = 900;
+    } else if (num > 188 && num <= 193) {
+	grams = 1000;
+    }
+    return (uint16_t) grams;
+}
 // ADC timer handler to start ADC sampling
 static void adc_sampling_timeout_handler(void * p_context)
 {
@@ -298,8 +347,10 @@ sprintf((char*)buf, "Meter Reading: %u", NRF_ADC->RESULT);
 simple_uart_putstring(buf);
 reading = (uint16_t) (NRF_ADC->RESULT);
 //Use the STOP task to save current. Workaround for PAN_028 rev1.5 anomaly 1.
-if (reading != 0) {
-	reading = avg(reading);
+reading = avg(reading);
+reading = max(reading);
+reading = getGrams(reading);
+if (reading != 0) {	
 	err_code = ble_hrs_heart_rate_measurement_send(&m_hrs, reading);
 }
    if ((err_code != NRF_SUCCESS) &&
@@ -471,8 +522,8 @@ static void gap_params_init(void)
     BLE_GAP_CONN_SEC_MODE_SET_OPEN(&sec_mode);
 
     err_code = sd_ble_gap_device_name_set(&sec_mode,
-                                          (const uint8_t *)"TEAM B BITCH",
-                                          strlen("TEAM B BITCH"));
+                                          (const uint8_t *)"MEDIUM PLATE",
+                                          strlen("MEDIUM PLATE"));
     APP_ERROR_CHECK(err_code);
 
     err_code = sd_ble_gap_appearance_set(BLE_APPEARANCE_HEART_RATE_SENSOR_HEART_RATE_BELT);

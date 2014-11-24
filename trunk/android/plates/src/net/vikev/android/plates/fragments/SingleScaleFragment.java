@@ -6,6 +6,7 @@ import net.vikev.android.plates.MyApplication;
 import net.vikev.android.plates.R;
 import net.vikev.android.plates.entities.Item;
 import net.vikev.android.plates.entities.Scale;
+import net.vikev.android.plates.exceptions.CouldNotReachWebServiceException;
 import net.vikev.android.plates.services.ItemsService;
 import net.vikev.android.plates.services.ItemsServiceImpl;
 import net.vikev.android.plates.services.ScalesService;
@@ -40,8 +41,7 @@ public class SingleScaleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mainView = inflater.inflate(R.layout.single_fragment, container, false);
-        setScaleSettingsButton();
-        System.out.println("thisisname" + scale.getItem().getName());
+        setSaveButton();
 
         setScanButtonClickListener();
         setBarcodeChangeListener();
@@ -51,7 +51,7 @@ public class SingleScaleFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         try {
             ((TextView) mainView.findViewById(R.id.ScaleID)).setText(scale.getId());
         } catch (Exception e) {
@@ -71,7 +71,7 @@ public class SingleScaleFragment extends Fragment {
         }
 
         try {
-            setEditTextValue(mainView, R.id.QuantityEdit, Integer.toString(scale.getItem().getQuantity()));
+            setEditTextValue(mainView, R.id.ItemMass, Integer.toString(scale.getItem().getQuantity()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -85,6 +85,7 @@ public class SingleScaleFragment extends Fragment {
         protected Void doInBackground(String... params) {
             try {
                 final Item item = itemsService.fetchByBarcode(params[0]);
+
                 if (!MyApplication.isNullOrEmpty(item.getName())) {
                     curFragment.getActivity().runOnUiThread(new Runnable() {
 
@@ -94,13 +95,13 @@ public class SingleScaleFragment extends Fragment {
                         }
                     });
                 }
-
+                
                 if (item.getQuantity() != null) {
                     curFragment.getActivity().runOnUiThread(new Runnable() {
 
                         @Override
                         public void run() {
-                            ((EditText) mainView.findViewById(R.id.QuantityEdit)).setText(item.getQuantity());
+                            ((EditText) mainView.findViewById(R.id.ItemMass)).setText(item.getQuantity().toString());
                         }
                     });
                 }
@@ -148,12 +149,11 @@ public class SingleScaleFragment extends Fragment {
         });
     }
 
-    private void setScaleSettingsButton() {
+    private void setSaveButton() {
         Button updateBtn = (Button) mainView.findViewById(R.id.saveScale);
         updateBtn.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 saveSettings();
-                toastShort("Settings saved");
             }
         });
     }
@@ -166,13 +166,32 @@ public class SingleScaleFragment extends Fragment {
 
         @Override
         protected Void doInBackground(Void... params) {
-            TextView IDText = (TextView) mainView.findViewById(R.id.ScaleID);
-            String ID = IDText.getText().toString();
-            EditText nameText = (EditText) mainView.findViewById(R.id.ItemName);
-            String name = nameText.getText().toString();
-            EditText quantityText = (EditText) mainView.findViewById(R.id.QuantityEdit);
-            String mass = quantityText.getText().toString();
-            scalesService.sendScaleData(ID, name, mass);
+            String ID = ((TextView) mainView.findViewById(R.id.ScaleID)).getText().toString();
+            String name = ((EditText) mainView.findViewById(R.id.ItemName)).getText().toString();
+            String mass = ((EditText) mainView.findViewById(R.id.ItemMass)).getText().toString();
+            String barcode = ((EditText) mainView.findViewById(R.id.Barcode)).getText().toString();
+
+            try {
+                scalesService.sendScaleData(ID, name, mass, barcode);
+                curFragment.getActivity().runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        toastShort("Item saved");
+                    }
+                });
+            } catch (CouldNotReachWebServiceException e) {
+                e.printStackTrace();
+
+                curFragment.getActivity().runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        toastShort("Couldn't save item. Check your internet connection.");
+                    }
+                });
+            }
+
             return null;
         }
     }
