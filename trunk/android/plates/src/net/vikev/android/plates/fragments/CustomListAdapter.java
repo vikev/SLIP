@@ -61,7 +61,7 @@ public class CustomListAdapter extends BaseAdapter {
         TextView Quantity = (TextView) convertView.findViewById(R.id.Quantity);
         TextView Name = (TextView) convertView.findViewById(R.id.Name);
         TextView PicLoc = (TextView) convertView.findViewById(R.id.PicLoc);
-<<<<<<< HEAD
+
         Bitmap d;
         Scale thisScale = scaleItems.get(position);
         if (thisScale.getItem() != null)
@@ -90,7 +90,7 @@ public class CustomListAdapter extends BaseAdapter {
      
          c.drawRect(0, 0, d.getWidth(),(int) (d.getHeight()*(1-mass)),temp);
          c.drawBitmap(d, 0, 0,temp);
-         ID.setText(thisScale.getId());
+         ID.setText(thisScale.getName());
          
          
         image.setImageBitmap(tempBitmap);
@@ -125,51 +125,9 @@ public class CustomListAdapter extends BaseAdapter {
              Name.setText("");
              return convertView;
           
-        }}
-        
-=======
-
-        Scale thisScale = scaleItems.get(position);
-        if (thisScale.getItem() != null) {
-            ImageView image = (ImageView) convertView.findViewById(R.id.thumbnail);
-            Bitmap d = BitmapFactory.decodeResource(activity.getResources(), R.drawable.bottle);
-            Paint temp = new Paint();
-            temp.setStrokeWidth(0);
-            temp.setColor(Color.WHITE);
-            Bitmap tempBitmap = Bitmap.createBitmap(d.getWidth(), d.getHeight(), Bitmap.Config.RGB_565);
-            Canvas c = new Canvas(tempBitmap);
-            double mass = ((double) thisScale.getQuantity() / (double) thisScale.getItem().getQuantity());
-
-            c.drawRect(0, 0, d.getWidth(), (int) (d.getHeight() * (1 - mass)), temp);
-            c.drawBitmap(d, 0, 0, temp);
-            ID.setText(thisScale.getName());
-
-            image.setImageBitmap(tempBitmap);
-            Quantity.setText(Integer.toString(Math.min(thisScale.getQuantity(), thisScale.getItem().getQuantity())));
-            Name.setText(thisScale.getItem().getName());
-
-            return convertView;
-        } else {
-            ImageView image = (ImageView) convertView.findViewById(R.id.thumbnail);
-            Bitmap d = BitmapFactory.decodeResource(activity.getResources(), R.drawable.bottle);
-            Paint temp = new Paint();
-            temp.setStrokeWidth(0);
-            temp.setColor(Color.WHITE);
-            Bitmap tempBitmap = Bitmap.createBitmap(d.getWidth(), d.getHeight(), Bitmap.Config.RGB_565);
-            Canvas c = new Canvas(tempBitmap);
-
-            c.drawRect(0, 0, d.getWidth(), (d.getHeight()), temp);
-            c.drawBitmap(d, 0, 0, temp);
-            ID.setText(thisScale.getName());
-
-            image.setImageBitmap(tempBitmap);
-            Quantity.setText("0");
-
-            Name.setText("");
-            return convertView;
-
         }
->>>>>>> 23c313db7f4a229e86ec1d2261a7c1af2e672e97
+        
+
     }
 
 }
