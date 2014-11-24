@@ -36,11 +36,11 @@ def peek( request ):
 
     try:
         item = Item.objects.get( barcode = the_barcode )
-        return JsonResponse( {"item_name": item.name, "mass": item.mass} )
+        return JsonResponse( {"name": item.name, "mass": item.mass} )
     except Item.DoesNotExist:
         item = product_from_barcode(the_barcode)
         if 'itemname' in item and item['itemname'] != "":
-            return JsonResponse( {"item_name": item['itemname'], "mass": "null"} )
+            return JsonResponse( {"name": item['itemname'], "mass": "null"} )
 
     raise Http404
 
