@@ -1,6 +1,8 @@
 from django.db import models
 from items.models import Item
 
+import math
+
 import json
 
 class Scale(models.Model):
@@ -18,7 +20,19 @@ class Scale(models.Model):
     else:
       selfItem = self.item.json()
 
-    return { 'scale_id' : self.scale_id, 'item' : selfItem, 'quantity' : self.quantity }
+    return { 'name': self.name, 'scale_id' : self.scale_id, 'item' : selfItem, 'quantity' : self.quantity }
+
+  @property
+  def image_name( self ):
+    if not self.item or not self.item.image_type:
+        return ""
+
+    if self.quantity > self.item.mass * 0.85:
+        fullness = "4"
+    else:
+        fullness = str( int( math.floor( float( self.quantity ) / self.item.mass * 4.0 ) ) )
+
+    return self.item.image_type + fullness + ".png"
 
   def mass( self ):
     return ( self.quantity / 100.0 ) * self.item.mass

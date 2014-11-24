@@ -39,6 +39,6 @@ public class Scale {
     }
 
     public boolean isRunningEmpty() {
-        return quantity < 20;
+        return quantity < 70;
     }
 }

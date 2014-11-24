@@ -1,9 +1,10 @@
 package net.vikev.android.plates.services;
 
 import static net.vikev.android.plates.MyApplication.getServerUrl;
-import static net.vikev.android.plates.MyApplication.isNetworkAvailable;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +55,11 @@ public class ScalesServiceImpl implements ScalesService {
                 jsonScale = (JSONObject) jsonScales.get(i);
                 Scale scale = new Scale();
                 scale.setId(jsonScale.getString("scale_id"));
-                
+                try {
+                    scale.setName(jsonScale.getString("name"));
+                } catch (Exception e) {
+                    scale.setQuantity(0);
+                }
                 try {
                     scale.setQuantity((int) jsonScale.getDouble("quantity"));
                 } catch (Exception e) {
@@ -85,7 +90,7 @@ public class ScalesServiceImpl implements ScalesService {
             String jsonResponse;
             jsonResponse = httpService.httpGET(url);
             return jsonResponse;
-        } catch (IOException e) {
+        } catch (IOException | IllegalStateException | URISyntaxException e) {
             // TODO Add log.
             e.printStackTrace();
 
@@ -93,6 +98,7 @@ public class ScalesServiceImpl implements ScalesService {
         }
     }
 
+<<<<<<< HEAD
     public void sendNewScale(String name, String mac) {
         try {
             String url = getServerUrl() + "api/add_scale/?scale_name=" + name + "&scale_mac=" + mac;
@@ -107,12 +113,15 @@ public class ScalesServiceImpl implements ScalesService {
         }
     }
     public void sendScaleData(String ID, String name, String mass) {
+=======
+    public void sendScaleData(String ID, String name, String mass, String barcode) {
+>>>>>>> 23c313db7f4a229e86ec1d2261a7c1af2e672e97
         try {
-            String url = getServerUrl() + "api/set_item/?scale_id=" + ID + "&item_name=" + name + "&item_mass=" + mass;
+            String url = getServerUrl() + "api/set_item/?scale_id=" + URLEncoder.encode(ID,"UTF-8") + "&item_name=" + URLEncoder.encode(name,"UTF-8") + "&item_mass=" + URLEncoder.encode(mass,"UTF-8")+"&barcode="+URLEncoder.encode(barcode,"UTF-8");
 
             httpService.httpGET(url);
 
-        } catch (IOException e) {
+        } catch (IOException | IllegalStateException | URISyntaxException e) {
             // TODO Add log.
             e.printStackTrace();
 
@@ -122,10 +131,10 @@ public class ScalesServiceImpl implements ScalesService {
 
     public void sendToWebService(String barcode) {
         try {
-            String url = getServerUrl() + "api/put/?barcode=" + barcode;
+            String url = getServerUrl() + "api/put/?barcode=" + URLEncoder.encode(barcode,"UTF-8");
             httpService.httpGET(url);
 
-        } catch (IOException e) {
+        } catch (IOException | IllegalStateException | URISyntaxException e) {
             // TODO Add log.
             e.printStackTrace();
 

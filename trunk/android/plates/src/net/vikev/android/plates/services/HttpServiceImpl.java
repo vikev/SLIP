@@ -2,6 +2,9 @@ package net.vikev.android.plates.services;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -12,9 +15,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 public class HttpServiceImpl implements HttpService {
     
-    public String httpGET(String URL) throws IOException, IllegalStateException {
+    public String httpGET(String URL) throws IOException, IllegalStateException, URISyntaxException {
         HttpClient httpclient = new DefaultHttpClient();
-        HttpResponse response = httpclient.execute(new HttpGet(URL));
+        HttpResponse response = httpclient.execute(new HttpGet(new URI(URL)));
         StatusLine statusLine = response.getStatusLine();
         
         if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
