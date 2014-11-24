@@ -13,7 +13,7 @@ class Item(models.Model):
     return str( self.item_id )
 
   def json( self ):
-    return { 'item_id' : self.item_id, 'name' : self.name, 'mass' : self.mass }
+    return { 'barcode': self.barcode, 'item_id' : self.item_id, 'name' : self.name, 'mass' : self.mass }
 
 
 

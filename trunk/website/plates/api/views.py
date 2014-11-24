@@ -87,16 +87,23 @@ def mac( request, the_mac_address ):
 def set_item( request ):
   scale_id = request.GET.get( 'scale_id', '' )
   item_name = request.GET.get( 'item_name', '' )
+  item_barcode = request.GET.get( 'barcode', '' )
   item_mass = request.GET.get( 'item_mass', '' )
 
-  if scale_id and item_name and item_mass:
+  if scale_id and (item_name or barcode) and item_mass:
     scale = Scale.objects.get( scale_id = scale_id )
 
     if len(Item.objects.filter(name=item_name)) == 0:
-        item = Item.objects.create( item_id = generate_item_id( item_name ), name = item_name, mass = item_mass )
+        if not item_name:
+            barcode_item = product_from_barcode( item_barcode )
+            if barcode_item and 'itemname' in barcode_item:
+                item_name = barcode_item['itemname']
+
+            item = Item.objects.create( barcode = item_barcode, item_id = generate_item_id( item_name ), name = item_name, mass = item_mass )
     else:
         item = Item.objects.get(name=item_name)
         item.mass = item_mass
+        item.barcode = item_barcode
     item.save()
 
     scale.item = item
