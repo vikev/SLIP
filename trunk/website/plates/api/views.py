@@ -99,7 +99,7 @@ def set_item( request ):
             if barcode_item and 'itemname' in barcode_item:
                 item_name = barcode_item['itemname']
 
-            item = Item.objects.create( barcode = item_barcode, item_id = generate_item_id( item_name ), name = item_name, mass = item_mass )
+        item = Item.objects.create( barcode = item_barcode, item_id = generate_item_id( item_name ), name = item_name, mass = item_mass )
     else:
         item = Item.objects.get(name=item_name)
         item.mass = item_mass

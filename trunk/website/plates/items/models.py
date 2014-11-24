@@ -9,12 +9,13 @@ class Item(models.Model):
   mass = models.IntegerField( )
   barcode = models.CharField(max_length=64, blank=True, null=True )
 
+  image_type = models.CharField( max_length=64, blank=True, null=True )
+
   def __str__( self ):
     return str( self.item_id )
 
   def json( self ):
     return { 'barcode': self.barcode, 'item_id' : self.item_id, 'name' : self.name, 'mass' : self.mass }
-
 
 
 def generate_item_id( item_name ):
