@@ -4,6 +4,8 @@ import java.util.List;
 
 import net.vikev.android.plates.MyApplication;
 import net.vikev.android.plates.R;
+import net.vikev.android.plates.activities.MainActivity;
+import net.vikev.android.plates.entities.Item;
 import net.vikev.android.plates.entities.Scale;
 import net.vikev.android.plates.exceptions.CouldNotGetScalesException;
 import net.vikev.android.plates.services.ScalesService;
@@ -36,7 +38,42 @@ public class MainFragment extends Fragment implements OnRefreshListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mainView = inflater.inflate(R.layout.fragment_main, container, false);
         scaleView = (ListView) mainView.findViewById(R.id.list);
-
+        /*if (MainActivity.first)
+        {
+         Scale temp = new Scale();
+         Item tempo = new Item();
+         tempo.setName("Milk");
+         tempo.setQuantity(100);
+         temp.setQuantity(20);
+         temp.setName("Fridge Scale Bottom");
+         temp.setItem(tempo);
+         scales.add(temp);
+         temp = new Scale();
+         tempo = new Item();
+         tempo.setName("Butter");
+         tempo.setQuantity(100);
+         temp.setQuantity(75);
+         temp.setName("Fridge Scale Middle");
+         temp.setItem(tempo);
+         scales.add(temp);
+         temp = new Scale();
+         tempo = new Item();
+         tempo.setName("Pasta");
+         tempo.setQuantity(100);
+         temp.setQuantity(50);
+         temp.setName("Cupboard Scale");
+         temp.setItem(tempo);
+         scales.add(temp);
+         temp = new Scale();
+         tempo = new Item();
+         tempo.setName("Currently Empty");
+         tempo.setQuantity(100);
+         temp.setQuantity(0);
+         temp.setName("Fridge Scale Top");
+         temp.setItem(tempo);
+         scales.add(temp);
+         MainActivity.first=false;
+        }*/
         adapter = new CustomListAdapter(this.getActivity(), scales);
         scaleView.setAdapter(adapter);
         setClickListener();
@@ -79,7 +116,7 @@ public class MainFragment extends Fragment implements OnRefreshListener {
         swipeLayout.setRefreshing(true);
         new Update().execute();
     }
-
+    
     class Update extends AsyncTask<Void, Void, Void> {
 
         @Override

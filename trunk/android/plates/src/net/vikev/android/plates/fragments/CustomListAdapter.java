@@ -67,17 +67,17 @@ public class CustomListAdapter extends BaseAdapter {
         if (thisScale.getItem() != null)
         {
         ImageView image = (ImageView) convertView.findViewById(R.id.thumbnail);
-        if (position==1)
+        if (position==0)
         {
         d = BitmapFactory.decodeResource(activity.getResources(),R.drawable.bottle);
         }
-        else if (position ==2)
+        else if (position ==1 || position ==2)
         {
         d= BitmapFactory.decodeResource(activity.getResources(),R.drawable.box);
         }
         else 
         {
-        d= BitmapFactory.decodeResource(activity.getResources(),R.drawable.box);
+        d= BitmapFactory.decodeResource(activity.getResources(),R.drawable.not_found);
         }
         
         Paint temp = new Paint();
@@ -94,7 +94,7 @@ public class CustomListAdapter extends BaseAdapter {
          
          
         image.setImageBitmap(tempBitmap);
-        Quantity.setText(Integer.toString(thisScale.getQuantity()));
+        Quantity.setText(Integer.toString(thisScale.getQuantity())+"%");
          
     
         Name.setText(thisScale.getItem().getName());

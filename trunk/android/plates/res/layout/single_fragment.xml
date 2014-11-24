@@ -27,10 +27,10 @@
         android:id="@+id/Barcode"
         android:layout_width="279dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/button1"
-        android:layout_alignBottom="@+id/button1"
+        android:layout_alignBaseline="@+id/button_scanScaleMac"
+        android:layout_alignBottom="@+id/button_scanScaleMac"
         android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/button1"
+        android:layout_toLeftOf="@+id/button_scanScaleMac"
         android:ems="10"
         android:inputType="text" />
 

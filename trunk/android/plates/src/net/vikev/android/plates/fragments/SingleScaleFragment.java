@@ -178,6 +178,7 @@ public class SingleScaleFragment extends Fragment {
                     @Override
                     public void run() {
                         toastShort("Item saved");
+                        getFragmentManager().popBackStackImmediate();
                     }
                 });
             } catch (CouldNotReachWebServiceException e) {

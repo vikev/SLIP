@@ -20,7 +20,10 @@ import android.widget.Toast;
 
 public class MainActivity extends AbstractNavDrawerActivity {
     public static String code, format;
-
+// TO BE DELETED
+    
+    public static boolean first=true;
+// DELETING OVER
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +41,16 @@ public class MainActivity extends AbstractNavDrawerActivity {
         if (scanningResult != null) {
             MainActivity.code = scanningResult.getContents();
             MainActivity.format = scanningResult.getFormatName();
+            try{
             ((EditText) findViewById(R.id.Barcode)).setText(MainActivity.code);
+            }
+            catch (Exception e){}
+            try{
+                ((EditText) findViewById(R.id.editText_scaleMac)).setText(MainActivity.code);
+            }
+            catch (Exception e){}
+            
+            
         } else {
             Toast toast = Toast.makeText(MyApplication.getAppContext(), "No scan data received!", Toast.LENGTH_SHORT);
             toast.show();
