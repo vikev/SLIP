@@ -10,7 +10,7 @@
 	</head>
 
 	<body style="padding-top: 50px">
-		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="navbar navbar-default navbar-fixed-top" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -43,7 +43,7 @@
 
                       <div class="col-sm-6 col-md-4">
                         <div class="thumbnail" min-height="400px" height="400px">
-                          <img width="100px" height="200px" src="{% static "res/images/"%}{{ scale.image_name }}" alt="...">
+                          <div style="min-height: 250px; background: url({% static "res/images/"%}{{ scale.image_name }}) no-repeat center center; background-size: contain"><br /><br /></div>
                           <div class="caption">
                             <h3>{{ scale.name }}</h3>
                             <h4><a href="/items/{{ scale.item.item_id }}" >{{ scale.item.name}}</a></h4>

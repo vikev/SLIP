@@ -45,6 +45,8 @@ INSTALLED_APPS = (
     'django.contrib.flatpages',
     'items',
     'scales',
+    'api',
+    'about',
 )
 
 MIDDLEWARE_CLASSES = (

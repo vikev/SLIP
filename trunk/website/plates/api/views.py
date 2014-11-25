@@ -89,28 +89,36 @@ def set_item( request ):
   item_name = request.GET.get( 'item_name', '' )
   item_barcode = request.GET.get( 'barcode', '' )
   item_mass = request.GET.get( 'item_mass', '' )
+  image_type = request.GET.get( 'image_type', '' )
+  app_image_type = request.GET.get( 'app_image_type', '' )
 
-  if scale_id and (item_name or barcode) and item_mass:
-    scale = Scale.objects.get( scale_id = scale_id )
+  if not (scale_id and (item_name or barcode) and item_mass):
+      return Http404()
 
-    if len(Item.objects.filter(name=item_name)) == 0:
-        if not item_name:
-            barcode_item = product_from_barcode( item_barcode )
-            if barcode_item and 'itemname' in barcode_item:
-                item_name = barcode_item['itemname']
+  scale = Scale.objects.get( scale_id = scale_id )
 
-        item = Item.objects.create( barcode = item_barcode, item_id = generate_item_id( item_name ), name = item_name, mass = item_mass )
-    else:
-        item = Item.objects.get(name=item_name)
-        item.mass = item_mass
-        item.barcode = item_barcode
-    item.save()
+  if len(Item.objects.filter(name=item_name)) == 0:
+      if not item_name:
+          barcode_item = product_from_barcode( item_barcode )
+          if barcode_item and 'itemname' in barcode_item:
+              item_name = barcode_item['itemname']
 
-    scale.item = item
-    scale.save()
-    return HttpResponseRedirect( '/scales/' )
+      item = Item.objects.create( barcode = item_barcode, item_id = generate_item_id( item_name ), name = item_name, mass = item_mass )
   else:
-    return Http404()
+      item = Item.objects.get(name=item_name)
+      item.mass = item_mass
+      item.barcode = item_barcode
+
+  if image_type:
+      item.image_type = image_type
+  if app_image_type:
+      item.app_image_type = app_image_type
+
+  item.save()
+
+  scale.item = item
+  scale.save()
+  return HttpResponseRedirect( '/scales/' )
 
 
 def put( request ):
