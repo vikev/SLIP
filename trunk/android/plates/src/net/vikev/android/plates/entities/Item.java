@@ -3,7 +3,7 @@ package net.vikev.android.plates.entities;
 public class Item {
     private String id;
     private String name;
-    private String image_location;
+    private Integer image_index;
     private Integer quantity;
     private String barcode;
     
@@ -23,12 +23,12 @@ public class Item {
         this.name = name;
     }
     
-    public String getImage_location() {
-        return image_location;
+    public int getImage_location() {
+        return image_index;
     }
     
-    public void setImage_location(String image_location) {
-        this.image_location = image_location;
+    public void setImage_location(int image_index) {
+        this.image_index = image_index;
     }
     
     public Integer getQuantity() {

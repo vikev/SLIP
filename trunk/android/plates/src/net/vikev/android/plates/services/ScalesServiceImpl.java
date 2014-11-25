@@ -112,10 +112,10 @@ public class ScalesServiceImpl implements ScalesService {
             }
     }
 
-    public void sendScaleData(String ID, String name, String mass, String barcode) {
+    public void sendScaleData(String ID, String name, String mass, String barcode,int picture_id) {
 
         try {
-            String url = getServerUrl() + "api/set_item/?scale_id=" + URLEncoder.encode(ID,"UTF-8") + "&item_name=" + URLEncoder.encode(name,"UTF-8") + "&item_mass=" + URLEncoder.encode(mass,"UTF-8")+"&barcode="+URLEncoder.encode(barcode,"UTF-8");
+            String url = getServerUrl() + "api/set_item/?scale_id=" + URLEncoder.encode(ID,"UTF-8") + "&item_name=" + URLEncoder.encode(name,"UTF-8") + "&item_mass=" + URLEncoder.encode(mass,"UTF-8")+"&barcode="+URLEncoder.encode(barcode,"UTF-8")+"&app_image_type="+URLEncoder.encode(Integer.toString(picture_id),"UTF-8");
 
             httpService.httpGET(url);
 

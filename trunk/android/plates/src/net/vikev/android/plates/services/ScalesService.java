@@ -12,6 +12,6 @@ public interface ScalesService {
     Scale getScale(String id);
    void sendNewScale(String name,String mac);
 
-    void sendScaleData(String ID, String name, String mass, String barcode);
+    void sendScaleData(String ID, String name, String mass, String barcode, int picture_id);
 
 }

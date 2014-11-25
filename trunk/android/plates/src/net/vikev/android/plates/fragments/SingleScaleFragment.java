@@ -2,6 +2,10 @@ package net.vikev.android.plates.fragments;
 
 import static net.vikev.android.plates.MyApplication.setEditTextValue;
 import static net.vikev.android.plates.MyApplication.toastShort;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import net.vikev.android.plates.MyApplication;
 import net.vikev.android.plates.R;
 import net.vikev.android.plates.entities.Item;
@@ -20,8 +24,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class SingleScaleFragment extends Fragment {
@@ -65,7 +71,17 @@ public class SingleScaleFragment extends Fragment {
         }
 
         try {
-            setEditTextValue(mainView, R.id.PictureLocationEdit, scale.getItem().getImage_location());
+        	Spinner temp = (Spinner)mainView.findViewById(R.id.PictureType);
+        	List<String> data = new ArrayList<String>();
+        	data.add("Empty");
+        	data.add("Bottle");
+        	data.add("Box");
+        	ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(mainView.getContext(), android.R.layout.simple_list_item_1, data);
+        	spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        	temp.setAdapter(spinnerAdapter);
+        	spinnerAdapter.notifyDataSetChanged();
+        	temp.setSelection(scale.getItem().getImage_location());
+        			
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -170,9 +186,9 @@ public class SingleScaleFragment extends Fragment {
             String name = ((EditText) mainView.findViewById(R.id.ItemName)).getText().toString();
             String mass = ((EditText) mainView.findViewById(R.id.ItemMass)).getText().toString();
             String barcode = ((EditText) mainView.findViewById(R.id.Barcode)).getText().toString();
-
+            int picture_id = ((Spinner)mainView.findViewById(R.id.PictureType)).getSelectedItemPosition();
             try {
-                scalesService.sendScaleData(SingleScaleFragment.scale.getId(), name, mass, barcode);
+                scalesService.sendScaleData(SingleScaleFragment.scale.getId(), name, mass, barcode,picture_id);
                 curFragment.getActivity().runOnUiThread(new Runnable() {
 
                     @Override

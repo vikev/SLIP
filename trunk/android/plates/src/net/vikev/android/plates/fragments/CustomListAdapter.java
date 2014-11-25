@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.vikev.android.plates.R;
 import net.vikev.android.plates.entities.Scale;
+import net.vikev.android.plates.services.ScalesService;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -61,23 +62,32 @@ public class CustomListAdapter extends BaseAdapter {
         TextView Quantity = (TextView) convertView.findViewById(R.id.Quantity);
         TextView Name = (TextView) convertView.findViewById(R.id.Name);
         TextView PicLoc = (TextView) convertView.findViewById(R.id.PicLoc);
-
+        
         Bitmap d;
         Scale thisScale = scaleItems.get(position);
+       
         if (thisScale.getItem() != null)
         {
-        ImageView image = (ImageView) convertView.findViewById(R.id.thumbnail);
-        if (position==0)
-        {
-        d = BitmapFactory.decodeResource(activity.getResources(),R.drawable.bottle);
+        d = BitmapFactory.decodeResource(activity.getResources(),R.drawable.not_found);
+        int picture_ID;
+        try {
+        picture_ID =  thisScale.getItem().getImage_location();
         }
-        else if (position ==1 || position ==2)
+        catch (Exception e)
+        {picture_ID=0;}
+        ImageView image = (ImageView) convertView.findViewById(R.id.thumbnail);
+        if (picture_ID==0)
+        {
+        d = BitmapFactory.decodeResource(activity.getResources(),R.drawable.not_found);
+            
+        }
+        else if (picture_ID ==1)
+        {
+        d= BitmapFactory.decodeResource(activity.getResources(),R.drawable.bottle);
+        }
+        else if(picture_ID==2)
         {
         d= BitmapFactory.decodeResource(activity.getResources(),R.drawable.box);
-        }
-        else 
-        {
-        d= BitmapFactory.decodeResource(activity.getResources(),R.drawable.not_found);
         }
         
         Paint temp = new Paint();
@@ -94,7 +104,7 @@ public class CustomListAdapter extends BaseAdapter {
          
          
         image.setImageBitmap(tempBitmap);
-        Quantity.setText(Integer.toString(thisScale.getQuantity())+"%");
+        Quantity.setText(Double.toString((thisScale.getQuantity()*100.0/thisScale.getItem().getQuantity()))+"%");
          
     
         Name.setText(thisScale.getItem().getName());
@@ -105,7 +115,7 @@ public class CustomListAdapter extends BaseAdapter {
         else 
         {
         	 ImageView image = (ImageView) convertView.findViewById(R.id.thumbnail);
-             d = BitmapFactory.decodeResource(activity.getResources(),R.drawable.bottle);
+             d = BitmapFactory.decodeResource(activity.getResources(),R.drawable.not_found);
              Paint temp = new Paint();
              temp.setStrokeWidth(0);
              temp.setColor(Color.WHITE);

@@ -62,7 +62,11 @@ public class ItemsServiceImpl implements ItemsService {
                 // nothing
             }
             item.setName(jsonItem.getString("name"));
-
+            try{
+            item.setImage_location(jsonItem.getInt("app_image_type"));
+            } catch (JSONException e) {
+            // nothing
+            }
             return item;
         } catch (JSONException e) {
             e.printStackTrace();
