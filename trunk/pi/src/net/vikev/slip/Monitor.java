@@ -1,6 +1,7 @@
 package net.vikev.slip;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,7 +62,22 @@ public class Monitor {
         }
     }
 
+    public Collection<ScaleMonitor> getMonitors() {
+        return monitors.values();
+    }
+
     public static void main(String args[]) {
-        new Monitor().start();
+        final Monitor m = new Monitor();
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            public void run() {
+                for (ScaleMonitor sm : m.getMonitors()) {
+                    System.out.println("Killing " + sm.getMac());
+                    sm.terminate();
+                    sm.killProccess();
+                }
+            }
+        });
+        m.start();
+
     }
 }
