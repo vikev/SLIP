@@ -16,7 +16,7 @@ import java.util.concurrent.TimeoutException;
 import net.vikev.slip.utils.WebClient;
 import net.vikev.slip.utils.WebClientImpl;
 
-public class ScaleMonitor implements Runnable {
+public class ScaleMonitor3 implements Runnable {
     /**
      * How long to wait for result before restarting the process. The time is in
      * seconds.
@@ -32,7 +32,7 @@ public class ScaleMonitor implements Runnable {
     private boolean run = true;
     private int pid;
 
-    public ScaleMonitor(String mac) {
+    public ScaleMonitor3(String mac) {
 
         this.mac = mac;
         builder = new ProcessBuilder(new String[] { "./gatttool", "-t", "random", "-b", mac, "--char-write-req", "--handle=0x000c",
@@ -49,7 +49,6 @@ public class ScaleMonitor implements Runnable {
     private void startProccess() {
         try {
             p = builder.start();
-            Thread.sleep(1500);
             try {
                 Field f = p.getClass().getDeclaredField("pid");
                 f.setAccessible(true);
@@ -137,23 +136,15 @@ public class ScaleMonitor implements Runnable {
     private void restart() {
         System.out.println(mac + " Connection error. Restarting...");
         System.out.println(mac + " Killing gatttool proccess.");
-        killProccess();
-        trySleep(10000);
-        startProccess();
-    }
-
-    public String getMac() {
-        return mac;
-    }
-
-    public void killProccess() {
         try {
             Runtime.getRuntime().exec("kill -2 "+pid);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
             System.out.println(mac+" Couldn't close gatttool. Destroying istead.");
             p.destroy();
         }
+        trySleep(15000);
+        startProccess();
     }
 
     private void trySleep(int time) {

@@ -64,69 +64,54 @@ public class CustomListAdapter extends BaseAdapter {
 
         Bitmap d;
         Scale thisScale = scaleItems.get(position);
-        if (thisScale.getItem() != null)
-        {
-        ImageView image = (ImageView) convertView.findViewById(R.id.thumbnail);
-        if (position==0)
-        {
-        d = BitmapFactory.decodeResource(activity.getResources(),R.drawable.bottle);
+        if (thisScale.getItem() != null) {
+            ImageView image = (ImageView) convertView.findViewById(R.id.thumbnail);
+            if (position == 0) {
+                d = BitmapFactory.decodeResource(activity.getResources(), R.drawable.bottle);
+            } else if (position == 1 || position == 2) {
+                d = BitmapFactory.decodeResource(activity.getResources(), R.drawable.box);
+            } else {
+                d = BitmapFactory.decodeResource(activity.getResources(), R.drawable.not_found);
+            }
+
+            Paint temp = new Paint();
+            temp.setStrokeWidth(0);
+            temp.setColor(Color.WHITE);
+            Bitmap tempBitmap = Bitmap.createBitmap(d.getWidth(), d.getHeight(), Bitmap.Config.RGB_565);
+            Canvas c = new Canvas(tempBitmap);
+            double mass = ((double) thisScale.getQuantity() / (double) thisScale.getItem().getQuantity());
+
+            c.drawRect(0, 0, d.getWidth(), (int) (d.getHeight() * (1 - mass)), temp);
+            c.drawBitmap(d, 0, 0, temp);
+            ID.setText(thisScale.getName());
+
+            image.setImageBitmap(tempBitmap);
+            Quantity.setText(Math.min(thisScale.getQuantity(), thisScale.getItem().getQuantity()) * 100 / thisScale.getItem().getQuantity()
+                    + "%");
+
+            Name.setText(thisScale.getItem().getName());
+
+            return convertView;
+        } else {
+            ImageView image = (ImageView) convertView.findViewById(R.id.thumbnail);
+            d = BitmapFactory.decodeResource(activity.getResources(), R.drawable.bottle);
+            Paint temp = new Paint();
+            temp.setStrokeWidth(0);
+            temp.setColor(Color.WHITE);
+            Bitmap tempBitmap = Bitmap.createBitmap(d.getWidth(), d.getHeight(), Bitmap.Config.RGB_565);
+            Canvas c = new Canvas(tempBitmap);
+
+            c.drawRect(0, 0, d.getWidth(), (d.getHeight()), temp);
+            c.drawBitmap(d, 0, 0, temp);
+            ID.setText(thisScale.getId());
+
+            image.setImageBitmap(tempBitmap);
+            Quantity.setText("0");
+
+            Name.setText("");
+            return convertView;
+
         }
-        else if (position ==1 || position ==2)
-        {
-        d= BitmapFactory.decodeResource(activity.getResources(),R.drawable.box);
-        }
-        else 
-        {
-        d= BitmapFactory.decodeResource(activity.getResources(),R.drawable.not_found);
-        }
-        
-        Paint temp = new Paint();
-        temp.setStrokeWidth(0);
-        temp.setColor(Color.WHITE);
-        Bitmap tempBitmap = Bitmap.createBitmap(d.getWidth(), d.getHeight(), Bitmap.Config.RGB_565);
-        Canvas c = new Canvas(tempBitmap);
-        double mass = ((double)thisScale.getQuantity()/(double)thisScale.getItem().getQuantity());
-  
-     
-         c.drawRect(0, 0, d.getWidth(),(int) (d.getHeight()*(1-mass)),temp);
-         c.drawBitmap(d, 0, 0,temp);
-         ID.setText(thisScale.getName());
-         
-         
-        image.setImageBitmap(tempBitmap);
-        Quantity.setText(Integer.toString(thisScale.getQuantity())+"%");
-         
-    
-        Name.setText(thisScale.getItem().getName());
-         
-     
-        return convertView;
-        }
-        else 
-        {
-        	 ImageView image = (ImageView) convertView.findViewById(R.id.thumbnail);
-             d = BitmapFactory.decodeResource(activity.getResources(),R.drawable.bottle);
-             Paint temp = new Paint();
-             temp.setStrokeWidth(0);
-             temp.setColor(Color.WHITE);
-             Bitmap tempBitmap = Bitmap.createBitmap(d.getWidth(), d.getHeight(), Bitmap.Config.RGB_565);
-             Canvas c = new Canvas(tempBitmap);
-             
-          
-            c.drawRect(0, 0, d.getWidth(),(d.getHeight()),temp);
-              c.drawBitmap(d, 0, 0,temp);
-              ID.setText(thisScale.getId());
-              
-              
-             image.setImageBitmap(tempBitmap);
-             Quantity.setText("0");
-              
-         
-             Name.setText("");
-             return convertView;
-          
-        }
-        
 
     }
 
