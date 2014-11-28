@@ -35,7 +35,7 @@ public class ScaleMonitor implements Runnable {
     public ScaleMonitor(String mac) {
 
         this.mac = mac;
-        builder = new ProcessBuilder(new String[] { "./gatttool", "-t", "random", "-b", mac, "--char-write-req", "--handle=0x000c",
+        builder = new ProcessBuilder(new String[] { "gatttool", "-t", "random", "-b", mac, "--char-write-req", "--handle=0x000c",
                 "--value=0100", "--listen" });
         builder.redirectErrorStream(true);
 

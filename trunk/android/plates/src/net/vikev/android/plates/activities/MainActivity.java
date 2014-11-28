@@ -20,10 +20,11 @@ import android.widget.Toast;
 
 public class MainActivity extends AbstractNavDrawerActivity {
     public static String code, format;
-// TO BE DELETED
-    
-    public static boolean first=true;
-// DELETING OVER
+    // TO BE DELETED
+
+    public static boolean first = true;
+
+    // DELETING OVER
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,35 +36,33 @@ public class MainActivity extends AbstractNavDrawerActivity {
         MyApplication.restartWebServerScaleRetrieverService();
     }
 
-
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if (scanningResult != null) {
             MainActivity.code = scanningResult.getContents();
             MainActivity.format = scanningResult.getFormatName();
-            try{
-            ((EditText) findViewById(R.id.Barcode)).setText(MainActivity.code);
+            try {
+                ((EditText) findViewById(R.id.Barcode)).setText(MainActivity.code);
+            } catch (Exception e) {
             }
-            catch (Exception e){}
-            try{
+            try {
                 ((EditText) findViewById(R.id.editText_scaleMac)).setText(MainActivity.code);
+            } catch (Exception e) {
             }
-            catch (Exception e){}
-            
-            
+
         } else {
             Toast toast = Toast.makeText(MyApplication.getAppContext(), "No scan data received!", Toast.LENGTH_SHORT);
             toast.show();
         }
     }
-    
+
     @Override
     protected NavDrawerActivityConfiguration getNavDrawerConfiguration() {
 
         NavDrawerItem[] menu = new NavDrawerItem[] { NavMenuSection.create(100, "Main"),
                 NavMenuItem.create(101, "Home", "navdrawer_home", true, this), NavMenuSection.create(200, "Settings"),
-                NavMenuItem.create(201, "Server settings", "navdrawer_settings", true, this), NavMenuSection.create(400, "Scanner"),
-                NavMenuItem.create(401, "New Scale", "fragment_scale_add", true, this) };
+                NavMenuItem.create(102, "New Scale", "fragment_scale_add", true, this),
+                NavMenuItem.create(201, "Server settings", "navdrawer_settings", true, this) };
 
         NavDrawerActivityConfiguration navDrawerActivityConfiguration = new NavDrawerActivityConfiguration();
         navDrawerActivityConfiguration.setMainLayout(R.layout.main);
@@ -84,11 +83,11 @@ public class MainActivity extends AbstractNavDrawerActivity {
             case 101:
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new MainFragment()).commit();
                 break;
+            case 102:
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new NewScaleAddFragment()).commit();
+                break;
             case 201:
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new SettingsFragment()).commit();
-                break;
-            case 401:
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new NewScaleAddFragment()).commit();
                 break;
         }
     }

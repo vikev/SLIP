@@ -40,28 +40,35 @@ public class Monitor2 {
                 macs = webClient.getMACs();
 
                 for (String mac : macs) {
-                    this.mac = mac;
-
-                    builder = new ProcessBuilder(new String[] { "./gatttool", "-t", "random", "-b", mac, "--char-write-req",
-                            "--handle=0x000c", "--value=0100", "--listen" });
-                    builder.redirectErrorStream(true);
-                    process = builder.start();
-                    Thread.sleep(1500);
                     try {
-                        Field f = process.getClass().getDeclaredField("pid");
-                        f.setAccessible(true);
-                        pid = f.getInt(process);
-                        System.out.println(mac + " gatttool pid " + pid);
-                    } catch (Throwable e) {
-                        System.out.println("Couldn't get pid.");
+                        this.mac = mac;
+
+                        builder = new ProcessBuilder(new String[] { "gatttool", "-t", "random", "-b", mac, "--char-write-req",
+                                "--handle=0x000c", "--value=0100", "--listen" });
+                        builder.redirectErrorStream(true);
+                        process = builder.start();
+                        Thread.sleep(1500);
+                        try {
+                            Field f = process.getClass().getDeclaredField("pid");
+                            f.setAccessible(true);
+                            pid = f.getInt(process);
+                            System.out.println(mac + " gatttool pid " + pid);
+                        } catch (Throwable e) {
+                            System.out.println("Couldn't get pid.");
+                        }
+                        is = process.getInputStream();
+                        isr = new InputStreamReader(is);
+                        reader = new BufferedReader(isr);
+                        waitForResultWithTimeout();
+                        killProccess();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        killProccess();
                     }
-                    is = process.getInputStream();
-                    isr = new InputStreamReader(is);
-                    reader = new BufferedReader(isr);
-                    waitForResultWithTimeout();
-                    killProccess();
+                    trySleep(1000);
                 }
 
+                trySleep(5000);
             } catch (Exception e) {
                 // start again
                 e.printStackTrace();
