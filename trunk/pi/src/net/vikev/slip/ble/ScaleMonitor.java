@@ -13,8 +13,8 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import net.vikev.slip.utils.MACPool;
 import net.vikev.slip.utils.WebClient;
-import net.vikev.slip.utils.WebClientImpl;
 
 public class ScaleMonitor implements Runnable {
     /**
@@ -22,137 +22,62 @@ public class ScaleMonitor implements Runnable {
      * seconds.
      */
     private static final int WAIT_FOR_HANDLE_TIMEOUT = 15;
-    private String mac;
     private ProcessBuilder builder;
-    private Process p;
+    private Process process;
     private InputStream is;
     private InputStreamReader isr;
     private BufferedReader reader;
-    private WebClient webClient = WebClientImpl.getInstance();
-    private boolean run = true;
+    private WebClient webClient = WebClient.getInstance();
     private int pid;
-
-    public ScaleMonitor(String mac) {
-
-        this.mac = mac;
-        builder = new ProcessBuilder(new String[] { "gatttool", "-t", "random", "-b", mac, "--char-write-req", "--handle=0x000c",
-                "--value=0100", "--listen" });
-        builder.redirectErrorStream(true);
-
+    private String mac;
+    
+    public ScaleMonitor() {
         new Thread(this).start();
-    }
-
-    public void terminate() {
-        run = false;
-    }
-
-    private void startProccess() {
-        try {
-            p = builder.start();
-            Thread.sleep(1500);
-            try {
-                Field f = p.getClass().getDeclaredField("pid");
-                f.setAccessible(true);
-                pid= f.getInt(p);
-                System.out.println(mac + " gatttool pid "+pid);
-            } catch (Throwable e) {
-                System.out.println("Couldn't get pid.");
-            }
-            is = p.getInputStream();
-            isr = new InputStreamReader(is);
-            reader = new BufferedReader(isr);
-            System.out.println(mac + " New gatttool proccess started.");
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println(mac + " Couldn't start heart rate monitor.");
-        }
     }
 
     @Override
     public void run() {
-        short prev = -100;
-        startProccess();
-
-        while (run) {
-            try {
-                if (!isRunning(p)) {
-                    restart();
-                }
-
-                prev = waitForResultWithTimeout(prev);
-            } catch (Exception e) {
-                e.printStackTrace();
-                restart();
-                System.out.println(mac + " Connection timed out.");
-            }
+        while (true) {
+            mac = MACPool.getNextMac();
+            readScale(mac);
+            trySleep(1000);
         }
     }
 
-    private short waitForResultWithTimeout(short prev) throws InterruptedException, ExecutionException, TimeoutException {
-        final short p = prev;
-        ExecutorService executor = Executors.newCachedThreadPool();
-
-        Callable<Short> task = new Callable<Short>() {
-            public Short call() {
-                try {
-                    return readLine(p);
-                } catch (Exception e) {
-                    System.out.println(mac + " Timed out.");
-
-                    return p;
-                }
-            }
-        };
-
-        Future<Short> future = executor.submit(task);
-
-        return future.get(WAIT_FOR_HANDLE_TIMEOUT, TimeUnit.SECONDS);
-
-    }
-
-    private short readLine(short prev) throws Exception {
-        String line;
-        if ((line = reader.readLine()) != null) {
-            if ("Characteristic value was written successfully".equalsIgnoreCase(line) || line.startsWith("Notification handle")) {
-                if (line.startsWith("Notification handle")) {
-                    short value = extractSensorValueFromNotificationHandleValue(line);
-                    updateServerIfLastTwoReadingsDiffer(prev, value);
-                    prev = value;
-                }
-            } else {
-                System.out.println(mac + " Unexpected reading. " + line);
-                throw new Exception("Unexpected value.");
-            }
-        }
-
-        return prev;
-    }
-
-    private void updateServerIfLastTwoReadingsDiffer(short prev, short value) {
-        if (prev != value) {
-            webClient.put(mac, value);
-        }
-    }
-
-    private void restart() {
-        System.out.println(mac + " Connection error. Restarting...");
-        System.out.println(mac + " Killing gatttool proccess.");
-        killProccess();
-        trySleep(10000);
-        startProccess();
-    }
-
-    public String getMac() {
-        return mac;
-    }
-
-    public void killProccess() {
+    private void readScale(String mac) {
         try {
-            Runtime.getRuntime().exec("kill -2 "+pid);
+            startGatttoolProcess(mac);
+            trySleep(1500);
+            getPID();
+            setStreamAndReader();
+            getReadingAndSendToWebAPIWithTimeout();
+            closeProccess();
         } catch (Exception e) {
+            // nothing; continue to next scale
             e.printStackTrace();
-            System.out.println(mac+" Couldn't close gatttool. Destroying istead.");
-            p.destroy();
+        }
+    }
+
+    private void setStreamAndReader() {
+        is = process.getInputStream();
+        isr = new InputStreamReader(is);
+        reader = new BufferedReader(isr);
+    }
+
+    private void startGatttoolProcess(String mac) throws IOException {
+        builder = new ProcessBuilder(new String[] { "gatttool", "-t", "random", "-b", mac, "--char-write-req", "--handle=0x000c",
+                "--value=0100", "--listen" });
+        builder.redirectErrorStream(true);
+        process = builder.start();
+    }
+
+    private void getPID() {
+        try {
+            Field f = process.getClass().getDeclaredField("pid");
+            f.setAccessible(true);
+            pid = f.getInt(process);
+        } catch (Throwable e) {
+            System.out.println("Couldn't get pid.");
         }
     }
 
@@ -160,7 +85,56 @@ public class ScaleMonitor implements Runnable {
         try {
             Thread.sleep(time);
         } catch (InterruptedException e) {
-            // at least tried...
+            // just continue
+        }
+    }
+
+    private void getReadingAndSendToWebAPIWithTimeout() throws InterruptedException, ExecutionException, TimeoutException {
+        ExecutorService executor = Executors.newCachedThreadPool();
+
+        Callable<Short> task = new Callable<Short>() {
+            public Short call() {
+                try {
+                    return readResponse();
+                } catch (Exception e) {
+                    return 0;
+                }
+            }
+        };
+
+        Future<Short> future = executor.submit(task);
+
+        future.get(WAIT_FOR_HANDLE_TIMEOUT, TimeUnit.SECONDS);
+
+    }
+
+    private short readResponse() throws Exception {
+        String line;
+        short value = 0;
+        while (true) {
+            if ((line = reader.readLine()) != null) {
+                if (line.startsWith("Notification handle")) {
+                    value = extractSensorValueFromNotificationHandleValue(line);
+                    updateReading(value);
+                    
+                    return value;
+                }
+            }
+        }
+    }
+
+    private void updateReading(short value) {
+        System.out.println("Sending "+value);
+        webClient.put(mac, value);
+    }
+
+    public void closeProccess() {
+        try {
+            Runtime.getRuntime().exec("kill -2 " + pid);
+        } catch (Exception e) {
+            // close forcefully if SIGINT can't be sent for some reason
+            e.printStackTrace();
+            process.destroy();
         }
     }
 
@@ -168,13 +142,4 @@ public class ScaleMonitor implements Runnable {
         return (short) (Short.valueOf(line.substring(39, 41), 16) * 10);
     }
 
-    private boolean isRunning(Process process) {
-        try {
-            process.exitValue();
-
-            return false;
-        } catch (Exception e) {
-            return true;
-        }
-    }
 }
