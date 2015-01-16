@@ -131,7 +131,7 @@ static app_timer_id_t 						 m_adc_sampling_timer_id;
 
 static dm_application_instance_t             m_app_handle;                              /**< Application identifier allocated by device manager */
 
-static bool                                  m_memory_access_in_progress = false;       /**< Flag to keep track of ongoing operations on persistent memory. 
+static bool                                  m_memory_access_in_progress = false;       /**< Flag to keep track of ongoing operations on persistent memory.
 */
 int bufferSize = 16;
 int maxbufferSize = 6;
@@ -253,6 +253,7 @@ static void battery_level_meas_timeout_handler(void * p_context)
 }
 int avg(int num){
     counter++;
+    if (counter == INT32_MAX) counter = 0;
     values[counter%bufferSize] = num;
     int sum = 0;
     for (int i=0; i<bufferSize; i++) {
