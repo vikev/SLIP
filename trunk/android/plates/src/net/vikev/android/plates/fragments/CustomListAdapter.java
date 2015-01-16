@@ -24,8 +24,6 @@ public class CustomListAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private List<Scale> scaleItems;
 
-    // ImageLoader imageLoader = AppController.getInstance().getImageLoader();
-
     public CustomListAdapter(Activity activity, List<Scale> scaleItems) {
         this.activity = activity;
         this.scaleItems = scaleItems;
@@ -54,10 +52,6 @@ public class CustomListAdapter extends BaseAdapter {
         if (convertView == null)
             convertView = inflater.inflate(R.layout.list_row, null);
 
-        // // if (imageLoader == null)
-        // imageLoader = AppController.getInstance().getImageLoader();
-        // NetworkImageView thumbNail = (NetworkImageView) convertView
-        // .findViewById(R.id.thumbnail);
         TextView ID = (TextView) convertView.findViewById(R.id.ID);
         TextView Quantity = (TextView) convertView.findViewById(R.id.Quantity);
         TextView Name = (TextView) convertView.findViewById(R.id.Name);
